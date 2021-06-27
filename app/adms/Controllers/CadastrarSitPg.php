@@ -37,15 +37,14 @@ class CadastrarSitPg
     }
 
     private function cadSitPgViewPriv()
-    {        
+    {
         $botao = ['list_sit' => ['menu_controller' => 'situacao-pg', 'menu_metodo' => 'listar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
-        
+
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
         $carregarView = new \Core\ConfigView("adms/Views/situacaoPg/cadSitPg", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

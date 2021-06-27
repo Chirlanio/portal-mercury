@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year,  Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarDelivery {
+class CadastrarDelivery
+{
 
     private $Dados;
 
-    public function cadDelivery() {
+    public function cadDelivery()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['CadDelivery'])) {
             unset($this->Dados['CadDelivery']);
@@ -34,7 +36,8 @@ class CadastrarDelivery {
         }
     }
 
-    private function cadDeliveryViewPriv() {
+    private function cadDeliveryViewPriv()
+    {
         $listarSelect = new \App\adms\Models\AdmsCadastrarDelivery();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
 
@@ -47,5 +50,4 @@ class CadastrarDelivery {
         $carregarView = new \Core\ConfigView("adms/Views/delivery/cadDelivery", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

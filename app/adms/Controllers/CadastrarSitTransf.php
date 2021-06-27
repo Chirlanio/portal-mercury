@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarSitTransf {
+class CadastrarSitTransf
+{
 
     private $Dados;
 
-    public function cadSit() {
+    public function cadSit()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['CadSit'])) {
             unset($this->Dados['CadSit']);
@@ -34,7 +36,8 @@ class CadastrarSitTransf {
         }
     }
 
-    private function cadSitViewPriv() {
+    private function cadSitViewPriv()
+    {
         $listarSelect = new \App\adms\Models\AdmsCadastrarSitTransf();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
 
@@ -47,5 +50,4 @@ class CadastrarSitTransf {
         $carregarView = new \Core\ConfigView("adms/Views/situacaoTransf/cadSit", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

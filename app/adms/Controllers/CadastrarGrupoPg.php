@@ -37,15 +37,14 @@ class CadastrarGrupoPg
     }
 
     private function cadGrupoPgViewPriv()
-    {        
+    {
         $botao = ['list_grpg' => ['menu_controller' => 'grupo-pg', 'menu_metodo' => 'listar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
-        
+
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
         $carregarView = new \Core\ConfigView("adms/Views/grupoPg/cadGrupoPg", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

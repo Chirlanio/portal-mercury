@@ -12,17 +12,19 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarRota {
+class CadastrarRota
+{
 
     private $Dados;
 
-    public function cadRota() {
-        
+    public function cadRota()
+    {
+
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        
+
         if (!empty($this->Dados['CadRota'])) {
             unset($this->Dados['CadRota']);
-            
+
             $cadRota = new \App\adms\Models\AdmsCadastrarRota();
             $cadRota->cadRota($this->Dados);
             if ($cadRota->getResultado()) {
@@ -37,21 +39,21 @@ class CadastrarRota {
         }
     }
 
-    private function cadRotaViewPriv() {
-        
+    private function cadRotaViewPriv()
+    {
+
         $botao = ['list_rota' => ['menu_controller' => 'rota', 'menu_metodo' => 'listar']];
-        
+
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
-        
+
         $listarSelect = new \App\adms\Models\AdmsCadastrarRota();
-        $this->Dados['select']=$listarSelect->listarCadastrar();
-        
+        $this->Dados['select'] = $listarSelect->listarCadastrar();
+
         $carregarView = new \Core\ConfigView("adms/Views/rota/cadRota", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

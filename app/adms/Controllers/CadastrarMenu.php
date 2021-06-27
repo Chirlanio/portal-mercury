@@ -40,15 +40,14 @@ class CadastrarMenu
     {
         $listarSelect = new \App\adms\Models\AdmsCadastrarMenu();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
-        
+
         $botao = ['list_menu' => ['menu_controller' => 'menu', 'menu_metodo' => 'listar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
-        
+
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
         $carregarView = new \Core\ConfigView("adms/Views/menu/cadMenu", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

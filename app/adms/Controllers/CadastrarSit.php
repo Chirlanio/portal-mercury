@@ -40,15 +40,14 @@ class CadastrarSit
     {
         $listarSelect = new \App\adms\Models\AdmsCadastrarSit();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
-        
+
         $botao = ['list_sit' => ['menu_controller' => 'situacao', 'menu_metodo' => 'listar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
-        
+
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
         $carregarView = new \Core\ConfigView("adms/Views/situacao/cadSit", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

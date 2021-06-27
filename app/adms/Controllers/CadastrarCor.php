@@ -41,11 +41,10 @@ class CadastrarCor
         $botao = ['list_cor' => ['menu_controller' => 'cor', 'menu_metodo' => 'listar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
-        
+
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
         $carregarView = new \Core\ConfigView("adms/Views/cor/cadCor", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

@@ -57,5 +57,4 @@ class AtualSenha
             $carregarView->renderizarLogin();
         }
     }
-
 }

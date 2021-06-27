@@ -13,11 +13,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarPed {
+class CadastrarPed
+{
 
     private $Dados;
 
-    public function cadPed() {
+    public function cadPed()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['CadPed'])) {
             unset($this->Dados['CadPed']);
@@ -35,7 +37,8 @@ class CadastrarPed {
         }
     }
 
-    private function cadPedViewPriv() {
+    private function cadPedViewPriv()
+    {
         $listarSelect = new \App\adms\Models\AdmsCadastrarPed();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
 
@@ -48,5 +51,4 @@ class CadastrarPed {
         $carregarView = new \Core\ConfigView("adms/Views/prateleira/cadPed", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

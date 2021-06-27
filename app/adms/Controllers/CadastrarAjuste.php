@@ -40,15 +40,14 @@ class CadastrarAjuste
     {
         $listarSelect = new \App\adms\Models\AdmsCadastrarAjuste();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
-       
+
         $botao = ['list_ajuste' => ['menu_controller' => 'ajuste', 'menu_metodo' => 'listar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
-        
+
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
         $carregarView = new \Core\ConfigView("adms/Views/ajuste/cadAjuste", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

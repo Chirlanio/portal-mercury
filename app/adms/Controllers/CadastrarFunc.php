@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarFunc {
+class CadastrarFunc
+{
 
     private $Dados;
 
-    public function cadFunc() {
+    public function cadFunc()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['CadFunc'])) {
             unset($this->Dados['CadFunc']);
@@ -34,7 +36,8 @@ class CadastrarFunc {
         }
     }
 
-    private function cadFuncViewPriv() {
+    private function cadFuncViewPriv()
+    {
         $listarSelect = new \App\adms\Models\AdmsCadastrarFunc();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
 
@@ -47,5 +50,4 @@ class CadastrarFunc {
         $carregarView = new \Core\ConfigView("adms/Views/funcionarios/cadFunc", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

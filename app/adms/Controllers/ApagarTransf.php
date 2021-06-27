@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class ApagarTransf {
+class ApagarTransf
+{
 
     private $DadosId;
 
-    public function apagarTransf($DadosId = null) {
+    public function apagarTransf($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $apagarTransf = new \App\adms\Models\AdmsApagarTransf();
@@ -27,5 +29,4 @@ class ApagarTransf {
         $UrlDestino = URLADM . 'transferencia/listarTransf';
         header("Location: $UrlDestino");
     }
-
 }

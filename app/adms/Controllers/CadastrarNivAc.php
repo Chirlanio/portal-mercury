@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarNivAc {
+class CadastrarNivAc
+{
 
     private $Dados;
 
-    public function cadNivAc() {
+    public function cadNivAc()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['CadNivAc'])) {
             unset($this->Dados['CadNivAc']);
@@ -35,7 +37,8 @@ class CadastrarNivAc {
         }
     }
 
-    private function cadNivAcViewPriv() {
+    private function cadNivAcViewPriv()
+    {
         $botao = ['list_nivac' => ['menu_controller' => 'nivel-acesso', 'menu_metodo' => 'listar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
@@ -48,5 +51,4 @@ class CadastrarNivAc {
         $carregarView = new \Core\ConfigView("adms/Views/nivAcesso/cadNivAc", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

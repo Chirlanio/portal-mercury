@@ -12,14 +12,16 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class ApagarTipoPagamento {
+class ApagarTipoPagamento
+{
 
     private $DadosId;
 
-    public function apagarTipo($DadosId = null) {
-        
+    public function apagarTipo($DadosId = null)
+    {
+
         $this->DadosId = (int) $DadosId;
-        
+
         if (!empty($this->DadosId)) {
             $apagarTipo = new \App\adms\Models\AdmsApagarTipoPagamento();
             $apagarTipo->apagarTipo($this->DadosId);
@@ -29,5 +31,4 @@ class ApagarTipoPagamento {
         $UrlDestino = URLADM . 'tipo-pagamento/listar';
         header("Location: $UrlDestino");
     }
-
 }

@@ -12,14 +12,16 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarBairro {
+class CadastrarBairro
+{
 
     private $Dados;
 
-    public function cadBairro() {
-        
+    public function cadBairro()
+    {
+
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        
+
         if (!empty($this->Dados['CadBairro'])) {
             unset($this->Dados['CadBairro']);
             $cadBairro = new \App\adms\Models\AdmsCadastrarBairro();
@@ -36,21 +38,21 @@ class CadastrarBairro {
         }
     }
 
-    private function cadBairroViewPriv() {
-        
+    private function cadBairroViewPriv()
+    {
+
         $botao = ['list_bairro' => ['menu_controller' => 'bairro', 'menu_metodo' => 'listar']];
-        
+
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
-        
+
         $listarSelect = new \App\adms\Models\AdmsCadastrarBairro();
-        $this->Dados['select']=$listarSelect->listarCadastrar();
-        
+        $this->Dados['select'] = $listarSelect->listarCadastrar();
+
         $carregarView = new \Core\ConfigView("adms/Views/bairro/cadBairro", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

@@ -21,13 +21,12 @@ class ApagarTroca
     {
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
-           $apagarTroca = new \App\adms\Models\AdmsApagarTroca();
-           $apagarTroca->apagarTroca($this->DadosId);
+            $apagarTroca = new \App\adms\Models\AdmsApagarTroca();
+            $apagarTroca->apagarTroca($this->DadosId);
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Necessário selecionar um item!</div>";
         }
         $UrlDestino = URLADM . 'listar-troca/listar-troca';
         header("Location: $UrlDestino");
     }
-
 }
