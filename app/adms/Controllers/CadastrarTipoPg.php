@@ -37,15 +37,14 @@ class CadastrarTipoPg
     }
 
     private function cadTipoPgViewPriv()
-    {        
+    {
         $botao = ['list_tpg' => ['menu_controller' => 'tipo-pg', 'menu_metodo' => 'listar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
-        
+
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
         $carregarView = new \Core\ConfigView("adms/Views/tipoPg/cadTipoPg", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

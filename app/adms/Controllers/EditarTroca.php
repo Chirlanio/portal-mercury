@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarTroca {
+class EditarTroca
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editTroca($DadosId = null) {
+    public function editTroca($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarTroca {
         }
     }
 
-    private function editTrocaPriv() {
+    private function editTrocaPriv()
+    {
         if (!empty($this->Dados['EditTroca'])) {
             unset($this->Dados['EditTroca']);
             $editarTroca = new \App\adms\Models\AdmsEditarTroca();
@@ -48,7 +51,8 @@ class EditarTroca {
         }
     }
 
-    private function editTrocaViewPriv() {
+    private function editTrocaViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarTroca();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -67,5 +71,4 @@ class EditarTroca {
             header("Location: $UrlDestino");
         }
     }
-
 }

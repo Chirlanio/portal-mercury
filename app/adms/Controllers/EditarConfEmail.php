@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Cesar Szpak - Celke
  */
-class EditarConfEmail {
+class EditarConfEmail
+{
 
     private $Dados;
 
-    public function editConfEmail() {
+    public function editConfEmail()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['EditConfEmail'])) {
             unset($this->Dados['EditConfEmail']);
@@ -36,12 +38,13 @@ class EditarConfEmail {
         }
     }
 
-    private function editConfEmailViewPriv() {
+    private function editConfEmailViewPriv()
+    {
         if ($this->Dados['form']) {
-            
+
             $listarMenu = new \App\adms\Models\AdmsMenu();
             $this->Dados['menu'] = $listarMenu->itemMenu();
-            
+
             $carregarView = new \Core\ConfigView("adms/Views/confEmail/editarConfEmail", $this->Dados);
             $carregarView->renderizar();
         } else {
@@ -50,5 +53,4 @@ class EditarConfEmail {
             header("Location: $UrlDestino");
         }
     }
-
 }

@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarAjuste {
+class EditarAjuste
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editAjuste($DadosId = null) {
+    public function editAjuste($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarAjuste {
         }
     }
 
-    private function editAjustePriv() {
+    private function editAjustePriv()
+    {
         if (!empty($this->Dados['EditAjuste'])) {
             unset($this->Dados['EditAjuste']);
             $editarAjuste = new \App\adms\Models\AdmsEditarAjuste();
@@ -50,7 +53,8 @@ class EditarAjuste {
         }
     }
 
-    private function editAjusteViewPriv() {
+    private function editAjusteViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarAjuste();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -69,5 +73,4 @@ class EditarAjuste {
             header("Location: $UrlDestino");
         }
     }
-
 }

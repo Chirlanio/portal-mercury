@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerSitPg {
+class VerSitPg
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verSitPg($DadosId = null) {
+    public function verSitPg($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verSitPg = new \App\adms\Models\AdmsVerSitPg();
             $this->Dados['dados_sit'] = $verSitPg->verSitPg($this->DadosId);
 
-            $botao = ['list_sit' => ['menu_controller' => 'situacao-pg', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_sit' => ['menu_controller' => 'situacao-pg', 'menu_metodo' => 'listar'],
                 'edit_sit' => ['menu_controller' => 'editar-sit-pg', 'menu_metodo' => 'edit-sit-pg'],
-                'del_sit' => ['menu_controller' => 'apagar-sit-pg', 'menu_metodo' => 'apagar-sit-pg']];
+                'del_sit' => ['menu_controller' => 'apagar-sit-pg', 'menu_metodo' => 'apagar-sit-pg']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerSitPg {
             header("Location: $UrlDestino");
         }
     }
-
 }

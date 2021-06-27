@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarLoja {
+class EditarLoja
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editLoja($DadosId = null) {
+    public function editLoja($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarLoja {
         }
     }
 
-    private function editLojaPriv() {
+    private function editLojaPriv()
+    {
         if (!empty($this->Dados['EditLoja'])) {
             unset($this->Dados['EditLoja']);
             $editarLoja = new \App\adms\Models\AdmsEditarLoja();
@@ -48,7 +51,8 @@ class EditarLoja {
         }
     }
 
-    private function editLojaViewPriv() {
+    private function editLojaViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarLoja();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -67,5 +71,4 @@ class EditarLoja {
             header("Location: $UrlDestino");
         }
     }
-
 }

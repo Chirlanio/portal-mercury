@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class Login {
+class Login
+{
 
     private $Dados;
 
-    public function acesso() {
+    public function acesso()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['SendLogin'])) {
             unset($this->Dados['SendLogin']);
@@ -33,11 +35,11 @@ class Login {
         $carregarView->renderizarLogin();
     }
 
-    public function logout() {
+    public function logout()
+    {
         unset($_SESSION['usuario_id'], $_SESSION['usuario_nome'], $_SESSION['usuario_email'], $_SESSION['usuario_imagem'], $_SESSION['adms_niveis_acesso_id'], $_SESSION['ordem_nivac']);
         $_SESSION['msg'] = "<div class='alert alert-success'>Deslogado com sucesso</div>";
         $UrlDestino = URLADM . 'login/acesso';
         header("Location: $UrlDestino");
     }
-
 }

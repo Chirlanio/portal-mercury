@@ -46,5 +46,4 @@ class EditarPerfil
         $carregarView = new \Core\ConfigView("adms/Views/usuario/editPerfil", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

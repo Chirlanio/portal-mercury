@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarSitTroca {
+class EditarSitTroca
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editSit($DadosId = null) {
+    public function editSit($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarSitTroca {
         }
     }
 
-    private function editSitPriv() {
+    private function editSitPriv()
+    {
         if (!empty($this->Dados['EditSit'])) {
             unset($this->Dados['EditSit']);
             $editarSit = new \App\adms\Models\AdmsEditarSitTroca();
@@ -48,7 +51,8 @@ class EditarSitTroca {
         }
     }
 
-    private function editSitViewPriv() {
+    private function editSitViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarSitTroca();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -67,5 +71,4 @@ class EditarSitTroca {
             header("Location: $UrlDestino");
         }
     }
-
 }

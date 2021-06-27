@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerFunc {
+class VerFunc
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verFunc($DadosId = null) {
+    public function verFunc($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verFunc = new \App\adms\Models\AdmsVerFunc();
             $this->Dados['dados_func'] = $verFunc->verFunc($this->DadosId);
 
-            $botao = ['list_func' => ['menu_controller' => 'funcionarios', 'menu_metodo' => 'listar-func'],
+            $botao = [
+                'list_func' => ['menu_controller' => 'funcionarios', 'menu_metodo' => 'listar-func'],
                 'edit_func' => ['menu_controller' => 'editar-func', 'menu_metodo' => 'edit-func'],
-                'del_func' => ['menu_controller' => 'apagar-func', 'menu_metodo' => 'apagar-func']];
+                'del_func' => ['menu_controller' => 'apagar-func', 'menu_metodo' => 'apagar-func']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerFunc {
             header("Location: $UrlDestino");
         }
     }
-
 }

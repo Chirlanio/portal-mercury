@@ -12,19 +12,21 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarNivAcPgMenu {
+class EditarNivAcPgMenu
+{
 
     private $Dados;
     private $DadosId;
     private $NivId;
     private $PageId;
 
-    public function editNivAcPgMenu($DadosId = null) {
+    public function editNivAcPgMenu($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->NivId = filter_input(INPUT_GET, "niv", FILTER_SANITIZE_NUMBER_INT);
         $this->PageId = filter_input(INPUT_GET, "pg", FILTER_SANITIZE_NUMBER_INT);
         $this->DadosId = (int) $DadosId;
-        if (!empty($this->DadosId) AND ! empty($this->NivId) AND ! empty($this->PageId)) {
+        if (!empty($this->DadosId) and !empty($this->NivId) and !empty($this->PageId)) {
             $this->editNivAcPgMenuPriv();
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Item de menu não encontrado!</div>";
@@ -33,7 +35,8 @@ class EditarNivAcPgMenu {
         }
     }
 
-    private function editNivAcPgMenuPriv() {
+    private function editNivAcPgMenuPriv()
+    {
         if (!empty($this->Dados['EditNivAcPgMenu'])) {
             unset($this->Dados['EditNivAcPgMenu']);
             $editarMenu = new \App\adms\Models\AdmsEditarNivAcPgMenu();
@@ -52,7 +55,8 @@ class EditarNivAcPgMenu {
         }
     }
 
-    private function editMenuViewPriv() {
+    private function editMenuViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarNivAcPgMenu();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -67,5 +71,4 @@ class EditarNivAcPgMenu {
             header("Location: $UrlDestino");
         }
     }
-
 }

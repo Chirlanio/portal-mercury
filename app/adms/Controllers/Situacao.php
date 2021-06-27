@@ -22,10 +22,12 @@ class Situacao
     {
         $this->PageId = (int) $PageId ? $PageId : 1;
 
-        $botao = ['cad_sit' => ['menu_controller' => 'cadastrar-sit', 'menu_metodo' => 'cad-sit'],
+        $botao = [
+            'cad_sit' => ['menu_controller' => 'cadastrar-sit', 'menu_metodo' => 'cad-sit'],
             'vis_sit' => ['menu_controller' => 'ver-sit', 'menu_metodo' => 'ver-sit'],
             'edit_sit' => ['menu_controller' => 'editar-sit', 'menu_metodo' => 'edit-sit'],
-            'del_sit' => ['menu_controller' => 'apagar-sit', 'menu_metodo' => 'apagar-sit']];
+            'del_sit' => ['menu_controller' => 'apagar-sit', 'menu_metodo' => 'apagar-sit']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -39,5 +41,4 @@ class Situacao
         $carregarView = new \Core\ConfigView("adms/Views/situacao/listarSit", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

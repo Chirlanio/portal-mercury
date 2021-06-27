@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerTipoPg {
+class VerTipoPg
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verTipoPg($DadosId = null) {
+    public function verTipoPg($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verTipoPg = new \App\adms\Models\AdmsVerTipoPg();
             $this->Dados['dados_tpg'] = $verTipoPg->verTipoPg($this->DadosId);
 
-            $botao = ['list_tpg' => ['menu_controller' => 'tipo-pg', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_tpg' => ['menu_controller' => 'tipo-pg', 'menu_metodo' => 'listar'],
                 'edit_tpg' => ['menu_controller' => 'editar-tipo-pg', 'menu_metodo' => 'edit-tipo-pg'],
-                'del_tpg' => ['menu_controller' => 'apagar-tipo-pg', 'menu_metodo' => 'apagar-tipo-pg']];
+                'del_tpg' => ['menu_controller' => 'apagar-tipo-pg', 'menu_metodo' => 'apagar-tipo-pg']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerTipoPg {
             header("Location: $UrlDestino");
         }
     }
-
 }

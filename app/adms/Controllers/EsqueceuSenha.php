@@ -23,7 +23,7 @@ class EsqueceuSenha
         if (!empty($this->Dados['RecupUserLogin'])) {
             $esqSenha = new \App\adms\Models\AdmsEsqueceuSenha();
             $esqSenha->esqueceuSenha($this->Dados);
-            if ($esqSenha->getResultado()) {                
+            if ($esqSenha->getResultado()) {
                 $UrlDestino = URLADM . 'login/acesso';
                 header("Location: $UrlDestino");
             } else {
@@ -36,5 +36,4 @@ class EsqueceuSenha
             $carregarView->renderizarLogin();
         }
     }
-
 }

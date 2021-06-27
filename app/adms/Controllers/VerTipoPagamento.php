@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerTipoPagamento {
+class VerTipoPagamento
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verTipo($DadosId = null) {
+    public function verTipo($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verTipo = new \App\adms\Models\AdmsVerTipoPagamento();
             $this->Dados['dados_tipo'] = $verTipo->verTipo($this->DadosId);
 
-            $botao = ['list_pag' => ['menu_controller' => 'tipo-pagamento', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_pag' => ['menu_controller' => 'tipo-pagamento', 'menu_metodo' => 'listar'],
                 'edit_pag' => ['menu_controller' => 'editar-tipo-pagamento', 'menu_metodo' => 'edit-tipo'],
-                'del_pag' => ['menu_controller' => 'apagar-tipo-pagamento', 'menu_metodo' => 'apagar-tipo']];
+                'del_pag' => ['menu_controller' => 'apagar-tipo-pagamento', 'menu_metodo' => 'apagar-tipo']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerTipoPagamento {
             header("Location: $UrlDestino");
         }
     }
-
 }

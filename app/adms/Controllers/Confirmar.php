@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class Confirmar {
+class Confirmar
+{
 
     private $DadosChave;
 
-    public function confirmarEmail() {
+    public function confirmarEmail()
+    {
         $this->DadosChave = filter_input(INPUT_GET, 'chave', FILTER_SANITIZE_STRING);
         if (!empty($this->DadosChave)) {
             $confEmail = new \App\adms\Models\AdmsConfirmarEmail();
@@ -34,5 +36,4 @@ class Confirmar {
             header("Location: $UrlDestino");
         }
     }
-
 }

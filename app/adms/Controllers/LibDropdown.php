@@ -24,7 +24,7 @@ class LibDropdown
         $this->DadosId = (int) $DadosId;
         $this->NivId = filter_input(INPUT_GET, "niv", FILTER_SANITIZE_NUMBER_INT);
         $this->PageId = filter_input(INPUT_GET, "pg", FILTER_SANITIZE_NUMBER_INT);
-        if (!empty($this->DadosId) AND ! empty($this->NivId) AND ! empty($this->PageId)) {
+        if (!empty($this->DadosId) and !empty($this->NivId) and !empty($this->PageId)) {
             $libDropdown = new \App\adms\Models\AdmsLibDropdown();
             $libDropdown->libDropdown($this->DadosId);
             $UrlDestino = URLADM . "permissoes/listar/{$this->PageId}?niv={$this->NivId}";
@@ -34,5 +34,4 @@ class LibDropdown
             header("Location: $UrlDestino");
         }
     }
-
 }

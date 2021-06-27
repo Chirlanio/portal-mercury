@@ -12,17 +12,19 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarBairro {
+class EditarBairro
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editBairro($DadosId = null) {
-        
+    public function editBairro($DadosId = null)
+    {
+
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        
+
         $this->DadosId = (int) $DadosId;
-        
+
         if (!empty($this->DadosId)) {
             $this->editBairroPriv();
         } else {
@@ -32,7 +34,8 @@ class EditarBairro {
         }
     }
 
-    private function editBairroPriv() {
+    private function editBairroPriv()
+    {
         if (!empty($this->Dados['EditBairro'])) {
             unset($this->Dados['EditBairro']);
             $editarBairro = new \App\adms\Models\AdmsEditarBairro();
@@ -43,7 +46,7 @@ class EditarBairro {
                 header("Location: $UrlDestino");
             } else {
                 $this->Dados['form'] = $this->Dados;
-                $this->editCargoViewPriv();
+                $this->editBairroViewPriv();
             }
         } else {
             $verBairro = new \App\adms\Models\AdmsEditarBairro();
@@ -52,12 +55,13 @@ class EditarBairro {
         }
     }
 
-    private function editBairroViewPriv() {
+    private function editBairroViewPriv()
+    {
         if ($this->Dados['form']) {
-            
+
             $listarSelect = new \App\adms\Models\AdmsEditarBairro();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
-            
+
             $botao = ['vis_bairro' => ['menu_controller' => 'ver-bairro', 'menu_metodo' => 'ver-bairro']];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
@@ -73,5 +77,4 @@ class EditarBairro {
             header("Location: $UrlDestino");
         }
     }
-
 }

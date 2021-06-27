@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarSitUser {
+class EditarSitUser
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editSitUser($DadosId = null) {
+    public function editSitUser($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarSitUser {
         }
     }
 
-    private function editSitUserPriv() {
+    private function editSitUserPriv()
+    {
         if (!empty($this->Dados['EditSitUser'])) {
             unset($this->Dados['EditSitUser']);
             $editarSitUser = new \App\adms\Models\AdmsEditarSitUser();
@@ -48,7 +51,8 @@ class EditarSitUser {
         }
     }
 
-    private function editSitUserViewPriv() {
+    private function editSitUserViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarSitUser();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -67,5 +71,4 @@ class EditarSitUser {
             header("Location: $UrlDestino");
         }
     }
-
 }

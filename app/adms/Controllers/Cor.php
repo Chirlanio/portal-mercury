@@ -22,10 +22,12 @@ class Cor
     {
         $this->PageId = (int) $PageId ? $PageId : 1;
 
-        $botao = ['cad_cor' => ['menu_controller' => 'cadastrar-cor', 'menu_metodo' => 'cad-cor'],
+        $botao = [
+            'cad_cor' => ['menu_controller' => 'cadastrar-cor', 'menu_metodo' => 'cad-cor'],
             'vis_cor' => ['menu_controller' => 'ver-cor', 'menu_metodo' => 'ver-cor'],
             'edit_cor' => ['menu_controller' => 'editar-cor', 'menu_metodo' => 'edit-cor'],
-            'del_cor' => ['menu_controller' => 'apagar-cor', 'menu_metodo' => 'apagar-cor']];
+            'del_cor' => ['menu_controller' => 'apagar-cor', 'menu_metodo' => 'apagar-cor']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -39,5 +41,4 @@ class Cor
         $carregarView = new \Core\ConfigView("adms/Views/cor/listarCor", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

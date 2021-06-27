@@ -37,5 +37,4 @@ class NovoUsuario
             $carregarView->renderizarLogin();
         }
     }
-
 }

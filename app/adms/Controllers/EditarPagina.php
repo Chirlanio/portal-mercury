@@ -71,5 +71,4 @@ class EditarPagina
             header("Location: $UrlDestino");
         }
     }
-
 }

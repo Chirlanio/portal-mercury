@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerPerfil {
+class VerPerfil
+{
 
     private $Dados;
 
-    public function perfil() {
+    public function perfil()
+    {
         $verPerfil = new \App\adms\Models\AdmsVerPerfil();
         $this->Dados['dados_perfil'] = $verPerfil->verPerfil();
 
@@ -26,5 +28,4 @@ class VerPerfil {
         $carregarView = new \Core\ConfigView("adms/Views/usuario/perfil", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

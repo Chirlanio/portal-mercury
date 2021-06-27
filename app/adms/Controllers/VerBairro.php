@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerBairro {
+class VerBairro
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verBairro($DadosId = null) {
+    public function verBairro($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verBairro = new \App\adms\Models\AdmsVerBairro();
             $this->Dados['dados_bairro'] = $verBairro->verBairro($this->DadosId);
 
-            $botao = ['list_bairro' => ['menu_controller' => 'bairro', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_bairro' => ['menu_controller' => 'bairro', 'menu_metodo' => 'listar'],
                 'edit_bairro' => ['menu_controller' => 'editar-bairro', 'menu_metodo' => 'edit-bairro'],
-                'del_bairro' => ['menu_controller' => 'apagar-bairro', 'menu_metodo' => 'apagar-bairro']];
+                'del_bairro' => ['menu_controller' => 'apagar-bairro', 'menu_metodo' => 'apagar-bairro']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerBairro {
             header("Location: $UrlDestino");
         }
     }
-
 }

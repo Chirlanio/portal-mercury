@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarDelivery {
+class EditarDelivery
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editDelivery($DadosId = null) {
+    public function editDelivery($DadosId = null)
+    {
 
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -32,7 +34,8 @@ class EditarDelivery {
         }
     }
 
-    private function editDeliveryPriv() {
+    private function editDeliveryPriv()
+    {
 
         if (!empty($this->Dados['EditDelivery'])) {
             unset($this->Dados['EditDelivery']);
@@ -55,7 +58,8 @@ class EditarDelivery {
         }
     }
 
-    private function editDeliveryViewPriv() {
+    private function editDeliveryViewPriv()
+    {
 
         if ($this->Dados['form']) {
 

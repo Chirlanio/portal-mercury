@@ -12,22 +12,26 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerPagina {
+class VerPagina
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verPagina($DadosId = null) {
+    public function verPagina($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
-        
+
         if (!empty($this->DadosId)) {
             $verPagina = new \App\adms\Models\AdmsVerPagina();
             $this->Dados['dados_pagina'] = $verPagina->verPagina($this->DadosId);
 
-            $botao = ['list_pagina' => ['menu_controller' => 'pagina', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_pagina' => ['menu_controller' => 'pagina', 'menu_metodo' => 'listar'],
                 'edit_pagina' => ['menu_controller' => 'editar-pagina', 'menu_metodo' => 'edit-pagina'],
-                'del_pagina' => ['menu_controller' => 'apagar-pagina', 'menu_metodo' => 'apagar-pagina']];
+                'del_pagina' => ['menu_controller' => 'apagar-pagina', 'menu_metodo' => 'apagar-pagina']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -42,5 +46,4 @@ class VerPagina {
             header("Location: $UrlDestino");
         }
     }
-
 }

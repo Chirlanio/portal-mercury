@@ -8,25 +8,29 @@ if (!defined('URLADM')) {
 }
 
 /**
- * Description of VerCor
+ * Description of VerCargo
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerCargo {
+class VerCargo
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verCargo($DadosId = null) {
+    public function verCargo($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verCargo = new \App\adms\Models\AdmsVerCargo();
             $this->Dados['dados_cargo'] = $verCargo->verCargo($this->DadosId);
 
-            $botao = ['list_cargo' => ['menu_controller' => 'cargo', 'menu_metodo' => 'listarCargo'],
+            $botao = [
+                'list_cargo' => ['menu_controller' => 'cargo', 'menu_metodo' => 'listarCargo'],
                 'edit_cargo' => ['menu_controller' => 'editar-cargo', 'menu_metodo' => 'edit-cargo'],
-                'del_cargo' => ['menu_controller' => 'apagar-cargo', 'menu_metodo' => 'apagar-cargo']];
+                'del_cargo' => ['menu_controller' => 'apagar-cargo', 'menu_metodo' => 'apagar-cargo']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerCargo {
             header("Location: $UrlDestino");
         }
     }
-
 }

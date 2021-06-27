@@ -2,7 +2,7 @@
 
 namespace App\adms\Controllers;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarPed {
+class EditarPed
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editPed($DadosId = null) {
+    public function editPed($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarPed {
         }
     }
 
-    private function editPedPriv() {
+    private function editPedPriv()
+    {
         if (!empty($this->Dados['EditPed'])) {
             unset($this->Dados['EditPed']);
             $editarPed = new \App\adms\Models\AdmsEditarPed();
@@ -49,7 +52,8 @@ class EditarPed {
         }
     }
 
-    private function editPedViewPriv() {
+    private function editPedViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarPed();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -68,5 +72,4 @@ class EditarPed {
             header("Location: $UrlDestino");
         }
     }
-
 }

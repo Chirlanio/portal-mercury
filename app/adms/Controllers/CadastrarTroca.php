@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarTroca {
+class CadastrarTroca
+{
 
     private $Dados;
 
-    public function cadTroca() {
+    public function cadTroca()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['CadTroca'])) {
             unset($this->Dados['CadTroca']);
@@ -34,7 +36,8 @@ class CadastrarTroca {
         }
     }
 
-    private function cadTrocaViewPriv() {
+    private function cadTrocaViewPriv()
+    {
         $listarSelect = new \App\adms\Models\AdmsCadastrarTroca();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
 
@@ -47,5 +50,4 @@ class CadastrarTroca {
         $carregarView = new \Core\ConfigView("adms/Views/troca/cadTroca", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

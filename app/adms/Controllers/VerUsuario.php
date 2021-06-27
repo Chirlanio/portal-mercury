@@ -12,22 +12,26 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerUsuario {
+class VerUsuario
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verUsuario($DadosId = null) {
+    public function verUsuario($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verUsuario = new \App\adms\Models\AdmsVerUsuario();
             $this->Dados['dados_usuario'] = $verUsuario->verUsuario($this->DadosId);
 
-            $botao = ['list_usuario' => ['menu_controller' => 'usuarios', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_usuario' => ['menu_controller' => 'usuarios', 'menu_metodo' => 'listar'],
                 'edit_usuario' => ['menu_controller' => 'editar-usuario', 'menu_metodo' => 'edit-usuario'],
                 'edit_senha' => ['menu_controller' => 'editar-senha', 'menu_metodo' => 'edit-senha'],
-                'del_usuario' => ['menu_controller' => 'apagar-usuario', 'menu_metodo' => 'apagar-usuario']];
+                'del_usuario' => ['menu_controller' => 'apagar-usuario', 'menu_metodo' => 'apagar-usuario']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -42,5 +46,4 @@ class VerUsuario {
             header("Location: $UrlDestino");
         }
     }
-
 }

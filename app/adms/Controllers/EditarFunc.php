@@ -2,7 +2,7 @@
 
 namespace App\adms\Controllers;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarFunc {
+class EditarFunc
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editFunc($DadosId = null) {
+    public function editFunc($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarFunc {
         }
     }
 
-    private function editFuncPriv() {
+    private function editFuncPriv()
+    {
         if (!empty($this->Dados['EditFunc'])) {
             unset($this->Dados['EditFunc'], $this->Dados['sit_id'], $this->Dados['sit'], $this->Dados['loja']);
             $editarFunc = new \App\adms\Models\AdmsEditarFunc();
@@ -49,7 +52,8 @@ class EditarFunc {
         }
     }
 
-    private function editFuncViewPriv() {
+    private function editFuncViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarFunc();
             $this->Dados['select'] = $listarSelect->listarFunc();
@@ -68,5 +72,4 @@ class EditarFunc {
             header("Location: $UrlDestino");
         }
     }
-
 }

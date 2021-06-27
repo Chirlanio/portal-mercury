@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerCor {
+class VerCor
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verCor($DadosId = null) {
+    public function verCor($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verCor = new \App\adms\Models\AdmsVerCor();
             $this->Dados['dados_cor'] = $verCor->vercor($this->DadosId);
 
-            $botao = ['list_cor' => ['menu_controller' => 'cor', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_cor' => ['menu_controller' => 'cor', 'menu_metodo' => 'listar'],
                 'edit_cor' => ['menu_controller' => 'editar-cor', 'menu_metodo' => 'edit-cor'],
-                'del_cor' => ['menu_controller' => 'apagar-cor', 'menu_metodo' => 'apagar-cor']];
+                'del_cor' => ['menu_controller' => 'apagar-cor', 'menu_metodo' => 'apagar-cor']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerCor {
             header("Location: $UrlDestino");
         }
     }
-
 }

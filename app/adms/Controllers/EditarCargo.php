@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarCargo {
+class EditarCargo
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editCargo($DadosId = null) {
+    public function editCargo($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarCargo {
         }
     }
 
-    private function editCargoPriv() {
+    private function editCargoPriv()
+    {
         if (!empty($this->Dados['EditCargo'])) {
             unset($this->Dados['EditCargo']);
             $editarCargo = new \App\adms\Models\AdmsEditarCargo();
@@ -49,7 +52,8 @@ class EditarCargo {
         }
     }
 
-    private function editCargoViewPriv() {
+    private function editCargoViewPriv()
+    {
         if ($this->Dados['form']) {
             $botao = ['vis_cargo' => ['menu_controller' => 'ver-cargo', 'menu_metodo' => 'ver-cargo']];
             $listarBotao = new \App\adms\Models\AdmsBotao();
@@ -66,5 +70,4 @@ class EditarCargo {
             header("Location: $UrlDestino");
         }
     }
-
 }

@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class GenteGestao {
+class GenteGestao
+{
 
     private $Dados;
 
-    public function listar() {
+    public function listar()
+    {
 
         $listarMenu = new \App\adms\Models\AdmsMenu();
         $this->Dados['menu'] = $listarMenu->itemMenu();
@@ -24,5 +26,4 @@ class GenteGestao {
         $carregarView = new \Core\ConfigView("adms/Views/gestao/genteGestao", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

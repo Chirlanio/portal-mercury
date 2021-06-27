@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarMenu {
+class EditarMenu
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editMenu($DadosId = null) {
+    public function editMenu($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarMenu {
         }
     }
 
-    private function editMenuPriv() {
+    private function editMenuPriv()
+    {
         if (!empty($this->Dados['EditMenu'])) {
             unset($this->Dados['EditMenu']);
             $editarMenu = new \App\adms\Models\AdmsEditarMenu();
@@ -48,7 +51,8 @@ class EditarMenu {
         }
     }
 
-    private function editMenuViewPriv() {
+    private function editMenuViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarMenu();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -67,5 +71,4 @@ class EditarMenu {
             header("Location: $UrlDestino");
         }
     }
-
 }

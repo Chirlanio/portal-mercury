@@ -12,17 +12,19 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarTipoPagamento {
+class EditarTipoPagamento
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editTipo($DadosId = null) {
-        
+    public function editTipo($DadosId = null)
+    {
+
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        
+
         $this->DadosId = (int) $DadosId;
-        
+
         if (!empty($this->DadosId)) {
             $this->editTipoPagPriv();
         } else {
@@ -32,7 +34,8 @@ class EditarTipoPagamento {
         }
     }
 
-    private function editTipoPagPriv() {
+    private function editTipoPagPriv()
+    {
         if (!empty($this->Dados['EditTipo'])) {
             unset($this->Dados['EditTipo']);
             $editarTipo = new \App\adms\Models\AdmsEditarTipoPagamento();
@@ -52,9 +55,10 @@ class EditarTipoPagamento {
         }
     }
 
-    private function editTipoPagViewPriv() {
+    private function editTipoPagViewPriv()
+    {
         if ($this->Dados['form']) {
-            
+
             $botao = ['vis_pag' => ['menu_controller' => 'ver-tipo-pagamento', 'menu_metodo' => 'ver-tipo']];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
@@ -70,5 +74,4 @@ class EditarTipoPagamento {
             header("Location: $UrlDestino");
         }
     }
-
 }

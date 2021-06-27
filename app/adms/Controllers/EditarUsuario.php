@@ -58,7 +58,7 @@ class EditarUsuario
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarUsuario();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
-            
+
             $botao = ['vis_usuario' => ['menu_controller' => 'ver-usuario', 'menu_metodo' => 'ver-usuario']];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
@@ -73,5 +73,4 @@ class EditarUsuario
             header("Location: $UrlDestino");
         }
     }
-
 }

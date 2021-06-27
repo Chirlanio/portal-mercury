@@ -3,8 +3,8 @@
 namespace App\adms\Controllers;
 
 if (!defined('URLADM')) {
-    header("Location: /");
-    exit();
+  header("Location: /");
+  exit();
 }
 
 /**
@@ -12,30 +12,32 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarTransfModal {
+class EditarTransfModal
+{
 
-    private $Dados;
-    private $DadosId;
+  private $Dados;
+  private $DadosId;
 
-    public function editTransf($DadosId = null) {
+  public function editTransf($DadosId = null)
+  {
 
-        $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        //$this->DadosId = (int) $DadosId;
+    $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+    //$this->DadosId = (int) $DadosId;
 
-        $edita = ['erro' => true, 'msg' => $this->Dados];
-        
-        header('Content-Type: application/json');
-        echo json_encode($edita);
-        /* if (!empty($this->DadosId)) {
+    $edita = ['erro' => true, 'msg' => $this->Dados];
+
+    header('Content-Type: application/json');
+    echo json_encode($edita);
+    /* if (!empty($this->DadosId)) {
           $this->editTransfPriv();
           } else {
           $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Solicitação não encontrada!</div>";
           $UrlDestino = URLADM . 'transferencia/listarTransf';
           header("Location: $UrlDestino");
           } */
-    }
+  }
 
-    /* private function editTransfPriv() {
+  /* private function editTransfPriv() {
       if (!empty($this->Dados['EditTransf'])) {
       unset($this->Dados['EditTransf']);
       $editarTransf = new \App\adms\Models\AdmsEditarTransf();

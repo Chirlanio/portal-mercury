@@ -22,11 +22,13 @@ class GrupoPg
     {
         $this->PageId = (int) $PageId ? $PageId : 1;
 
-        $botao = ['cad_grpg' => ['menu_controller' => 'cadastrar-grupo-pg', 'menu_metodo' => 'cad-grupo-pg'],
+        $botao = [
+            'cad_grpg' => ['menu_controller' => 'cadastrar-grupo-pg', 'menu_metodo' => 'cad-grupo-pg'],
             'vis_grpg' => ['menu_controller' => 'ver-grupo-pg', 'menu_metodo' => 'ver-grupo-pg'],
             'edit_grpg' => ['menu_controller' => 'editar-grupo-pg', 'menu_metodo' => 'edit-grupo-pg'],
             'del_grpg' => ['menu_controller' => 'apagar-grupo-pg', 'menu_metodo' => 'apagar-grupo-pg'],
-            'ordem_grpg' => ['menu_controller' => 'alt-ordem-grupo-pg', 'menu_metodo' => 'alt-ordem-grupo-pg']];
+            'ordem_grpg' => ['menu_controller' => 'alt-ordem-grupo-pg', 'menu_metodo' => 'alt-ordem-grupo-pg']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -40,5 +42,4 @@ class GrupoPg
         $carregarView = new \Core\ConfigView("adms/Views/grupoPg/listarGrupoPg", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

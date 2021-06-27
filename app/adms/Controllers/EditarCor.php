@@ -54,14 +54,14 @@ class EditarCor
 
     private function editCorViewPriv()
     {
-        if ($this->Dados['form']) {            
+        if ($this->Dados['form']) {
             $botao = ['vis_cor' => ['menu_controller' => 'ver-cor', 'menu_metodo' => 'ver-cor']];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
             $listarMenu = new \App\adms\Models\AdmsMenu();
             $this->Dados['menu'] = $listarMenu->itemMenu();
-            
+
             $carregarView = new \Core\ConfigView("adms/Views/cor/editarCor", $this->Dados);
             $carregarView->renderizar();
         } else {
@@ -70,5 +70,4 @@ class EditarCor
             header("Location: $UrlDestino");
         }
     }
-
 }

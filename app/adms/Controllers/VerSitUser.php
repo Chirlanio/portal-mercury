@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerSitUser {
+class VerSitUser
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verSitUser($DadosId = null) {
+    public function verSitUser($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verSitUser = new \App\adms\Models\AdmsVerSitUser();
             $this->Dados['dados_sit'] = $verSitUser->verSitUser($this->DadosId);
 
-            $botao = ['list_sit' => ['menu_controller' => 'situacao-user', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_sit' => ['menu_controller' => 'situacao-user', 'menu_metodo' => 'listar'],
                 'edit_sit' => ['menu_controller' => 'editar-sit-user', 'menu_metodo' => 'edit-sit-user'],
-                'del_sit' => ['menu_controller' => 'apagar-sit-user', 'menu_metodo' => 'apagar-sit-user']];
+                'del_sit' => ['menu_controller' => 'apagar-sit-user', 'menu_metodo' => 'apagar-sit-user']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerSitUser {
             header("Location: $UrlDestino");
         }
     }
-
 }

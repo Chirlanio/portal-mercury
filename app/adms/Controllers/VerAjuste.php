@@ -12,22 +12,26 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerAjuste {
+class VerAjuste
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verAjuste($DadosId = null) {
+    public function verAjuste($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verAjuste = new \App\adms\Models\AdmsVerAjuste();
             $this->Dados['dados_ajuste'] = $verAjuste->verAjuste($this->DadosId);
 
-            $botao = ['list_ajuste' => ['menu_controller' => 'ajuste', 'menu_metodo' => 'listar-ajuste'],
+            $botao = [
+                'list_ajuste' => ['menu_controller' => 'ajuste', 'menu_metodo' => 'listar-ajuste'],
                 'vis_ajuste' => ['menu_controller' => 'ver-ajuste', 'menu_metodo' => 'ver-ajuste'],
                 'edit_ajuste' => ['menu_controller' => 'editar-ajuste', 'menu_metodo' => 'edit-ajuste'],
-                'del_ajuste' => ['menu_controller' => 'apagar-ajuste', 'menu_metodo' => 'apagar-ajuste']];
+                'del_ajuste' => ['menu_controller' => 'apagar-ajuste', 'menu_metodo' => 'apagar-ajuste']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -42,5 +46,4 @@ class VerAjuste {
             header("Location: $UrlDestino");
         }
     }
-
 }

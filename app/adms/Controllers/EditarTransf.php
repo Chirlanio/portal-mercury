@@ -2,7 +2,7 @@
 
 namespace App\adms\Controllers;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarTransf {
+class EditarTransf
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editTransf($DadosId = null) {
+    public function editTransf($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarTransf {
         }
     }
 
-    private function editTransfPriv() {
+    private function editTransfPriv()
+    {
         if (!empty($this->Dados['EditTransf'])) {
             unset($this->Dados['EditTransf']);
             $editarTransf = new \App\adms\Models\AdmsEditarTransf();
@@ -49,12 +52,13 @@ class EditarTransf {
         }
     }
 
-    private function editTransfViewPriv() {
+    private function editTransfViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarTransf();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
 
-            $botao = ['vis_transf' => ['menu_controller' => 'ver-transf', 'menu_metodo' => 'ver-transf'],'list_transf' => ['menu_controller' => 'transferencia', 'menu_metodo' => 'listar-transf']];
+            $botao = ['vis_transf' => ['menu_controller' => 'ver-transf', 'menu_metodo' => 'ver-transf'], 'list_transf' => ['menu_controller' => 'transferencia', 'menu_metodo' => 'listar-transf']];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -68,5 +72,4 @@ class EditarTransf {
             header("Location: $UrlDestino");
         }
     }
-
 }

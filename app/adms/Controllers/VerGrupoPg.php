@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerGrupoPg {
+class VerGrupoPg
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verGrupoPg($DadosId = null) {
+    public function verGrupoPg($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verGrupoPg = new \App\adms\Models\AdmsVerGrupoPg();
             $this->Dados['dados_grpg'] = $verGrupoPg->verGrupoPg($this->DadosId);
 
-            $botao = ['list_grpg' => ['menu_controller' => 'grupo-pg', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_grpg' => ['menu_controller' => 'grupo-pg', 'menu_metodo' => 'listar'],
                 'edit_grpg' => ['menu_controller' => 'editar-grupo-pg', 'menu_metodo' => 'edit-grupo-pg'],
-                'del_grpg' => ['menu_controller' => 'apagar-grupo-pg', 'menu_metodo' => 'apagar-grupo-pg']];
+                'del_grpg' => ['menu_controller' => 'apagar-grupo-pg', 'menu_metodo' => 'apagar-grupo-pg']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerGrupoPg {
             header("Location: $UrlDestino");
         }
     }
-
 }

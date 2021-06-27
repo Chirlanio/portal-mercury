@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CadastrarUsuario {
+class CadastrarUsuario
+{
 
     private $Dados;
 
-    public function cadUsuario() {
+    public function cadUsuario()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['CadUsuario'])) {
             unset($this->Dados['CadUsuario']);
@@ -35,7 +37,8 @@ class CadastrarUsuario {
         }
     }
 
-    private function cadUsuarioViewPriv() {
+    private function cadUsuarioViewPriv()
+    {
         $listarSelect = new \App\adms\Models\AdmsCadastrarUsuario();
         $this->Dados['select'] = $listarSelect->listarCadastrar();
 
@@ -48,5 +51,4 @@ class CadastrarUsuario {
         $carregarView = new \Core\ConfigView("adms/Views/usuario/cadUsuario", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

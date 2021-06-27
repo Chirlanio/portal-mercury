@@ -12,23 +12,27 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerDelivery {
+class VerDelivery
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verDelivery($DadosId = null) {
+    public function verDelivery($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
-        
+
         if (!empty($this->DadosId)) {
-            
+
             $verPed = new \App\adms\Models\AdmsVerDelivery();
             $this->Dados['dados_ped'] = $verPed->verDelivery($this->DadosId);
 
-            $botao = ['list_ped' => ['menu_controller' => 'delivery', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_ped' => ['menu_controller' => 'delivery', 'menu_metodo' => 'listar'],
                 'edit_ped' => ['menu_controller' => 'editar-ped', 'menu_metodo' => 'edit-ped'],
-                'del_ped' => ['menu_controller' => 'apagar-ped', 'menu_metodo' => 'apagar-ped']];
+                'del_ped' => ['menu_controller' => 'apagar-ped', 'menu_metodo' => 'apagar-ped']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -43,5 +47,4 @@ class VerDelivery {
             header("Location: $UrlDestino");
         }
     }
-
 }

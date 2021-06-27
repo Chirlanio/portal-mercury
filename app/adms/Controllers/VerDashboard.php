@@ -12,21 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerDashboard {
+class VerDashboard
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verDashboard($DadosId = null) {
+    public function verDashboard($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
             $verDash = new \App\adms\Models\AdmsVerDashboard();
             $this->Dados['dados_dash'] = $verDash->verDashboard($this->DadosId);
 
-            $botao = ['list_dash' => ['menu_controller' => 'dashboard', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_dash' => ['menu_controller' => 'dashboard', 'menu_metodo' => 'listar'],
                 'edit_dash' => ['menu_controller' => 'editar-dashboard', 'menu_metodo' => 'edit-dashboard'],
-                'del_dash' => ['menu_controller' => 'apagar-dashboard', 'menu_metodo' => 'apagar-dashboard']];
+                'del_dash' => ['menu_controller' => 'apagar-dashboard', 'menu_metodo' => 'apagar-dashboard']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -41,5 +45,4 @@ class VerDashboard {
             header("Location: $UrlDestino");
         }
     }
-
 }

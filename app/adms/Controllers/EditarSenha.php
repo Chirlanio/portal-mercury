@@ -76,5 +76,4 @@ class EditarSenha
             header("Location: $UrlDestino");
         }
     }
-
 }

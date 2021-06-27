@@ -54,11 +54,11 @@ class EditarNivAc
 
     private function editNivAcViewPriv()
     {
-        if ($this->Dados['form']) {            
+        if ($this->Dados['form']) {
             $botao = ['vis_nivac' => ['menu_controller' => 'ver-niv-ac', 'menu_metodo' => 'ver-niv-ac']];
             $listarSelect = new \App\adms\Models\AdmsEditarNivAc();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
-            
+
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -72,5 +72,4 @@ class EditarNivAc
             header("Location: $UrlDestino");
         }
     }
-
 }

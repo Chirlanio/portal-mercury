@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Cesar Szpak - Celke
  */
-class EditarRota {
+class EditarRota
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editRota($DadosId = null) {
+    public function editRota($DadosId = null)
+    {
 
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -32,7 +34,8 @@ class EditarRota {
         }
     }
 
-    private function editRotaPriv() {
+    private function editRotaPriv()
+    {
 
         if (!empty($this->Dados['EditRota'])) {
             unset($this->Dados['EditRota']);
@@ -55,7 +58,8 @@ class EditarRota {
         }
     }
 
-    private function editRotaViewPriv() {
+    private function editRotaViewPriv()
+    {
 
         if ($this->Dados['form']) {
             $botao = ['vis_rota' => ['menu_controller' => 'ver-rota', 'menu_metodo' => 'ver-rota']];
@@ -76,5 +80,4 @@ class EditarRota {
             header("Location: $UrlDestino");
         }
     }
-
 }

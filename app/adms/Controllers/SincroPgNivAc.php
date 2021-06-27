@@ -22,5 +22,4 @@ class SincroPgNivAc
         $UrlDestino = URLADM . "nivel-acesso/listar";
         header("Location: $UrlDestino");
     }
-
 }

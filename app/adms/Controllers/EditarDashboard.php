@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarDashboard {
+class EditarDashboard
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editDashboard($DadosId = null) {
+    public function editDashboard($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarDashboard {
         }
     }
 
-    private function editDashboardPriv() {
+    private function editDashboardPriv()
+    {
         if (!empty($this->Dados['EditDash'])) {
             unset($this->Dados['EditDash'], $this->Dados['sit_id'], $this->Dados['nome_sit'], $this->Dados['area']);
             $editarDash = new \App\adms\Models\AdmsEditarDashboard();
@@ -49,7 +52,8 @@ class EditarDashboard {
         }
     }
 
-    private function editDashboardViewPriv() {
+    private function editDashboardViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarDashboard();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -68,5 +72,4 @@ class EditarDashboard {
             header("Location: $UrlDestino");
         }
     }
-
 }

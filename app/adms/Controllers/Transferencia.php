@@ -12,18 +12,22 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class Transferencia {
+class Transferencia
+{
 
     private $Dados;
     private $PageId;
 
-    public function listarTransf($PageId = null) {
+    public function listarTransf($PageId = null)
+    {
         $this->PageId = (int) $PageId ? $PageId : 1;
 
-        $botao = ['list_transf' => ['menu_controller' => 'cadastrar-transf', 'menu_metodo' => 'cad-transf'],
+        $botao = [
+            'list_transf' => ['menu_controller' => 'cadastrar-transf', 'menu_metodo' => 'cad-transf'],
             'vis_transf' => ['menu_controller' => 'ver-transf', 'menu_metodo' => 'ver-transf'],
             'edit_transf' => ['menu_controller' => 'editar-transf', 'menu_metodo' => 'edit-transf'],
-            'del_transf' => ['menu_controller' => 'apagar-transf', 'menu_metodo' => 'apagar-transf']];
+            'del_transf' => ['menu_controller' => 'apagar-transf', 'menu_metodo' => 'apagar-transf']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -40,5 +44,4 @@ class Transferencia {
         $carregarView = new \Core\ConfigView("adms/Views/transferencia/listarTransf", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

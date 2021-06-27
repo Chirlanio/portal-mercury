@@ -12,11 +12,13 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarFormCadUsuario {
+class EditarFormCadUsuario
+{
 
     private $Dados;
 
-    public function editFormCadUsuario() {
+    public function editFormCadUsuario()
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->Dados['EditFormCad'])) {
             unset($this->Dados['EditFormCad']);
@@ -36,7 +38,8 @@ class EditarFormCadUsuario {
         }
     }
 
-    private function editMenuViewPriv() {
+    private function editMenuViewPriv()
+    {
         if ($this->Dados['form']) {
             $listarSelect = new \App\adms\Models\AdmsEditarFormCadUsuario();
             $this->Dados['select'] = $listarSelect->listarCadastrar();
@@ -51,5 +54,4 @@ class EditarFormCadUsuario {
             header("Location: $UrlDestino");
         }
     }
-
 }

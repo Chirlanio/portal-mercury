@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class EditarTipoPg {
+class EditarTipoPg
+{
 
     private $Dados;
     private $DadosId;
 
-    public function editTipoPg($DadosId = null) {
+    public function editTipoPg($DadosId = null)
+    {
         $this->Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $this->DadosId = (int) $DadosId;
         if (!empty($this->DadosId)) {
@@ -29,7 +31,8 @@ class EditarTipoPg {
         }
     }
 
-    private function editTipoPgPriv() {
+    private function editTipoPgPriv()
+    {
         if (!empty($this->Dados['EditTipoPg'])) {
             unset($this->Dados['EditTipoPg']);
             $editarTipoPg = new \App\adms\Models\AdmsEditarTipoPg();
@@ -48,7 +51,8 @@ class EditarTipoPg {
         }
     }
 
-    private function editTipoPgViewPriv() {
+    private function editTipoPgViewPriv()
+    {
         if ($this->Dados['form']) {
 
             $botao = ['vis_tpg' => ['menu_controller' => 'ver-tipo-pg', 'menu_metodo' => 'ver-tipo-pg']];
@@ -65,5 +69,4 @@ class EditarTipoPg {
             header("Location: $UrlDestino");
         }
     }
-
 }

@@ -12,22 +12,26 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class VerRota {
+class VerRota
+{
 
     private $Dados;
     private $DadosId;
 
-    public function verRota($DadosId = null) {
+    public function verRota($DadosId = null)
+    {
 
         $this->DadosId = (int) $DadosId;
-        
+
         if (!empty($this->DadosId)) {
             $verRota = new \App\adms\Models\AdmsVerRota();
             $this->Dados['dados_rota'] = $verRota->verRota($this->DadosId);
 
-            $botao = ['list_rota' => ['menu_controller' => 'rota', 'menu_metodo' => 'listar'],
+            $botao = [
+                'list_rota' => ['menu_controller' => 'rota', 'menu_metodo' => 'listar'],
                 'edit_rota' => ['menu_controller' => 'editar-rota', 'menu_metodo' => 'edit-rota'],
-                'del_rota' => ['menu_controller' => 'apagar-rota', 'menu_metodo' => 'apagar-rota']];
+                'del_rota' => ['menu_controller' => 'apagar-rota', 'menu_metodo' => 'apagar-rota']
+            ];
             $listarBotao = new \App\adms\Models\AdmsBotao();
             $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -42,5 +46,4 @@ class VerRota {
             header("Location: $UrlDestino");
         }
     }
-
 }

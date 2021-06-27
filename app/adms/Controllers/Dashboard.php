@@ -12,19 +12,23 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class Dashboard {
+class Dashboard
+{
 
     private $Dados;
     private $PageId;
 
-    public function listar($PageId = null) {
-        
+    public function listar($PageId = null)
+    {
+
         $this->PageId = (int) $PageId ? $PageId : 1;
 
-        $botao = ['listDash' => ['menu_controller' => 'cadastrar-dashboard', 'menu_metodo' => 'cad-dash'],
+        $botao = [
+            'listDash' => ['menu_controller' => 'cadastrar-dashboard', 'menu_metodo' => 'cad-dash'],
             'vis_dash' => ['menu_controller' => 'ver-dashboard', 'menu_metodo' => 'ver-dashboard'],
             'edit_dash' => ['menu_controller' => 'editar-dashboard', 'menu_metodo' => 'edit-dashboard'],
-            'del_dash' => ['menu_controller' => 'apagar-dashboard', 'menu_metodo' => 'apagar-dashboard']];
+            'del_dash' => ['menu_controller' => 'apagar-dashboard', 'menu_metodo' => 'apagar-dashboard']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -38,5 +42,4 @@ class Dashboard {
         $carregarView = new \Core\ConfigView("adms/Views/dashboard/listar", $this->Dados);
         $carregarView->renderizar();
     }
-
 }
