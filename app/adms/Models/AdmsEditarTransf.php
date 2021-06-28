@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,20 +12,23 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarTransf {
+class AdmsEditarTransf
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verTransf($DadosId) {
+    public function verTransf($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verTransf = new \App\adms\Models\helper\AdmsRead();
-        if (($_SESSION['adms_niveis_acesso_id'] == 4) OR ($_SESSION['adms_niveis_acesso_id'] == 5)) {
+        if (($_SESSION['adms_niveis_acesso_id'] == 4) or ($_SESSION['adms_niveis_acesso_id'] == 5)) {
             $verTransf->fullRead("SELECT t.id, t.loja_origem_id, t.loja_destino_id, t.nf, t.qtd_vol, t.qtd_prod, t.tipo_transf_id, t.status_id, t.recebido,
                 l.nome loja_ori, ld.nome loja_dest, tt.id tipo_id, st.id sit_id
                 FROM tb_transferencias t
@@ -48,7 +51,8 @@ class AdmsEditarTransf {
         return $this->Resultado;
     }
 
-    public function altTransf(array $Dados) {
+    public function altTransf(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -62,7 +66,8 @@ class AdmsEditarTransf {
         }
     }
 
-    private function updateEditTransf() {
+    private function updateEditTransf()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltTransf = new \App\adms\Models\helper\AdmsUpdate();
         $upAltTransf->exeUpdate("tb_transferencias", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -75,7 +80,8 @@ class AdmsEditarTransf {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['ordem_nivac'] >= 4) {
@@ -102,5 +108,4 @@ class AdmsEditarTransf {
 
         return $this->Resultado;
     }
-
 }

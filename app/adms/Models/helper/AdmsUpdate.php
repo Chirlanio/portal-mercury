@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsUpdate extends AdmsConn {
+class AdmsUpdate extends AdmsConn
+{
 
     private $Tabela;
     private $Dados;
@@ -22,11 +23,13 @@ class AdmsUpdate extends AdmsConn {
     private $Termos;
     private $Values;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function exeUpdate($Tabela, array $Dados, $Termos = null, $ParseString = null) {
+    public function exeUpdate($Tabela, array $Dados, $Termos = null, $ParseString = null)
+    {
         $this->Tabela = (string) $Tabela;
         $this->Dados = $Dados;
         $this->Termos = (string) $Termos;
@@ -36,7 +39,8 @@ class AdmsUpdate extends AdmsConn {
         $this->executarInstrucao();
     }
 
-    private function getIntrucao() {
+    private function getIntrucao()
+    {
         foreach ($this->Dados as $key => $Value) {
             $Values[] = $key . '= :' . $key;
         }
@@ -44,19 +48,20 @@ class AdmsUpdate extends AdmsConn {
         $this->Query = "UPDATE {$this->Tabela} SET {$Values} {$this->Termos}";
     }
 
-    private function executarInstrucao() {
+    private function executarInstrucao()
+    {
         $this->conexao();
         try {
             $this->Query->execute(array_merge($this->Dados, $this->Values));
             $this->Resultado = true;
-        } catch (Exception $ex) {
+        } catch (PDOException $ex) {
             $this->Resultado = null;
         }
     }
 
-    private function conexao() {
+    private function conexao()
+    {
         $this->Conn = parent::getConn();
         $this->Query = $this->Conn->prepare($this->Query);
     }
-
 }

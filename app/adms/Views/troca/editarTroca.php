@@ -15,22 +15,24 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['vis_troca']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'listar-troca/listar-troca/'; ?>" class="btn btn-outline-primary btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
-            <input name="id" type="hidden" value="<?php
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input name="id" type="hidden" value="
+            <?php
             if (isset($valorForm['id'])) {
                 echo $valorForm['id'];
             }

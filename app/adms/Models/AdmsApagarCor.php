@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarCor {
+class AdmsApagarCor
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarCor($DadosId = null) {
+    public function apagarCor($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $apagarCor = new \App\adms\Models\helper\AdmsDelete();
         $apagarCor->exeDelete("adms_cors", "WHERE id =:id", "id={$this->DadosId}");
@@ -33,5 +36,4 @@ class AdmsApagarCor {
             $this->Resultado = false;
         }
     }
-
 }

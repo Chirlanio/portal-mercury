@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerCargo {
+class AdmsVerCargo
+{
 
     private $Resultado;
     private $DadosId;
 
-    public function verCargo($DadosId) {
+    public function verCargo($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verCargo = new \App\adms\Models\helper\AdmsRead();
         $verCargo->fullRead("SELECT * FROM tb_cargos 
@@ -25,5 +27,4 @@ class AdmsVerCargo {
         $this->Resultado = $verCargo->getResultado();
         return $this->Resultado;
     }
-
 }

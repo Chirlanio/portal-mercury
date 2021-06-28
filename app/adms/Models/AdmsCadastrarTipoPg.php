@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarTipoPg {
+class AdmsCadastrarTipoPg
+{
 
     private $Resultado;
     private $Dados;
     private $UltimoTipoPg;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadTipoPg(array $Dados) {
+    public function cadTipoPg(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -35,7 +38,8 @@ class AdmsCadastrarTipoPg {
         }
     }
 
-    private function inserirTipoPg() {
+    private function inserirTipoPg()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $this->verUltimoTipoPg();
         $this->Dados['ordem'] = $this->UltimoTipoPg[0]['ordem'] + 1;
@@ -50,10 +54,10 @@ class AdmsCadastrarTipoPg {
         }
     }
 
-    private function verUltimoTipoPg() {
+    private function verUltimoTipoPg()
+    {
         $verTipoPg = new \App\adms\Models\helper\AdmsRead();
         $verTipoPg->fullRead("SELECT ordem FROM adms_tps_pgs ORDER BY ordem DESC LIMIT :limit", "limit=1");
         $this->UltimoTipoPg = $verTipoPg->getResultado();
     }
-
 }

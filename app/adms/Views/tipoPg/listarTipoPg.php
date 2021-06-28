@@ -12,7 +12,7 @@ if (!defined('URLADM')) {
             </div>
             <?php
             if ($this->Dados['botao']['cad_tpg']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-tipo-pg/cad-tipo-pg'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -20,20 +20,20 @@ if (!defined('URLADM')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
         <?php
         if (empty($this->Dados['listTipoPg'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum tipo de página encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -54,10 +54,10 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listTipoPg'] as $tipoPg) {
                         extract($tipoPg);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
-                            <td class="align-middle"><?php echo  $tipo. " - " . $nome; ?></td>
+                            <td class="align-middle"><?php echo  $tipo . " - " . $nome; ?></td>
                             <td class="d-none d-sm-table-cell align-middle"><?php echo $ordem; ?></td>
                             <td class="text-center">
                                 <span class="d-none d-md-block">
@@ -96,7 +96,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

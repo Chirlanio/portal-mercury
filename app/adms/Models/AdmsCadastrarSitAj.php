@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarSitAj {
+class AdmsCadastrarSitAj
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadSit(array $Dados) {
+    public function cadSit(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -34,7 +37,8 @@ class AdmsCadastrarSitAj {
         }
     }
 
-    private function inserirSit() {
+    private function inserirSit()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadSit = new \App\adms\Models\helper\AdmsCreate;
         $cadSit->exeCreate("tb_status_aj", $this->Dados);
@@ -50,7 +54,8 @@ class AdmsCadastrarSitAj {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações na tabela "adms_cors" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id id_cor, nome nome_cor FROM adms_cors ORDER BY nome ASC");
@@ -60,5 +65,4 @@ class AdmsCadastrarSitAj {
 
         return $this->Resultado;
     }
-
 }

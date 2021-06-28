@@ -1,5 +1,4 @@
-﻿
-<body class="text-center">
+﻿<body class="text-center">
     <form class="form-signin" method="POST" action="">
         <img class="mb-4" src="<?php echo URLADM . 'assets/imagens/logo/sandalia_asa_preta.png'; ?>" alt="Mercury" width="110" height="110">
         <img class="mb-4" src="<?php echo URLADM . 'assets/imagens/logo/logo_preta.png'; ?>" alt="Portal Lojas" width="309" height="108">
@@ -15,9 +14,11 @@
         ?>
         <div class="form-group">
             <label>Usuário</label>
-            <input name="usuario" type="text" class="form-control" placeholder="Digite o usuário" value="<?php if (isset($valorForm['usuario'])) {
-            echo $valorForm['usuario'];
-        } ?>"> 
+            <input name="usuario" type="text" class="form-control" placeholder="Digite o usuário" value="
+            <?php if (isset($valorForm['usuario'])) {
+                echo $valorForm['usuario'];
+            } ?>
+            ">
         </div>
         <div class="form-group">
             <label>Senha</label>
@@ -27,4 +28,3 @@
         <p class="text-center"><a href="<?php echo URLADM . 'esqueceu-senha/esqueceu-senha' ?>">Esqueceu a senha?</a></p>
     </form>
 </body>
-

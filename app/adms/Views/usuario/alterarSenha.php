@@ -7,14 +7,15 @@
             <div class="p-2">
                 <a href="<?php echo URLADM . 'ver-perfil/perfil'; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
             </div>
-        </div><hr>
+        </div>
+        <hr>
         <?php
-        if(isset($_SESSION['msg'])){
+        if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="">            
+        <form method="POST" action="">
             <div class="form-group">
                 <label>Senha</label>
                 <input name="senha" type="password" class="form-control" placeholder="Senha com mínimo 6 caracteres">

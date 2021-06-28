@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarMenu {
+class AdmsApagarMenu
+{
 
     private $DadosId;
     private $Resultado;
     private $Dados;
     private $DadosMenuInferior;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarMenu($DadosId = null) {
+    public function apagarMenu($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verfPgCad();
         if ($this->Resultado) {
@@ -41,7 +44,8 @@ class AdmsApagarMenu {
         }
     }
 
-    private function verfPgCad() {
+    private function verfPgCad()
+    {
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT id FROM adms_nivacs_pgs
                 WHERE adms_menu_id =:adms_menu_id LIMIT :limit", "adms_menu_id=" . $this->DadosId . "&limit=2");
@@ -53,13 +57,15 @@ class AdmsApagarMenu {
         }
     }
 
-    private function verfMenuInferior() {
+    private function verfMenuInferior()
+    {
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT id, ordem AS ordem_result FROM adms_menus WHERE ordem > (SELECT ordem FROM adms_menus WHERE id =:id) ORDER BY ordem ASC", "id={$this->DadosId}");
         $this->DadosMenuInferior = $verMenu->getResultado();
     }
 
-    private function atualizarOrdem() {
+    private function atualizarOrdem()
+    {
         if ($this->DadosMenuInferior) {
             foreach ($this->DadosMenuInferior as $atualOrdem) {
                 extract($atualOrdem);
@@ -70,5 +76,4 @@ class AdmsApagarMenu {
             }
         }
     }
-
 }

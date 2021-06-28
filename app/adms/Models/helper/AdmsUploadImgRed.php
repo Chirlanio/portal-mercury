@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsUploadImgRed {
+class AdmsUploadImgRed
+{
 
     private $DadosImagem;
     private $Diretorio;
@@ -23,11 +24,13 @@ class AdmsUploadImgRed {
     private $Altura;
     private $ImgRedimens;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function uploadImagem(array $Imagem, $Diretorio, $NomeImg, $Largura, $Altura) {
+    public function uploadImagem(array $Imagem, $Diretorio, $NomeImg, $Largura, $Altura)
+    {
         $this->DadosImagem = $Imagem;
         $this->Diretorio = $Diretorio;
         $this->NomeImg = $NomeImg;
@@ -42,7 +45,8 @@ class AdmsUploadImgRed {
         }
     }
 
-    private function validarImagem() {
+    private function validarImagem()
+    {
         switch ($this->DadosImagem['type']):
             case 'image/jpeg';
             case 'image/pjpeg';
@@ -61,13 +65,15 @@ class AdmsUploadImgRed {
         endswitch;
     }
 
-    private function valDiretorio() {
+    private function valDiretorio()
+    {
         if (!file_exists($this->Diretorio) && !is_dir($this->Diretorio)) {
             mkdir($this->Diretorio, 0755);
         }
     }
 
-    private function redimensImg() {
+    private function redimensImg()
+    {
         $largura_original = imagesx($this->Imagem);
         $altura_original = imagesy($this->Imagem);
 
@@ -75,5 +81,4 @@ class AdmsUploadImgRed {
 
         imagecopyresampled($this->ImgRedimens, $this->Imagem, 0, 0, 0, 0, $this->Largura, $this->Altura, $largura_original, $altura_original);
     }
-
 }

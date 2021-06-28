@@ -15,29 +15,30 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_bairro']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'bairro/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" class="was-validated" enctype="multipart/form-data"> 
+        <form method="POST" action="" class="was-validated" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome do Bairro</label>
                     <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome do bairro" value="<?php
-                    if (isset($valorForm['nome'])) {
-                        echo $valorForm['nome'];
-                    }
-                    ?>" required>
+                                                                                                                        if (isset($valorForm['nome'])) {
+                                                                                                                            echo $valorForm['nome'];
+                                                                                                                        }
+                                                                                                                        ?>" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Rota</label>

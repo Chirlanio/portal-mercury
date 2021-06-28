@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarNivAc {
+class AdmsEditarNivAc
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verNivAc($DadosId) {
+    public function verNivAc($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verPerfil = new \App\adms\Models\helper\AdmsRead();
         $verPerfil->fullRead("SELECT n.*, c.id cor_id, c.nome nome_cor, c.cor cor_boot
@@ -33,7 +36,8 @@ class AdmsEditarNivAc {
         return $this->Resultado;
     }
 
-    public function altNivAc(array $Dados) {
+    public function altNivAc(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -46,7 +50,8 @@ class AdmsEditarNivAc {
         }
     }
 
-    private function updateEditNivAc() {
+    private function updateEditNivAc()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltNivAc = new \App\adms\Models\helper\AdmsUpdate();
         $upAltNivAc->exeUpdate("adms_niveis_acessos", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -59,7 +64,8 @@ class AdmsEditarNivAc {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id id_cor, nome nome_cor, cor FROM adms_cors ORDER BY nome ASC");
         $registro['cor_id'] = $listar->getResultado();
@@ -68,5 +74,4 @@ class AdmsEditarNivAc {
 
         return $this->Resultado;
     }
-
 }

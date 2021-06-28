@@ -5,7 +5,7 @@ namespace App\adms\Models\helper;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -15,23 +15,26 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsPhpMailer {
+class AdmsPhpMailer
+{
 
     private $Resultado;
     private $DadosCredEmail;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function emailPhpMailer(array $Dados) {
+    public function emailPhpMailer(array $Dados)
+    {
         $this->Dados = $Dados;
         $credEmail = new \App\adms\Models\helper\AdmsRead();
         $credEmail->fullRead("SELECT * FROM adms_confs_emails WHERE id =:id LIMIT :limit", "id=1&limit=1");
         $this->DadosCredEmail = $credEmail->getResultado();
 
-        if ((isset($this->DadosCredEmail[0]['host'])) AND (!empty($this->DadosCredEmail[0]['host']))) {
+        if ((isset($this->DadosCredEmail[0]['host'])) and (!empty($this->DadosCredEmail[0]['host']))) {
             $this->confEmail();
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Necessário inserir as credencias do e-mail no administrativo para enviar e-mail!</div>";
@@ -39,7 +42,8 @@ class AdmsPhpMailer {
         }
     }
 
-    private function confEmail() {
+    private function confEmail()
+    {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
@@ -72,5 +76,4 @@ class AdmsPhpMailer {
             $this->Resultado = false;
         }
     }
-
 }

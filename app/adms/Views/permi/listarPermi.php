@@ -19,24 +19,24 @@ if (!defined('URLADM')) {
             </div>
             <?php
             if ($this->Dados['botao']['list_nivac']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'nivel-acesso/listar'; ?>" class="btn btn-outline-info btn-sm">Nível de Acesso</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
         </div>
         <?php
         if (empty($this->Dados['listPermi'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma permissão encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -61,7 +61,7 @@ if (!defined('URLADM')) {
                     $qnt_linhas_exe = 1;
                     foreach ($this->Dados['listPermi'] as $permissao) {
                         extract($permissao);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle">
@@ -126,7 +126,7 @@ if (!defined('URLADM')) {
                                 <span class="d-none d-md-block">
                                     <?php
                                     if ($this->Dados['botao']['ordem_menu']) {
-                                        if (($qnt_linhas_exe <= 1) AND ( $this->Dados['pg'] == 1)) {
+                                        if (($qnt_linhas_exe <= 1) and ($this->Dados['pg'] == 1)) {
                                             echo "<button class='btn btn-outline-secondary btn-sm disabled'><i class='fas fa-angle-double-up'></i></button> ";
                                         } else {
                                             echo "<a href='" . URLADM . "alt-ordem-menu/alt-ordem-menu/$id?niv={$this->Dados['dados_nivac'][0]['id']}&pg={$this->Dados['pg']}' class='btn btn-outline-secondary btn-sm'><i class='fas fa-angle-double-up'></i></a> ";
@@ -138,10 +138,10 @@ if (!defined('URLADM')) {
                                     }
 
                                     ?>
-                                </span>                                
+                                </span>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
 

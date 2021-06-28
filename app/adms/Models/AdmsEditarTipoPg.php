@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarTipoPg {
+class AdmsEditarTipoPg
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verTipoPg($DadosId) {
+    public function verTipoPg($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verTipoPg = new \App\adms\Models\helper\AdmsRead();
         $verTipoPg->fullRead("SELECT * FROM adms_tps_pgs
@@ -31,7 +34,8 @@ class AdmsEditarTipoPg {
         return $this->Resultado;
     }
 
-    public function altTipoPg(array $Dados) {
+    public function altTipoPg(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -44,7 +48,8 @@ class AdmsEditarTipoPg {
         }
     }
 
-    private function updateEditTipoPg() {
+    private function updateEditTipoPg()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltTipoPg = new \App\adms\Models\helper\AdmsUpdate();
         $upAltTipoPg->exeUpdate("adms_tps_pgs", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -56,5 +61,4 @@ class AdmsEditarTipoPg {
             $this->Resultado = false;
         }
     }
-
 }

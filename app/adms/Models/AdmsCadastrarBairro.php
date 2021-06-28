@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarBairro {
+class AdmsCadastrarBairro
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadBairro(array $Dados) {
+    public function cadBairro(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -35,7 +38,8 @@ class AdmsCadastrarBairro {
         }
     }
 
-    private function inserirBairro() {
+    private function inserirBairro()
+    {
 
         $this->Dados['created'] = date("Y-m-d H:i:s");
 
@@ -51,7 +55,8 @@ class AdmsCadastrarBairro {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
 
@@ -62,5 +67,4 @@ class AdmsCadastrarBairro {
 
         return $this->Resultado;
     }
-
 }

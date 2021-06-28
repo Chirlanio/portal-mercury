@@ -1,11 +1,11 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
 if (!empty($this->Dados['dados_ajuste'][0])) {
     extract($this->Dados['dados_ajuste'][0]);
-    ?>
+?>
     <div class="content p-1">
         <div class="list-group-item">
             <div class="d-flex">
@@ -30,7 +30,7 @@ if (!empty($this->Dados['dados_ajuste'][0])) {
                         <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Ações
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                             <?php
                             if ($this->Dados['botao']['list_ajuste']) {
                                 echo "<a class='dropdown-item' href='" . URLADM . "ajuste/listarAjuste'>Listar</a>";
@@ -45,7 +45,8 @@ if (!empty($this->Dados['dados_ajuste'][0])) {
                         </div>
                     </div>
                 </div>
-            </div><hr>
+            </div>
+            <hr>
             <?php
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'];
@@ -93,7 +94,7 @@ if (!empty($this->Dados['dados_ajuste'][0])) {
 
                 <?php
                 if ($total_2 > 0) {
-                    ?>
+                ?>
                     <dt class="col-sm-2"><?php echo $referencia_2; ?></dt>
                     <dd class="col-sm-1"><?php echo 'Bolsa - ' . $t01_2; ?></dd>
                     <dd class="col-sm-1"><?php echo '33 - ' . $t33_2; ?></dd>
@@ -105,10 +106,10 @@ if (!empty($this->Dados['dados_ajuste'][0])) {
                     <dd class="col-sm-1"><?php echo '39 - ' . $t39_2; ?></dd>
                     <dd class="col-sm-1"><?php echo '40 - ' . $t40_2; ?></dd>
                     <dd class="col-sm-1"><?php echo 'Total - ' . $total_2; ?></dd>
-                    <?php
+                <?php
                 }
                 if ($total_3 > 0) {
-                    ?>
+                ?>
                     <dt class="col-sm-2"><?php echo $referencia_3; ?></dt>
                     <dd class="col-sm-1"><?php echo 'Bolsa - ' . $t01_3; ?></dd>
                     <dd class="col-sm-1"><?php echo '33 - ' . $t33_3; ?></dd>
@@ -120,10 +121,10 @@ if (!empty($this->Dados['dados_ajuste'][0])) {
                     <dd class="col-sm-1"><?php echo '39 - ' . $t39_3; ?></dd>
                     <dd class="col-sm-1"><?php echo '40 - ' . $t40_3; ?></dd>
                     <dd class="col-sm-1"><?php echo 'Total - ' . $total_3; ?></dd>
-                    <?php
+                <?php
                 }
                 if ($total_4 > 0) {
-                    ?>
+                ?>
                     <dt class="col-sm-2"><?php echo $referencia_4; ?></dt>
                     <dd class="col-sm-1"><?php echo 'Bolsa - ' . $t01_4; ?></dd>
                     <dd class="col-sm-1"><?php echo '33 - ' . $t33_4; ?></dd>
@@ -148,15 +149,15 @@ if (!empty($this->Dados['dados_ajuste'][0])) {
 
                 <dt class="col-sm-2">Atualizado</dt>
                 <dd class="col-sm-10"><?php
-                    if (!empty($modified)) {
-                        echo date('d/m/Y H:i:s', strtotime($modified));
-                    }
-                    ?>
+                                        if (!empty($modified)) {
+                                            echo date('d/m/Y H:i:s', strtotime($modified));
+                                        }
+                                        ?>
                 </dd>
             </dl>
         </div>
     </div>
-    <?php
+<?php
 } else {
     $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Página não encontrada!</div>";
     $UrlDestino = URLADM . 'ajuste/listarAjuste';

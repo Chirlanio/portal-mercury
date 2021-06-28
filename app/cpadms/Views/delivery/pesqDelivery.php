@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -28,7 +28,7 @@ if (!defined('URL')) {
                     <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Ações
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                         <?php
                         if ($this->Dados['botao']['list_delivery']) {
                             echo "<a class='dropdown-item' href='" . URLADM . "delivery/listar'>Listar</a>";
@@ -108,7 +108,8 @@ if (!defined('URL')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold;" for="cliente">Cliente</label>
                         </div>
-                        <input name="cliente" type="text" id="cliente" class="form-control" placeholder="Digite o nome do Cliente" value="<?php
+                        <input name="cliente" type="text" id="cliente" class="form-control" placeholder="Digite o nome do Cliente" value="
+                        <?php
                         if (isset($_SESSION['cliente'])) {
                             echo $_SESSION['cliente'];
                         }
@@ -121,7 +122,8 @@ if (!defined('URL')) {
                     <input name="PesqDelivery" type="submit" class="btn btn-outline-primary" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <div class="table-responsive my-n1 d-print-none">
             <table class="table table-striped table-bordered">
                 <thead>
@@ -165,17 +167,18 @@ if (!defined('URL')) {
                     ?>
                 </tbody>
             </table>
-        </div><hr class="d-print-none">
+        </div>
+        <hr class="d-print-none">
         <?php
         if (empty($this->Dados['listDelivery'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma entrega encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -202,7 +205,7 @@ if (!defined('URL')) {
                     if (!empty($this->Dados['listDelivery'])) {
                         foreach ($this->Dados['listDelivery'] as $lo) {
                             extract($lo);
-                            ?>
+                    ?>
                             <tr>
                                 <th class="align-middle text-center"><?php echo $id; ?></th>
                                 <td class="align-middle"><?php echo $loja; ?></td>
@@ -248,7 +251,7 @@ if (!defined('URL')) {
                                     </div>
                                 </td>
                             </tr>
-                            <?php
+                    <?php
                         }
                     }
                     ?>

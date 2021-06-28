@@ -12,19 +12,23 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class PesqUsuarios {
+class PesqUsuarios
+{
 
     private $Dados;
     private $DadosForm;
     private $PageId;
 
-    public function listar($PageId = null) {
+    public function listar($PageId = null)
+    {
 
-        $botao = ['list_usuario' => ['menu_controller' => 'usuarios', 'menu_metodo' => 'listar'],
+        $botao = [
+            'list_usuario' => ['menu_controller' => 'usuarios', 'menu_metodo' => 'listar'],
             'cad_usuario' => ['menu_controller' => 'cadastrar-usuario', 'menu_metodo' => 'cad-usuario'],
             'vis_usuario' => ['menu_controller' => 'ver-usuario', 'menu_metodo' => 'ver-usuario'],
             'edit_usuario' => ['menu_controller' => 'editar-usuario', 'menu_metodo' => 'edit-usuario'],
-            'del_usuario' => ['menu_controller' => 'apagar-usuario', 'menu_metodo' => 'apagar-usuario']];
+            'del_usuario' => ['menu_controller' => 'apagar-usuario', 'menu_metodo' => 'apagar-usuario']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -48,5 +52,4 @@ class PesqUsuarios {
         $carregarView = new \Core\ConfigView("cpadms/Views/usuario/pesqUsuario", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

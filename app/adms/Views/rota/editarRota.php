@@ -16,23 +16,25 @@ if (isset($this->Dados['form'][0])) {
 
             <?php
             if ($this->Dados['botao']['vis_rota']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'ver-rota/ver-rota/' . $valorForm['r_id']; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
-            <input name="id" type="hidden" value="<?php
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input name="id" type="hidden" value="
+            <?php
             if (isset($valorForm['r_id'])) {
                 echo $valorForm['r_id'];
             }
@@ -40,7 +42,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="nome" type="text" class="form-control" placeholder="Nome da rota" value="<?php
+                    <input name="nome" type="text" class="form-control" placeholder="Nome da rota" value="
+                    <?php
                     if (isset($valorForm['rota'])) {
                         echo $valorForm['rota'];
                     }

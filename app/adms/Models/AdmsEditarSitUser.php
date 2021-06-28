@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarSitUser {
+class AdmsEditarSitUser
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verSitUser($DadosId) {
+    public function verSitUser($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verSitUser = new \App\adms\Models\helper\AdmsRead();
         $verSitUser->fullRead("SELECT * FROM adms_sits_usuarios
@@ -31,7 +34,8 @@ class AdmsEditarSitUser {
         return $this->Resultado;
     }
 
-    public function altSitUser(array $Dados) {
+    public function altSitUser(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -44,7 +48,8 @@ class AdmsEditarSitUser {
         }
     }
 
-    private function updateEditSitUser() {
+    private function updateEditSitUser()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltSitUser = new \App\adms\Models\helper\AdmsUpdate();
         $upAltSitUser->exeUpdate("adms_sits_usuarios", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -60,7 +65,8 @@ class AdmsEditarSitUser {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações na tabela "adms_cors" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id id_cor, nome nome_cor FROM adms_cors ORDER BY nome ASC");
@@ -70,5 +76,4 @@ class AdmsEditarSitUser {
 
         return $this->Resultado;
     }
-
 }

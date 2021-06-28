@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarAjuste {
+class AdmsEditarAjuste
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verAjuste($DadosId) {
+    public function verAjuste($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verAjuste = new \App\adms\Models\helper\AdmsRead();
         if ($_SESSION['ordem_nivac'] == 1) {
@@ -34,7 +37,8 @@ class AdmsEditarAjuste {
         return $this->Resultado;
     }
 
-    public function altAjuste(array $Dados) {
+    public function altAjuste(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -49,7 +53,8 @@ class AdmsEditarAjuste {
         }
     }
 
-    private function updateEditAjuste() {
+    private function updateEditAjuste()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltAjuste = new \App\adms\Models\helper\AdmsUpdate();
         $upAltAjuste->exeUpdate("tb_ajuste", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -62,7 +67,8 @@ class AdmsEditarAjuste {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id_loja, id loja_id, nome loja FROM tb_lojas ORDER BY id ASC");
@@ -95,5 +101,4 @@ class AdmsEditarAjuste {
 
         return $this->Resultado;
     }
-
 }

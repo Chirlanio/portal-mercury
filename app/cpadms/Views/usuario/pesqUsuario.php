@@ -25,7 +25,7 @@ if (!defined('URLADM')) {
                     <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Ações
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                         <?php
                         if ($this->Dados['botao']['list_usuario']) {
                             echo "<a class='dropdown-item' href='" . URLADM . "usuarios/listar'>Listar</a>";
@@ -45,7 +45,8 @@ if (!defined('URLADM')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="nome">Nome</label>
                         </div>
-                        <input name="nome" type="text" id="nome" class="form-control" aria-describedby="nome" placeholder="Digite o nome" value="<?php
+                        <input name="nome" type="text" id="nome" class="form-control" aria-describedby="nome" placeholder="Digite o nome" value="
+                        <?php
                         if (isset($_SESSION['pesqUsuarioNome'])) {
                             echo $_SESSION['pesqUsuarioNome'];
                         }
@@ -57,7 +58,8 @@ if (!defined('URLADM')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="email">E-mail</label>
                         </div>
-                        <input name="email" type="text" id="nome" class="form-control" aria-describedby="email" placeholder="Digite o e-mail do usuário" value="<?php
+                        <input name="email" type="text" id="nome" class="form-control" aria-describedby="email" placeholder="Digite o e-mail do usuário" value="
+                        <?php
                         if (isset($_SESSION['pesqUsuarioEmail'])) {
                             echo $_SESSION['pesqUsuarioEmail'];
                         }
@@ -70,17 +72,18 @@ if (!defined('URLADM')) {
                     <input name="PesqUsuario" type="submit" class="btn btn-outline-primary" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['listUser'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum usuário encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -103,7 +106,7 @@ if (!defined('URLADM')) {
                     if (!empty($this->Dados['listUser'])) {
                         foreach ($this->Dados['listUser'] as $usuario) {
                             extract($usuario);
-                            ?>
+                    ?>
                             <tr>
                                 <th class="text-center align-middle"><?php echo $id; ?></th>
                                 <td class="align-middle"><?php echo $nome; ?></td>
@@ -142,12 +145,11 @@ if (!defined('URLADM')) {
                                             }
                                             ?>
 
-
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            <?php
+                    <?php
                         }
                     }
                     ?>

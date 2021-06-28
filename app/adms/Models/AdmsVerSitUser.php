@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerSitUser {
+class AdmsVerSitUser
+{
 
     private $Resultado;
     private $DadosId;
 
-    public function verSitUser($DadosId) {
+    public function verSitUser($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verSitUser = new \App\adms\Models\helper\AdmsRead();
         $verSitUser->fullRead("SELECT sit.*,
@@ -28,5 +30,4 @@ class AdmsVerSitUser {
         $this->Resultado = $verSitUser->getResultado();
         return $this->Resultado;
     }
-
 }

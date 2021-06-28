@@ -16,35 +16,36 @@ if (isset($this->Dados['form'][0])) {
 
             <?php
             if ($this->Dados['botao']['vis_cargo']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'ver-cargo/ver-cargo/' . $valorForm['id']; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
+        <form method="POST" action="" enctype="multipart/form-data">
             <input name="id" type="hidden" value="<?php
-            if (isset($valorForm['id'])) {
-                echo $valorForm['id'];
-            }
-            ?>">
+                                                    if (isset($valorForm['id'])) {
+                                                        echo $valorForm['id'];
+                                                    }
+                                                    ?>">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
                     <input name="nome" type="text" class="form-control" placeholder="Nome do cargo" value="<?php
-                    if (isset($valorForm['nome'])) {
-                        echo $valorForm['nome'];
-                    }
-                    ?>">
+                                                                                                            if (isset($valorForm['nome'])) {
+                                                                                                                echo $valorForm['nome'];
+                                                                                                            }
+                                                                                                            ?>">
                 </div>
             </div>
             <p>

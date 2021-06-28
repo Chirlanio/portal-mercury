@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chiralnio Silva - Grupo Meia Sola
  */
-class AdmsListarLojas {
+class AdmsListarLojas
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 30;
     private $ResultadoLj;
 
-    function getResultadoLj() {
+    function getResultadoLj()
+    {
         return $this->ResultadoLj;
     }
 
-    public function listarLojas($PageId = null) {
+    public function listarLojas($PageId = null)
+    {
         $this->PageId = (int) $PageId;
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'lojas/listar-lojas');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -38,5 +41,4 @@ class AdmsListarLojas {
         $this->Resultado = $listarAjuste->getResultado();
         return $this->Resultado;
     }
-
 }

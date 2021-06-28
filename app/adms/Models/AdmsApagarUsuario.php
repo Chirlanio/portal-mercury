@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarUsuario {
+class AdmsApagarUsuario
+{
 
     private $DadosId;
     private $Resultado;
     private $DadosUsuario;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarUsuario($DadosId = null) {
+    public function apagarUsuario($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verUsuario();
         if ($this->DadosUsuario) {
@@ -43,12 +46,12 @@ class AdmsApagarUsuario {
         }
     }
 
-    public function verUsuario() {
+    public function verUsuario()
+    {
         $verUsuario = new \App\adms\Models\helper\AdmsRead();
         $verUsuario->fullRead("SELECT user.imagem FROM adms_usuarios user
                 INNER JOIN adms_niveis_acessos nivac ON nivac.id=user.adms_niveis_acesso_id
                 WHERE user.id =:id AND nivac.ordem >:ordem LIMIT :limit", "id=" . $this->DadosId . "&ordem=" . $_SESSION['ordem_nivac'] . "&limit=1");
         $this->DadosUsuario = $verUsuario->getResultado();
     }
-
 }

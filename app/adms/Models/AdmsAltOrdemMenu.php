@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsAltOrdemMenu {
+class AdmsAltOrdemMenu
+{
 
     private $DadosId;
     private $Resultado;
@@ -20,11 +21,13 @@ class AdmsAltOrdemMenu {
     private $DadosNivAcPg;
     private $DadosNivAvPgInferior;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function altOrdemMenu($DadosId = null) {
+    public function altOrdemMenu($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verNivAcPg();
         if ($this->DadosNivAcPg) {
@@ -36,7 +39,8 @@ class AdmsAltOrdemMenu {
         }
     }
 
-    private function verNivAcPg() {
+    private function verNivAcPg()
+    {
         $verNivAcPg = new \App\adms\Models\helper\AdmsRead();
         $verNivAcPg->fullRead("SELECT nivpg.id, nivpg.ordem, nivpg.adms_niveis_acesso_id
                 FROM adms_nivacs_pgs nivpg
@@ -45,7 +49,8 @@ class AdmsAltOrdemMenu {
         $this->DadosNivAcPg = $verNivAcPg->getResultado();
     }
 
-    private function verfNivAcPgInferior() {
+    private function verfNivAcPgInferior()
+    {
         $ordem_super = $this->DadosNivAcPg[0]['ordem'] - 1;
         $verNivAcPg = new \App\adms\Models\helper\AdmsRead();
         $verNivAcPg->fullRead("SELECT nivpg.id, nivpg.ordem, nivpg.adms_niveis_acesso_id
@@ -54,7 +59,8 @@ class AdmsAltOrdemMenu {
         $this->DadosNivAvPgInferior = $verNivAcPg->getResultado();
     }
 
-    private function exeAltOrdemNivAc() {
+    private function exeAltOrdemNivAc()
+    {
         $this->Dados['ordem'] = $this->DadosNivAcPg[0]['ordem'];
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upMvBaixo = new \App\adms\Models\helper\AdmsUpdate();
@@ -72,5 +78,4 @@ class AdmsAltOrdemMenu {
             $this->Resultado = false;
         }
     }
-
 }

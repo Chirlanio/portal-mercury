@@ -12,7 +12,7 @@ if (!defined('URLADM')) {
             </div>
             <?php
             if ($this->Dados['botao']['listDash']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-dashboard/cad-dash'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -20,20 +20,20 @@ if (!defined('URLADM')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
         <?php
         if (empty($this->Dados['listDash'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum Dashboard encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -54,7 +54,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listDash'] as $dash) {
                         extract($dash);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $nome; ?></td>
@@ -64,13 +64,13 @@ if (!defined('URLADM')) {
                                     <a href="<?php echo $link; ?>" class="btn btn-outline-info btn-sm" target="_blank" title='Acessar'><i class='fas fa-external-link-alt'></i></a>
                                     <?php
                                     if ($this->Dados['botao']['vis_dash']) {
-                                        echo "<a href='". URLADM . "ver-dashboard/ver-dashboard/$id' class='btn btn-outline-primary btn-sm' title='Visualizar'><i class='fas fa-eye'></i></a> ";
+                                        echo "<a href='" . URLADM . "ver-dashboard/ver-dashboard/$id' class='btn btn-outline-primary btn-sm' title='Visualizar'><i class='fas fa-eye'></i></a> ";
                                     }
                                     if ($this->Dados['botao']['edit_dash']) {
-                                        echo "<a href='". URLADM . "editar-dashboard/edit-dashboard/$id' class='btn btn-outline-warning btn-sm' title='Editar'><i class='fas fa-pen-nib'></i></a> ";
+                                        echo "<a href='" . URLADM . "editar-dashboard/edit-dashboard/$id' class='btn btn-outline-warning btn-sm' title='Editar'><i class='fas fa-pen-nib'></i></a> ";
                                     }
                                     if ($this->Dados['botao']['del_dash']) {
-                                        echo "<a href='". URLADM . "apagar-dashboard/apagar-dashboard/$id' class='btn btn-outline-danger btn-sm' data-confirm='Tem certeza de que deseja excluir o item selecionado?' title='Apagar'><i class='fas fa-eraser'></i></a> ";
+                                        echo "<a href='" . URLADM . "apagar-dashboard/apagar-dashboard/$id' class='btn btn-outline-danger btn-sm' data-confirm='Tem certeza de que deseja excluir o item selecionado?' title='Apagar'><i class='fas fa-eraser'></i></a> ";
                                     }
                                     ?>
                                 </span>
@@ -79,23 +79,23 @@ if (!defined('URLADM')) {
                                         Ações
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                        <a class='dropdown-item' href='<?php echo $link; ?>'  target="_blank">Acessar</a>
+                                        <a class='dropdown-item' href='<?php echo $link; ?>' target="_blank">Acessar</a>
                                         <?php
                                         if ($this->Dados['botao']['vis_dash']) {
-                                            echo "<a class='dropdown-item' href='". URLADM . "ver-dashboard/ver-dashboard/$id'>Detalhar</a>";
+                                            echo "<a class='dropdown-item' href='" . URLADM . "ver-dashboard/ver-dashboard/$id'>Detalhar</a>";
                                         }
                                         if ($this->Dados['botao']['edit_dash']) {
-                                            echo "<a class='dropdown-item' href='". URLADM . "editar-dashboard/edit-dashboard/$id'>Editar</a>";
+                                            echo "<a class='dropdown-item' href='" . URLADM . "editar-dashboard/edit-dashboard/$id'>Editar</a>";
                                         }
                                         if ($this->Dados['botao']['del_dash']) {
-                                            echo "<a class='dropdown-item' href='". URLADM . "apagar-dashboard/apagar-dashboard/$id' data-confirm='Tem certeza de que deseja excluir o item selecionado?'>Apagar</a>";                                           
+                                            echo "<a class='dropdown-item' href='" . URLADM . "apagar-dashboard/apagar-dashboard/$id' data-confirm='Tem certeza de que deseja excluir o item selecionado?'>Apagar</a>";
                                         }
                                         ?>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

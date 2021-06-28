@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chiralnio Silva - Grupo Meia Sola
  */
-class CpAdmsPesqProdutos {
+class CpAdmsPesqProdutos
+{
 
     private $Dados;
     private $Resultado;
@@ -20,18 +21,20 @@ class CpAdmsPesqProdutos {
     private $LimiteResultado = 1;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function pesqProdutos($PageId = null, $Dados = null) {
+    public function pesqProdutos($PageId = null, $Dados = null)
+    {
 
         $this->PageId = (int) $PageId;
         $this->Dados = $Dados;
 
         $this->Dados['referencia'] = trim($this->Dados['referencia']);
 
-        if ((!empty($this->Dados['referencia'])) AND (!empty($this->Dados['refauxiliar']))) {
+        if ((!empty($this->Dados['referencia'])) and (!empty($this->Dados['refauxiliar']))) {
             $this->pesqComp();
         } elseif (!empty($this->Dados['referencia'])) {
             $this->pesqRef();
@@ -41,7 +44,8 @@ class CpAdmsPesqProdutos {
         return $this->Resultado;
     }
 
-    private function pesqComp() {
+    private function pesqComp()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacaoCigam(URLADM . 'produtos/pesq-produtos');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -58,7 +62,8 @@ class CpAdmsPesqProdutos {
         $this->Resultado = $listarProdutos->getResultado();
     }
 
-    private function pesqRef() {
+    private function pesqRef()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacaoCigam(URLADM . 'produtos/pesq-produtos');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -75,7 +80,8 @@ class CpAdmsPesqProdutos {
         $this->Resultado = $listarProdutos->getResultado();
     }
 
-    private function pesqCodBarras() {
+    private function pesqCodBarras()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacaoCigam(URLADM . 'produtos/pesq-produtos');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -91,5 +97,4 @@ class CpAdmsPesqProdutos {
            ORDER BY referencia ASC LIMIT :limit OFFSET :offset", "refauxiliar={$this->Dados['refauxiliar']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
         $this->Resultado = $listarProdutos->getResultado();
     }
-
 }

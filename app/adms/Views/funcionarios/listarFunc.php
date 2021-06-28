@@ -12,7 +12,7 @@ if (!defined('URLADM')) {
             </div>
             <?php
             if ($this->Dados['botao']['listFunc']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-func/cad-func'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -20,11 +20,11 @@ if (!defined('URLADM')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
-        <form class="form" method="POST" action="<?php echo URLADM . 'pesq-func/listar'; ?>" enctype="multipart/form-data"> 
+        <form class="form" method="POST" action="<?php echo URLADM . 'pesq-func/listar'; ?>" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-12 col-lg-6 mb-3">
                     <div class="input-group">
@@ -32,10 +32,10 @@ if (!defined('URLADM')) {
                             <label class="input-group-text" style="font-weight: bold;" for="cliente">Nome</label>
                         </div>
                         <input name="nome" type="text" id="nome" class="form-control" placeholder="Digite o nome do funcionário" value="<?php
-                        if (isset($_SESSION['nome'])) {
-                            echo $_SESSION['nome'];
-                        }
-                        ?>">
+                                                                                                                                        if (isset($_SESSION['nome'])) {
+                                                                                                                                            echo $_SESSION['nome'];
+                                                                                                                                        }
+                                                                                                                                        ?>">
                     </div>
                 </div>
                 <?php
@@ -68,17 +68,18 @@ if (!defined('URLADM')) {
                     <input name="PesqFunc" type="submit" class="btn btn-outline-primary mx-sm-2" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['listFunc'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum funcionário encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -101,7 +102,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listFunc'] as $func) {
                         extract($func);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $nome; ?></td>
@@ -128,7 +129,7 @@ if (!defined('URLADM')) {
                                         Ações
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                        <a class='dropdown-item' href='<?php echo $link; ?>'  target="_blank">Acessar</a>
+                                        <a class='dropdown-item' href='<?php echo $link; ?>' target="_blank">Acessar</a>
                                         <?php
                                         if ($this->Dados['botao']['vis_func']) {
                                             echo "<a class='dropdown-item' href='" . URLADM . "ver-func/ver-func/$id'>Visualizar</a>";
@@ -144,7 +145,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

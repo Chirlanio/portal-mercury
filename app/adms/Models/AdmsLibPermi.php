@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsLibPermi {
+class AdmsLibPermi
+{
 
     private $DadosId;
     private $Resultado;
     private $Dados;
     private $DadosNivAcPg;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function libPermi($DadosId = null) {
+    public function libPermi($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verNivAcPg();
         if ($this->DadosNivAcPg) {
@@ -34,7 +37,8 @@ class AdmsLibPermi {
         }
     }
 
-    private function verNivAcPg() {
+    private function verNivAcPg()
+    {
         $verNivAcPg = new \App\adms\Models\helper\AdmsRead();
         $verNivAcPg->fullRead("SELECT nivpg.id, nivpg.permissao 
                 FROM adms_nivacs_pgs nivpg
@@ -43,7 +47,8 @@ class AdmsLibPermi {
         $this->DadosNivAcPg = $verNivAcPg->getResultado();
     }
 
-    private function altPermi() {
+    private function altPermi()
+    {
         if ($this->DadosNivAcPg[0]['permissao'] == 1) {
             $this->Dados['permissao'] = 2;
         } else {
@@ -61,5 +66,4 @@ class AdmsLibPermi {
             $this->Resultado = false;
         }
     }
-
 }

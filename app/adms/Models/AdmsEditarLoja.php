@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  * Classe para editar as informações da página no banco de dados
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarLoja {
+class AdmsEditarLoja
+{
 
     private $Resultado;
     private $Dados;
@@ -22,7 +23,8 @@ class AdmsEditarLoja {
      * <b>Obter Resultado:</b> Retorna TRUE caso tenha editado com sucesso e FALSE quando não conseguiu editar
      * @return BOOL true ou false
      */
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
@@ -30,7 +32,8 @@ class AdmsEditarLoja {
      * <b>Ver Página:</b> Receber o id da página para buscar informações do registro no banco de dados
      * @param int $DadosId
      */
-    public function verLoja($DadosId) {
+    public function verLoja($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verLoja = new \App\adms\Models\helper\AdmsRead();
         $verLoja->fullRead("SELECT lj.* ,
@@ -49,7 +52,8 @@ class AdmsEditarLoja {
      * <b>Editar Página:</b> Receber array de Dados com as informações da página
      * @param ARRAY $Dados
      */
-    public function altLoja(array $Dados) {
+    public function altLoja(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -66,7 +70,8 @@ class AdmsEditarLoja {
      * <b>Editar Página no Banco de Dados:</b> Instanciar a classe responsável em editar no banco de dados
      * Verificar o status da ação, true ou false
      */
-    private function updateEditLojas() {
+    private function updateEditLojas()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltLoja = new \App\adms\Models\helper\AdmsUpdate();
         $upAltLoja->exeUpdate("tb_lojas", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -82,7 +87,8 @@ class AdmsEditarLoja {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações nas tabelas "adms_grps_pgs, adms_tps_pgs, adms_sits_pgs" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id id_sit, nome sit FROM tb_status_loja ORDER BY id ASC");
         $registro['sit'] = $listar->getResultado();
@@ -97,5 +103,4 @@ class AdmsEditarLoja {
 
         return $this->Resultado;
     }
-
 }

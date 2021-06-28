@@ -25,7 +25,7 @@ if (!defined('URLADM')) {
                     <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Ações
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                         <?php
                         if ($this->Dados['botao']['gerar']) {
                             echo "<a class='dropdown-item' href='" . URLADM . "gerar-planilha/gerar'>Gerar Excel</a>";
@@ -38,7 +38,7 @@ if (!defined('URLADM')) {
                 </div>
             </div>
         </div>
-        <form class="form d-print-none" method="POST" action="<?php echo URLADM . 'pesq-delivery/listar'; ?>" enctype="multipart/form-data"> 
+        <form class="form d-print-none" method="POST" action="<?php echo URLADM . 'pesq-delivery/listar'; ?>" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-12 col-lg-3 mb-3">
                     <div class="input-group">
@@ -106,10 +106,10 @@ if (!defined('URLADM')) {
                             <label class="input-group-text" style="font-weight: bold;" for="cliente">Cliente</label>
                         </div>
                         <input name="cliente" type="text" id="cliente" class="form-control" placeholder="Digite o nome do Cliente" value="<?php
-                        if (isset($_SESSION['cliente'])) {
-                            echo $_SESSION['cliente'];
-                        }
-                        ?>">
+                                                                                                                                            if (isset($_SESSION['cliente'])) {
+                                                                                                                                                echo $_SESSION['cliente'];
+                                                                                                                                            }
+                                                                                                                                            ?>">
                     </div>
                 </div>
             </div>
@@ -118,7 +118,8 @@ if (!defined('URLADM')) {
                     <input name="PesqDelivery" type="submit" class="btn btn-outline-primary" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <div class="table-responsive my-n1 d-print-none">
             <table class="table table-striped table-bordered">
                 <thead>
@@ -162,17 +163,18 @@ if (!defined('URLADM')) {
                     ?>
                 </tbody>
             </table>
-        </div><hr class="d-print-none">
+        </div>
+        <hr class="d-print-none">
         <?php
         if (empty($this->Dados['listDelivery'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma entrega encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -198,7 +200,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listDelivery'] as $lo) {
                         extract($lo);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id_loja; ?></th>
                             <td class="align-middle"><?php echo $nome_loja; ?></td>
@@ -244,7 +246,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

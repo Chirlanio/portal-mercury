@@ -12,16 +12,19 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarTransf {
+class AdmsApagarTransf
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarTransf($DadosId = null) {
+    public function apagarTransf($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
 
         $apagarTransf = new \App\adms\Models\helper\AdmsDelete();
@@ -34,5 +37,4 @@ class AdmsApagarTransf {
             $this->Resultado = false;
         }
     }
-
 }

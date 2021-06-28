@@ -14,37 +14,38 @@ if (isset($this->Dados['form'][0])) {
                 <h2 class="display-4 titulo">Editar Form Cadastrar Usuário</h2>
             </div>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data">             
+        <form method="POST" action="" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label><span class="text-danger">*</span> Enviar E-mail de Confirmação</label>
                     <select name="env_email_conf" id="env_email_conf" class="form-control">
                         <?php
-                            if ($valorForm['env_email_conf'] == 1) {
-                                echo "<option value=''>Selecione</option>";
-                                echo "<option value='1' selected>Sim</option>";
-                                echo "<option value='2'>Não</option>";
-                            } elseif ($valorForm['env_email_conf'] == 2)  {
-                                echo "<option value=''>Selecione</option>";
-                                echo "<option value='1'>Sim</option>";
-                                echo "<option value='2' selected>Não</option>";
-                            }else{
-                                echo "<option value='' selected>Selecione</option>";
-                                echo "<option value='1'>Sim</option>";
-                                echo "<option value='2'>Não</option>";                                
-                            }
+                        if ($valorForm['env_email_conf'] == 1) {
+                            echo "<option value=''>Selecione</option>";
+                            echo "<option value='1' selected>Sim</option>";
+                            echo "<option value='2'>Não</option>";
+                        } elseif ($valorForm['env_email_conf'] == 2) {
+                            echo "<option value=''>Selecione</option>";
+                            echo "<option value='1'>Sim</option>";
+                            echo "<option value='2' selected>Não</option>";
+                        } else {
+                            echo "<option value='' selected>Selecione</option>";
+                            echo "<option value='1'>Sim</option>";
+                            echo "<option value='2'>Não</option>";
+                        }
                         ?>
                     </select>
                 </div>
             </div>
-            
+
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label><span class="text-danger">*</span> Situação</label>
@@ -63,7 +64,7 @@ if (isset($this->Dados['form'][0])) {
                     </select>
                 </div>
             </div>
-            
+
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label><span class="text-danger">*</span> Nível de Acesso</label>

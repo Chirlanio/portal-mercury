@@ -2,7 +2,7 @@
 
 namespace Sts\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class StsListarCadProdutos {
+class StsListarCadProdutos
+{
 
     private $Resultado;
 
-    public function listar() {
-        
+    public function listar()
+    {
+
         $listar = new \Sts\Models\helper\StsRead();
         //$listar->exeRead('tb_dashboards', 'WHERE status_id =:status_id LIMIT :limit', 'status_id=1&limit=4');
         $listar->fullRead('SELECT c.id , c.nome as consultora, c.loja_id, c.referencia,
@@ -31,5 +33,4 @@ class StsListarCadProdutos {
         $this->Resultado = $listar->getResultado();
         return $this->Resultado;
     }
-
 }

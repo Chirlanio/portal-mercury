@@ -15,27 +15,27 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_transf']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'transferencia/listarTransf'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" cla
-             class="was-validated" enctype="multipart/form-data"> 
+        <form method="POST" action="" cla class="was-validated" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <label><span class="text-danger">*</span> Loja - Origem</label>
                     <select name="loja_origem_id" id="loja_origem_id" class="form-control is-invalid" required>
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['loja_origem_id'] as $lo) {
                             extract($lo);
@@ -49,9 +49,9 @@ if (isset($this->Dados['form'][0])) {
                     </select>
                 </div>
                 <div class="form-group col-md-5">
-                    <label><span class = "text-danger">*</span> Loja - Destino</label>
+                    <label><span class="text-danger">*</span> Loja - Destino</label>
                     <select name="loja_destino_id" id="loja_destino_id" class="form-control is-invalid" required>
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['loja_destino_id'] as $ld) {
                             extract($ld);
@@ -66,7 +66,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Nº Nota Fiscal</label>
-                    <input name="nf" type="number" class="form-control is-invalid" placeholder="Número da Nota" value="<?php
+                    <input name="nf" type="number" class="form-control is-invalid" placeholder="Número da Nota" value="
+                    <?php
                     if (isset($valorForm['nf'])) {
                         echo $valorForm['nf'];
                     }
@@ -76,7 +77,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Volumes</label>
-                    <input name="qtd_vol" type="number" class="form-control is-invalid" placeholder="Qtd volumes" value="<?php
+                    <input name="qtd_vol" type="number" class="form-control is-invalid" placeholder="Qtd volumes" value="
+                    <?php
                     if (isset($valorForm['qtd_vol'])) {
                         echo $valorForm['qtd_vol'];
                     }
@@ -84,7 +86,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Qtd Produtos</label>
-                    <input name="qtd_prod" type="number" class="form-control is-invalid" placeholder="Qtd itens ou produtos" value="<?php
+                    <input name="qtd_prod" type="number" class="form-control is-invalid" placeholder="Qtd itens ou produtos" value="
+                    <?php
                     if (isset($valorForm['qtd_prod'])) {
                         echo $valorForm['qtd_prod'];
                     }
@@ -93,7 +96,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Tipo</label>
                     <select name="tipo_transf_id" id="tipo_transf_id" class="form-control is-invalid" required>
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['tipo_transf_id'] as $t) {
                             extract($t);

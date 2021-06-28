@@ -14,14 +14,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_ped']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'prateleira-infinita/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -32,7 +33,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label><span class="text-danger">*</span> Referência</label>
-                    <input name="referencia" type="text" class="form-control is-invalid" placeholder="Digite a referência completa" value="<?php
+                    <input name="referencia" type="text" class="form-control is-invalid" placeholder="Digite a referência completa" value="
+                    <?php
                     if (isset($valorForm['referencia'])) {
                         echo $valorForm['referencia'];
                     }
@@ -41,7 +43,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-3">
                     <label><span class="text-danger">*</span> Tamanho</label>
                     <select name="tam_id" id="tam_id" class="form-control is-invalid" required>
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['tam'] as $t) {
                             extract($t);
@@ -55,9 +57,9 @@ if (isset($this->Dados['form'][0])) {
                     </select>
                 </div>
                 <div class="form-group col-md-3">
-                    <label><span class = "text-danger">*</span>Loja</label>
+                    <label><span class="text-danger">*</span>Loja</label>
                     <select name="loja_id" id="loja_id" class="form-control is-invalid" required>
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['loja_id'] as $loja) {
                             extract($loja);
@@ -73,7 +75,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-3">
                     <label><span class="text-danger">*</span> Solicitante</label>
                     <select name="func_id" id="func_id" class="form-control is-invalid" required>
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['func'] as $f) {
                             extract($f);

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarUsuario {
+class AdmsEditarUsuario
+{
 
     private $Resultado;
     private $Dados;
@@ -20,11 +21,13 @@ class AdmsEditarUsuario {
     private $Foto;
     private $ImgAntiga;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verUsuario($DadosId) {
+    public function verUsuario($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verPerfil = new \App\adms\Models\helper\AdmsRead();
         $verPerfil->fullRead("SELECT user.* FROM adms_usuarios user
@@ -34,7 +37,8 @@ class AdmsEditarUsuario {
         return $this->Resultado;
     }
 
-    public function altUsuario(array $Dados) {
+    public function altUsuario(array $Dados)
+    {
         $this->Dados = $Dados;
         //var_dump($this->Dados);
         $this->Foto = $this->Dados['imagem_nova'];
@@ -51,7 +55,8 @@ class AdmsEditarUsuario {
         }
     }
 
-    private function valCampos() {
+    private function valCampos()
+    {
         $valEmail = new \App\adms\Models\helper\AdmsEmail();
         $valEmail->valEmail($this->Dados['email']);
 
@@ -62,14 +67,15 @@ class AdmsEditarUsuario {
         $valUsuario = new \App\adms\Models\helper\AdmsValUsuario();
         $valUsuario->valUsuario($this->Dados['usuario'], $EditarUnico, $this->Dados['id']);
 
-        if (( $valUsuario->getResultado()) AND ( $valEmailUnico->getResultado()) AND ( $valEmail->getResultado())) {
+        if (($valUsuario->getResultado()) and ($valEmailUnico->getResultado()) and ($valEmail->getResultado())) {
             $this->valFoto();
         } else {
             $this->Resultado = false;
         }
     }
 
-    private function valFoto() {
+    private function valFoto()
+    {
         if (empty($this->Foto['name'])) {
             $this->updateEditUsuario();
         } else {
@@ -88,7 +94,8 @@ class AdmsEditarUsuario {
         }
     }
 
-    private function updateEditUsuario() {
+    private function updateEditUsuario()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltSenha = new \App\adms\Models\helper\AdmsUpdate();
         $upAltSenha->exeUpdate("adms_usuarios", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -101,12 +108,13 @@ class AdmsEditarUsuario {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
-        
+
         $listar->fullRead("SELECT id id_loja, nome loja FROM tb_lojas ORDER BY id ASC");
         $registro['loja_id'] = $listar->getResultado();
-        
+
         $listar->fullRead("SELECT id id_nivac, nome nome_nivac FROM adms_niveis_acessos WHERE ordem >=:ordem ORDER BY nome ASC", "ordem=" . $_SESSION['ordem_nivac']);
         $registro['nivac'] = $listar->getResultado();
 
@@ -117,5 +125,4 @@ class AdmsEditarUsuario {
 
         return $this->Resultado;
     }
-
 }

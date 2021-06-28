@@ -15,14 +15,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_pag']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'tipo-pagamento/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -33,7 +34,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome do Tipo de Pagamento" value="<?php
+                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome do Tipo de Pagamento" value="
+                    <?php
                     if (isset($valorForm['nome'])) {
                         echo $valorForm['nome'];
                     }

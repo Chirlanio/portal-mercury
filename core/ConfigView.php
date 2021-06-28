@@ -7,17 +7,20 @@ namespace Core;
  *
  * @author Chirlanio Silva - Grupo Meia Sola
  */
-class ConfigView {
+class ConfigView
+{
 
     private $Nome;
     private $Dados;
 
-    public function __construct($Nome, array $Dados = null) {
+    public function __construct($Nome, array $Dados = null)
+    {
         $this->Nome = (string) $Nome;
         $this->Dados = $Dados;
     }
 
-    public function renderizar() {
+    public function renderizar()
+    {
 
         include 'app/adms/Views/include/cabecalho_adm.php';
         include 'app/adms/Views/include/header.php';
@@ -30,7 +33,8 @@ class ConfigView {
         include 'app/adms/Views/include/rodape_adm.php';
     }
 
-    public function renderizarLogin() {
+    public function renderizarLogin()
+    {
 
         include 'app/adms/Views/include/cabecalho.php';
         if (file_exists('app/' . $this->Nome . '.php')) {
@@ -39,5 +43,4 @@ class ConfigView {
             echo 'Erro ao carragar a página ' . $this->Nome . "<br>";
         }
     }
-
 }

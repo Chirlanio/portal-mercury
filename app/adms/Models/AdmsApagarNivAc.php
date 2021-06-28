@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarNivAc {
+class AdmsApagarNivAc
+{
 
     private $DadosId;
     private $Resultado;
     private $Dados;
     private $DadosNivAvInferior;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarNivAc($DadosId = null) {
+    public function apagarNivAc($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verfUsuarioCad();
         if ($this->Resultado) {
@@ -42,7 +45,8 @@ class AdmsApagarNivAc {
         }
     }
 
-    private function verfUsuarioCad() {
+    private function verfUsuarioCad()
+    {
         $verUsuario = new \App\adms\Models\helper\AdmsRead();
         $verUsuario->fullRead("SELECT id FROM adms_usuarios
                 WHERE adms_niveis_acesso_id =:adms_niveis_acesso_id LIMIT :limit", "adms_niveis_acesso_id=" . $this->DadosId . "&limit=2");
@@ -54,13 +58,15 @@ class AdmsApagarNivAc {
         }
     }
 
-    private function verfNivAcInferior() {
+    private function verfNivAcInferior()
+    {
         $verNivAc = new \App\adms\Models\helper\AdmsRead();
         $verNivAc->fullRead("SELECT id, ordem AS ordem_result FROM adms_niveis_acessos WHERE ordem > (SELECT ordem FROM adms_niveis_acessos WHERE id =:id) ORDER BY ordem ASC", "id={$this->DadosId}");
         $this->DadosNivAvInferior = $verNivAc->getResultado();
     }
 
-    private function atualizarOrdem() {
+    private function atualizarOrdem()
+    {
         if ($this->DadosNivAvInferior) {
             foreach ($this->DadosNivAvInferior as $atualOrdem) {
                 extract($atualOrdem);
@@ -72,9 +78,9 @@ class AdmsApagarNivAc {
         }
     }
 
-    private function apagarNivAcPg() {
+    private function apagarNivAcPg()
+    {
         $apagarNivAcPg = new \App\adms\Models\helper\AdmsDelete();
         $apagarNivAcPg->exeDelete("adms_nivacs_pgs", "WHERE adms_niveis_acesso_id =:adms_niveis_acesso_id", "adms_niveis_acesso_id={$this->DadosId}");
     }
-
 }

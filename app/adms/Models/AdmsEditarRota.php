@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,20 +12,23 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarRota {
+class AdmsEditarRota
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verRota($DadosId) {
-        
+    public function verRota($DadosId)
+    {
+
         $this->DadosId = (int) $DadosId;
-        
+
         $verRota = new \App\adms\Models\helper\AdmsRead();
         $verRota->fullRead("SELECT r.id r_id, r.nome rota, r.adms_cor_id cor_id, c.nome n_cor, c.cor
                 FROM tb_rotas r
@@ -35,8 +38,9 @@ class AdmsEditarRota {
         return $this->Resultado;
     }
 
-    public function altRota(array $Dados) {
-        
+    public function altRota(array $Dados)
+    {
+
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -49,10 +53,11 @@ class AdmsEditarRota {
         }
     }
 
-    private function updateEditRota() {
-        
+    private function updateEditRota()
+    {
+
         $this->Dados['modified'] = date("Y-m-d H:i:s");
-        
+
         $upAltRota = new \App\adms\Models\helper\AdmsUpdate();
         $upAltRota->exeUpdate("tb_rotas", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
         if ($upAltRota->getResultado()) {
@@ -64,7 +69,8 @@ class AdmsEditarRota {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id cor_id, nome n_cor FROM adms_cors ORDER BY nome ASC");
@@ -74,5 +80,4 @@ class AdmsEditarRota {
 
         return $this->Resultado;
     }
-
 }

@@ -15,14 +15,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_pagina']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'pagina/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -33,7 +34,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Nome da Página</label>
-                    <input name="nome_pagina" type="text" class="form-control is-invalid" placeholder="Nome da Página a ser apresentado no menu" value="<?php
+                    <input name="nome_pagina" type="text" class="form-control is-invalid" placeholder="Nome da Página a ser apresentado no menu" value="
+                    <?php
                     if (isset($valorForm['nome_pagina'])) {
                         echo $valorForm['nome_pagina'];
                     }
@@ -41,7 +43,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Classe</label>
-                    <input name="controller" type="text" class="form-control is-invalid" placeholder="Nome da Classe" value="<?php
+                    <input name="controller" type="text" class="form-control is-invalid" placeholder="Nome da Classe" value="
+                    <?php
                     if (isset($valorForm['controller'])) {
                         echo $valorForm['controller'];
                     }
@@ -49,7 +52,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Método</label>
-                    <input name="metodo" type="text" class="form-control is-invalid" placeholder="Nome do Método" value="<?php
+                    <input name="metodo" type="text" class="form-control is-invalid" placeholder="Nome do Método" value="
+                    <?php
                     if (isset($valorForm['metodo'])) {
                         echo $valorForm['metodo'];
                     }
@@ -59,7 +63,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Classe no menu</label>
-                    <input name="menu_controller" type="text" class="form-control is-invalid" placeholder="Nome da classe no menu" value="<?php
+                    <input name="menu_controller" type="text" class="form-control is-invalid" placeholder="Nome da classe no menu" value="
+                    <?php
                     if (isset($valorForm['menu_controller'])) {
                         echo $valorForm['menu_controller'];
                     }
@@ -67,7 +72,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Método no menu</label>
-                    <input name="menu_metodo" type="text" class="form-control is-invalid" placeholder="Nome do método no menu" value="<?php
+                    <input name="menu_metodo" type="text" class="form-control is-invalid" placeholder="Nome do método no menu" value="
+                    <?php
                     if (isset($valorForm['menu_metodo'])) {
                         echo $valorForm['menu_metodo'];
                     }
@@ -78,7 +84,8 @@ if (isset($this->Dados['form'][0])) {
                         <span tabindex="0" data-toggle="tooltip" data-placement="top" data-html="true" title="Página de icone: <a href='https://fontawesome.com/icons?d=gallery' target='_blank'>fontawesome</a>. Somente inserir o nome, Ex: fas fa-volume-up">
                             <i class="fas fa-question-circle"></i>
                         </span> Ícone</label>
-                    <input name="icone" type="text" class="form-control" placeholder="Ícone a ser apresentado no menu" value="<?php
+                    <input name="icone" type="text" class="form-control" placeholder="Ícone a ser apresentado no menu" value="
+                    <?php
                     if (isset($valorForm['icone'])) {
                         echo $valorForm['icone'];
                     }
@@ -87,11 +94,12 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <div class="form-group">
                 <label><span class="text-danger">*</span> Observação</label>
-                <textarea name="obs" class="form-control is-invalid" rows="3" id="editor" required=""><?php
-                    if (isset($valorForm['obs'])) {
-                        echo $valorForm['obs'];
-                    }
-                    ?>
+                <textarea name="obs" class="form-control is-invalid" rows="3" id="editor" required="">
+                <?php
+                if (isset($valorForm['obs'])) {
+                    echo $valorForm['obs'];
+                }
+                ?>
                 </textarea>
             </div>
             <div class="form-row">

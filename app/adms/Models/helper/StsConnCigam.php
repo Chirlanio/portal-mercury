@@ -4,7 +4,7 @@ namespace Sts\Models\helper;
 
 use PDO;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -14,7 +14,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class StsConnCigam {
+class StsConnCigam
+{
 
     public static $Host = HOSTCIGAM;
     public static $User = USERCIGAM;
@@ -22,20 +23,21 @@ class StsConnCigam {
     public static $Dbname = DBNAMECIGAM;
     private static $Connect = null;
 
-    private function conectar() {
+    private function conectar()
+    {
         try {
             if (self::$Connect == null) {
                 self::$Connect = new PDO('pgsql:host=' . self::$Host . ';dbname=' . self::$Dbname, self::$User, self::$Pass);
             }
-        } catch (Exception $ex) {
+        } catch (PDOException $ex) {
             echo 'mensagem: ' . $ex->getMessage();
             die;
         }
         return self::$Connect;
     }
 
-    public function getConn() {
+    public function getConn()
+    {
         return self::conectar();
     }
-
 }

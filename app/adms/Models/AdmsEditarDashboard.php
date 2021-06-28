@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarDashboard {
+class AdmsEditarDashboard
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verDashboard($DadosId) {
+    public function verDashboard($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verAjuste = new \App\adms\Models\helper\AdmsRead();
         $verAjuste->fullRead("SELECT d.id, d.nome, d.descricao, d.area_id, d.loja_id, d.link, d.status_id,
@@ -37,7 +40,8 @@ class AdmsEditarDashboard {
         return $this->Resultado;
     }
 
-    public function altDashboard(array $Dados) {
+    public function altDashboard(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -52,7 +56,8 @@ class AdmsEditarDashboard {
         }
     }
 
-    private function updateEditDashboard() {
+    private function updateEditDashboard()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltDash = new \App\adms\Models\helper\AdmsUpdate();
         $upAltDash->exeUpdate("tb_dashboards", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -65,7 +70,8 @@ class AdmsEditarDashboard {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id id_loja, nome loja FROM tb_lojas ORDER BY id ASC");
@@ -81,5 +87,4 @@ class AdmsEditarDashboard {
 
         return $this->Resultado;
     }
-
 }

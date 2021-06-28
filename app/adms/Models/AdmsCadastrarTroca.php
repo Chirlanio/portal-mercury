@@ -12,16 +12,19 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarTroca {
+class AdmsCadastrarTroca
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadTroca(array $Dados) {
+    public function cadTroca(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -35,7 +38,8 @@ class AdmsCadastrarTroca {
         }
     }
 
-    private function inserirTroca() {
+    private function inserirTroca()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadTroca = new \App\adms\Models\helper\AdmsCreate;
         $cadTroca->exeCreate("tb_cad_produtos", $this->Dados);
@@ -49,7 +53,8 @@ class AdmsCadastrarTroca {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['adms_niveis_acesso_id'] > 2) {
@@ -68,7 +73,7 @@ class AdmsCadastrarTroca {
             $listar->fullRead("SELECT id id_consul, nome consul FROM tb_funcionarios ORDER BY nome ASC");
         }
         $registro['func_id'] = $listar->getResultado();
-        
+
         $listar->fullRead("SELECT id motivo_id, nome motivo FROM adms_motivos ORDER BY nome ASC");
         $registro['motivo_id'] = $listar->getResultado();
 
@@ -76,5 +81,4 @@ class AdmsCadastrarTroca {
 
         return $this->Resultado;
     }
-
 }

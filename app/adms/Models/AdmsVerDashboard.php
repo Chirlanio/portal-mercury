@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerDashboard {
+class AdmsVerDashboard
+{
 
     private $Resultado;
     private $DadosId;
@@ -21,7 +22,8 @@ class AdmsVerDashboard {
      * <b>Ver Página:</b> Receber o id do dashboard para buscar informações do registro no banco de dados
      * @param int $DadosId
      */
-    public function verDashboard($DadosId) {
+    public function verDashboard($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verDash = new \App\adms\Models\helper\AdmsRead();
         $verDash->fullRead("SELECT dash.*,
@@ -36,5 +38,4 @@ class AdmsVerDashboard {
         $this->Resultado = $verDash->getResultado();
         return $this->Resultado;
     }
-
 }

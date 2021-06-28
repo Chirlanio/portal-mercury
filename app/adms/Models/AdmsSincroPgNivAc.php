@@ -12,7 +12,8 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsSincroPgNivAc {
+class AdmsSincroPgNivAc
+{
 
     private $Resultado;
     private $ListaNivAc;
@@ -28,7 +29,8 @@ class AdmsSincroPgNivAc {
      * <b>Obter Resultado:</b> Retorna TRUE caso tenha sincronizado com sucesso e FALSE quando não conseguiu sincronizar
      * @return BOOL true ou false
      */
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
@@ -36,7 +38,8 @@ class AdmsSincroPgNivAc {
      * <b>Sincronizar Página:</b> Sincronizar as páginas com os níveis de acesso
      * Para cada nível de acesso ter a permissão cadastrada na tabela "adms_nivacs_pgs"
      */
-    public function sincroPgNivAc() {
+    public function sincroPgNivAc()
+    {
         $this->listarNivAc();
         if ($this->ListaNivAc) {
             $this->listarPg();
@@ -55,7 +58,8 @@ class AdmsSincroPgNivAc {
     /**
      * <b>Listar Nível de acesso:</b> Pesquisar os níves de acesso para liberar a permissão de acessar as páginas 
      */
-    private function listarNivAc() {
+    private function listarNivAc()
+    {
         $listarNivAc = new \App\adms\Models\helper\AdmsRead();
         $listarNivAc->fullRead("SELECT id FROM adms_niveis_acessos");
         $this->ListaNivAc = $listarNivAc->getResultado();
@@ -64,7 +68,8 @@ class AdmsSincroPgNivAc {
     /**
      * <b>Listar as Páginas:</b> Pesquisar as páginas para liberar a permissão para os níveis de acesso 
      */
-    private function listarPg() {
+    private function listarPg()
+    {
         $listarPg = new \App\adms\Models\helper\AdmsRead();
         $listarPg->fullRead("SELECT id, lib_pub FROM adms_paginas");
         $this->ListarPg = $listarPg->getResultado();
@@ -73,7 +78,8 @@ class AdmsSincroPgNivAc {
     /**
      * <b>Ler os nível de acesso:</b> Ler o array de nível de acesso para chamar o método ler as páginas
      */
-    private function lerNivAc() {
+    private function lerNivAc()
+    {
         foreach ($this->ListaNivAc as $nivAc) {
             extract($nivAc);
             $this->NivAcId = $id;
@@ -85,7 +91,8 @@ class AdmsSincroPgNivAc {
      * <b>Ler as páginas:</b> Ler o array de páginas para verificar se o nível de acesso possui já cadastrado a permissão
      * Caso não tenha cadastrado será chamado o método "inserirPerNivAc" para inserir a permissão
      */
-    private function lerPg() {
+    private function lerPg()
+    {
         foreach ($this->ListarPg as $listarPg) {
             extract($listarPg);
             $this->PgId = $id;
@@ -100,7 +107,8 @@ class AdmsSincroPgNivAc {
     /**
      * <b>Pesquisar a permissão ao nível de acesso:</b> Pesquisar se o nível de acesso já tem a permissão cadastrada para a página
      */
-    private function pesqCadNivAcPer() {
+    private function pesqCadNivAcPer()
+    {
         $listarNivAcPg = new \App\adms\Models\helper\AdmsRead();
         $listarNivAcPg->fullRead("SELECT id FROM adms_nivacs_pgs WHERE adms_niveis_acesso_id =:adms_niveis_acesso_id AND adms_pagina_id =:adms_pagina_id", "adms_niveis_acesso_id={$this->NivAcId}&adms_pagina_id={$this->PgId}");
         $this->ListarNivAcPg = $listarNivAcPg->getResultado();
@@ -111,8 +119,9 @@ class AdmsSincroPgNivAc {
      * Liberado a permissão de acesso quando for o nível de acesso super administrador, 
      * para outros níveis de acesso não liberar a permissão de acesso a página
      */
-    private function inserirPerNivAc() {
-        $this->DadosNivAcPg['permissao'] = ((($this->NivAcId == 1) OR ($this->LibPub == 1)) ? 1 : 2);
+    private function inserirPerNivAc()
+    {
+        $this->DadosNivAcPg['permissao'] = ((($this->NivAcId == 1) or ($this->LibPub == 1)) ? 1 : 2);
         $this->pesqUltimaOrdem();
         $this->DadosNivAcPg['ordem'] = $this->ListaNivAcPgOrd[0]['ordem'] + 1;
         $this->DadosNivAcPg['adms_niveis_acesso_id'] = $this->NivAcId;
@@ -133,7 +142,8 @@ class AdmsSincroPgNivAc {
     /**
      * <b>Pesquisar última ordem:</b> Pesquisar o maior número da ordem na tabela "adms_nivacs_pgs" para o nível de acesso em execução
      */
-    private function pesqUltimaOrdem() {
+    private function pesqUltimaOrdem()
+    {
         $listarNivAcPgOrd = new \App\adms\Models\helper\AdmsRead();
         $listarNivAcPgOrd->fullRead("SELECT ordem, adms_niveis_acesso_id
                 FROM adms_nivacs_pgs 
@@ -143,5 +153,4 @@ class AdmsSincroPgNivAc {
             $this->ListaNivAcPgOrd[0]['ordem'] = 0;
         }
     }
-
 }

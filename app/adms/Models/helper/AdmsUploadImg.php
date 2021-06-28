@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsUploadImg {
+class AdmsUploadImg
+{
 
     private $DadosImagem;
     private $Diretorio;
@@ -20,18 +21,21 @@ class AdmsUploadImg {
     private $Resultado;
     private $Imagem;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function uploadImagem(array $Imagem, $Diretorio, $NomeImg) {
+    public function uploadImagem(array $Imagem, $Diretorio, $NomeImg)
+    {
         $this->DadosImagem = $Imagem;
         $this->Diretorio = $Diretorio;
         $this->NomeImg = $NomeImg;
         $this->validarImagem();
     }
 
-    private function validarImagem() {
+    private function validarImagem()
+    {
         switch ($this->DadosImagem['type']):
             case 'image/jpeg';
             case 'image/pjpeg';
@@ -50,14 +54,16 @@ class AdmsUploadImg {
         }
     }
 
-    private function valDiretorio() {
+    private function valDiretorio()
+    {
         if (!file_exists($this->Diretorio) && !is_dir($this->Diretorio)) {
             mkdir($this->Diretorio, 0755);
         }
         $this->realizarUpload();
     }
 
-    private function realizarUpload() {
+    private function realizarUpload()
+    {
         if (move_uploaded_file($this->DadosImagem['tmp_name'], $this->Diretorio . $this->NomeImg)) {
             $this->Resultado = true;
         } else {
@@ -65,5 +71,4 @@ class AdmsUploadImg {
             $this->Resultado = false;
         }
     }
-
 }

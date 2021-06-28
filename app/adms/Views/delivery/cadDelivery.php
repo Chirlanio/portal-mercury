@@ -15,14 +15,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_delivery']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'delivery/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -66,20 +67,20 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Cliente</label>
                     <input name="cliente" type="text" class="form-control is-invalid" placeholder="Nome do Cliente" value="<?php
-                    if (isset($valorForm['cliente'])) {
-                        echo $valorForm['cliente'];
-                    }
-                    ?>" required>
+                                                                                                                            if (isset($valorForm['cliente'])) {
+                                                                                                                                echo $valorForm['cliente'];
+                                                                                                                            }
+                                                                                                                            ?>" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Endereço</label>
                     <input name="endereco" type="text" class="form-control is-invalid" placeholder="Exemplo: Rua A, 01" value="<?php
-                    if (isset($valorForm['endereco'])) {
-                        echo $valorForm['endereco'];
-                    }
-                    ?>" required>
+                                                                                                                                if (isset($valorForm['endereco'])) {
+                                                                                                                                    echo $valorForm['endereco'];
+                                                                                                                                }
+                                                                                                                                ?>" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Bairro</label>
@@ -101,18 +102,18 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Contato</label>
                     <input name="contato" type="text" class="form-control is-invalid" placeholder="85 99999-8888" value="<?php
-                    if (isset($valorForm['contato'])) {
-                        echo $valorForm['contato'];
-                    }
-                    ?>" required>
+                                                                                                                            if (isset($valorForm['contato'])) {
+                                                                                                                                echo $valorForm['contato'];
+                                                                                                                            }
+                                                                                                                            ?>" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Valor da Venda</label>
                     <input name="valor_venda" type="text" class="form-control is-invalid" placeholder="99,90" value="<?php
-                    if (isset($valorForm['valor_venda'])) {
-                        echo $valorForm['valor_venda'];
-                    }
-                    ?>" required>
+                                                                                                                        if (isset($valorForm['valor_venda'])) {
+                                                                                                                            echo $valorForm['valor_venda'];
+                                                                                                                        }
+                                                                                                                        ?>" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Troca</label>
@@ -187,10 +188,10 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Nota Fiscal</label>
                     <input name="nf" type="number" class="form-control is-invalid" value="<?php
-                    if (isset($valorForm['nf'])) {
-                        echo $valorForm['nf'];
-                    }
-                    ?>" required>
+                                                                                            if (isset($valorForm['nf'])) {
+                                                                                                echo $valorForm['nf'];
+                                                                                            }
+                                                                                            ?>" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Maquineta</label>
@@ -233,18 +234,18 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-4">
                     <label>Observação</label>
                     <input name="obs" class="form-control" value="<?php
-                    if (isset($valorForm['obs'])) {
-                        echo $valorForm['obs'];
-                    }
-                    ?>">
+                                                                    if (isset($valorForm['obs'])) {
+                                                                        echo $valorForm['obs'];
+                                                                    }
+                                                                    ?>">
                 </div>
                 <div class="form-group col-md-4">
                     <label>Recebido Por</label>
                     <input name="recebido" class="form-control" value="<?php
-                    if (isset($valorForm['recebido'])) {
-                        echo $valorForm['recebido'];
-                    }
-                    ?>">
+                                                                        if (isset($valorForm['recebido'])) {
+                                                                            echo $valorForm['recebido'];
+                                                                        }
+                                                                        ?>">
                 </div>
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Ponto de Saída</label>

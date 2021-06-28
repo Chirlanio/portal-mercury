@@ -12,20 +12,24 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class PesqDelivery {
+class PesqDelivery
+{
 
     private $Dados;
     private $DadosForm;
     private $PageId;
 
-    public function listar($PageId = null) {
+    public function listar($PageId = null)
+    {
 
-        $botao = ['list_delivery' => ['menu_controller' => 'delivery', 'menu_metodo' => 'listar'],
+        $botao = [
+            'list_delivery' => ['menu_controller' => 'delivery', 'menu_metodo' => 'listar'],
             'gerar' => ['menu_controller' => 'gerar-planilha', 'menu_metodo' => 'gerar'],
             'cad_delivery' => ['menu_controller' => 'cadastrar-delivery', 'menu_metodo' => 'cad-delivery'],
             'vis_delivery' => ['menu_controller' => 'ver-delivery', 'menu_metodo' => 'ver-delivery'],
             'edit_delivery' => ['menu_controller' => 'editar-delivery', 'menu_metodo' => 'edit-delivery'],
-            'del_delivery' => ['menu_controller' => 'apagar-delivery', 'menu_metodo' => 'apagar-delivery']];
+            'del_delivery' => ['menu_controller' => 'apagar-delivery', 'menu_metodo' => 'apagar-delivery']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -54,5 +58,4 @@ class PesqDelivery {
         $carregarView = new \Core\ConfigView("cpadms/Views/delivery/pesqDelivery", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

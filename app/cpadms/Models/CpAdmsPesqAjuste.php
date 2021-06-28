@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chiralnio Silva - Grupo Meia Sola
  */
-class CpAdmsPesqAjuste {
+class CpAdmsPesqAjuste
+{
 
     private $Dados;
     private $Resultado;
@@ -20,11 +21,13 @@ class CpAdmsPesqAjuste {
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoAj() {
+    function getResultadoAj()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listar($PageId = null, $Dados = null) {
+    public function listar($PageId = null, $Dados = null)
+    {
 
         $this->PageId = (int) $PageId;
         $this->Dados = $Dados;
@@ -35,13 +38,13 @@ class CpAdmsPesqAjuste {
         $_SESSION['pesqRef'] = $this->Dados['referencia'];
         $_SESSION['pesqSit'] = $this->Dados['status_aj_id'];
 
-        if ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['referencia'])) AND (!empty($this->Dados['status_aj_id']))) {
+        if ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['referencia'])) and (!empty($this->Dados['status_aj_id']))) {
             $this->pesqComp();
-        } elseif ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['referencia']))) {
+        } elseif ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['referencia']))) {
             $this->pesqLojaRef();
-        } elseif ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['status_aj_id']))) {
+        } elseif ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['status_aj_id']))) {
             $this->pesqLojaStatus();
-        } elseif ((!empty($this->Dados['referencia'])) AND (!empty($this->Dados['status_aj_id']))) {
+        } elseif ((!empty($this->Dados['referencia'])) and (!empty($this->Dados['status_aj_id']))) {
             $this->pesqRefStatus();
         } elseif (!empty($this->Dados['loja_id'])) {
             $this->pesqLoja();
@@ -53,7 +56,8 @@ class CpAdmsPesqAjuste {
         return $this->Resultado;
     }
 
-    private function pesqComp() {
+    private function pesqComp()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-ajuste/listar', '?loja=' . $this->Dados['loja_id'] . '&referencia=' . $this->Dados['referencia'] . '&situacao=' . $this->Dados['status_aj_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -73,7 +77,8 @@ class CpAdmsPesqAjuste {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLojaRef() {
+    private function pesqLojaRef()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-ajuste/listar', '?loja=' . $this->Dados['loja_id'] . '&referencia=' . $this->Dados['referencia']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -93,7 +98,8 @@ class CpAdmsPesqAjuste {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLojaStatus() {
+    private function pesqLojaStatus()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-ajuste/listar', '?loja=' . $this->Dados['loja_id'] . '&situacao=' . $this->Dados['status_aj_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -113,7 +119,8 @@ class CpAdmsPesqAjuste {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqRefStatus() {
+    private function pesqRefStatus()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-ajuste/listar', '?referencia=' . $this->Dados['referencia'] . '&situacao=' . $this->Dados['status_aj_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -133,7 +140,8 @@ class CpAdmsPesqAjuste {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLoja() {
+    private function pesqLoja()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-ajuste/listar', '?loja=' . $this->Dados['loja_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -153,7 +161,8 @@ class CpAdmsPesqAjuste {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqReferencia() {
+    private function pesqReferencia()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-ajuste/listar', '?referencia=' . $this->Dados['referencia']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -173,7 +182,8 @@ class CpAdmsPesqAjuste {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqStatus() {
+    private function pesqStatus()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-ajuste/listar', '?situacao=' . $this->Dados['status_aj_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -193,7 +203,8 @@ class CpAdmsPesqAjuste {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
         if ($_SESSION['ordem_nivac'] <= 5) {
@@ -210,5 +221,4 @@ class CpAdmsPesqAjuste {
 
         return $this->Resultado;
     }
-
 }

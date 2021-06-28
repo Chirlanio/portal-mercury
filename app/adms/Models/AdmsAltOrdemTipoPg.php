@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsAltOrdemTipoPg {
+class AdmsAltOrdemTipoPg
+{
 
     private $DadosId;
     private $Resultado;
@@ -20,11 +21,13 @@ class AdmsAltOrdemTipoPg {
     private $DadosTipoPg;
     private $DadosTipoPgInferior;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function altOrdemTipoPg($DadosId = null) {
+    public function altOrdemTipoPg($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verTipoPg($this->DadosId);
         if ($this->DadosTipoPg) {
@@ -38,21 +41,24 @@ class AdmsAltOrdemTipoPg {
         }
     }
 
-    private function verTipoPg() {
+    private function verTipoPg()
+    {
         $verTipoPg = new \App\adms\Models\helper\AdmsRead();
         $verTipoPg->fullRead("SELECT * FROM adms_tps_pgs
                 WHERE id =:id LIMIT :limit", "id=" . $this->DadosId . "&limit=1");
         $this->DadosTipoPg = $verTipoPg->getResultado();
     }
 
-    private function verfTipoPgInferior() {
+    private function verfTipoPgInferior()
+    {
         $ordem_super = $this->DadosTipoPg[0]['ordem'] - 1;
         $verTipoPg = new \App\adms\Models\helper\AdmsRead();
         $verTipoPg->fullRead("SELECT id, ordem FROM adms_tps_pgs WHERE ordem =:ordem", "ordem={$ordem_super}");
         $this->DadosTipoPgInferior = $verTipoPg->getResultado();
     }
 
-    private function exeAltOrdemTipoPg() {
+    private function exeAltOrdemTipoPg()
+    {
         $this->Dados['ordem'] = $this->DadosTipoPg[0]['ordem'];
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upMvBaixo = new \App\adms\Models\helper\AdmsUpdate();
@@ -70,5 +76,4 @@ class AdmsAltOrdemTipoPg {
             $this->Resultado = false;
         }
     }
-
 }

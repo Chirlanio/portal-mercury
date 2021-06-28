@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarCor {
+class AdmsCadastrarCor
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadCor(array $Dados) {
+    public function cadCor(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -34,7 +37,8 @@ class AdmsCadastrarCor {
         }
     }
 
-    private function inserirCor() {
+    private function inserirCor()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadCor = new \App\adms\Models\helper\AdmsCreate;
         $cadCor->exeCreate("adms_cors", $this->Dados);
@@ -46,5 +50,4 @@ class AdmsCadastrarCor {
             $this->Resultado = false;
         }
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,23 +12,26 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsValUsuario {
+class AdmsValUsuario
+{
 
     private $Usuario;
     private $Resultado;
     private $EditarUnico;
     private $DadoId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function valUsuario($Usuario, $EditarUnico = null, $DadoId = null) {
+    public function valUsuario($Usuario, $EditarUnico = null, $DadoId = null)
+    {
         $this->Usuario = (string) $Usuario;
         $this->EditarUnico = $EditarUnico;
         $this->DadoId = $DadoId;
         $valUsuario = new \App\adms\Models\helper\AdmsRead();
-        if (!empty($this->EditarUnico) AND ($this->EditarUnico == true)) {
+        if (!empty($this->EditarUnico) and ($this->EditarUnico == true)) {
             $valUsuario->fullRead("SELECT id FROM adms_usuarios WHERE usuario =:usuario AND id <>:id LIMIT :limit", "usuario={$this->Usuario}&limit=1&id={$this->DadoId}");
         } else {
             $valUsuario->fullRead("SELECT id FROM adms_usuarios WHERE usuario =:usuario LIMIT :limit", "usuario={$this->Usuario}&limit=1");
@@ -42,7 +45,8 @@ class AdmsValUsuario {
         }
     }
 
-    private function valCarctUsuario() {
+    private function valCarctUsuario()
+    {
         if (stristr($this->Usuario, "'")) {
             $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Caracter ( ' ) utilizado no usuário inválido!</div>";
             $this->Resultado = false;
@@ -56,7 +60,8 @@ class AdmsValUsuario {
         }
     }
 
-    private function valExtensUsuario() {
+    private function valExtensUsuario()
+    {
         if ((strlen($this->Usuario)) < 5) {
             $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: O usuário deve ter no mínimo 5 caracteres!</div>";
             $this->Resultado = false;
@@ -64,5 +69,4 @@ class AdmsValUsuario {
             $this->Resultado = true;
         }
     }
-
 }

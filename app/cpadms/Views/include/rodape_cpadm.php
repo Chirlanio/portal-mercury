@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -16,4 +16,5 @@ if (!defined('URL')) {
 <script src="<?php echo URLADM . 'assets/js/dashboard.js'; ?>"></script>
 <script src="<?php echo URLADM . 'app/cpadms/assets/js/dashboard_cpadms.js'; ?>"></script>
 </body>
+
 </html>

@@ -14,7 +14,8 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsReadCigam extends AdmsConnCigam {
+class AdmsReadCigam extends AdmsConnCigam
+{
 
     private $Select;
     private $Values;
@@ -22,11 +23,13 @@ class AdmsReadCigam extends AdmsConnCigam {
     private $Query;
     private $Conn;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function exeRead($Tabela, $Termos = null, $ParseString = null) {
+    public function exeRead($Tabela, $Termos = null, $ParseString = null)
+    {
         if (!empty($ParseString)) {
             parse_str($ParseString, $this->Values);
         }
@@ -34,7 +37,8 @@ class AdmsReadCigam extends AdmsConnCigam {
         $this->exeInstrucao();
     }
 
-    public function fullRead($Query, $ParseString = null) {
+    public function fullRead($Query, $ParseString = null)
+    {
         $this->Select = (string) $Query;
         if (!empty($ParseString)) {
             parse_str($ParseString, $this->Values);
@@ -42,24 +46,27 @@ class AdmsReadCigam extends AdmsConnCigam {
         $this->exeInstrucao();
     }
 
-    private function exeInstrucao() {
+    private function exeInstrucao()
+    {
         $this->conexao();
         try {
             $this->getInstrucao();
             $this->Query->execute();
             $this->Resultado = $this->Query->fetchAll();
-        } catch (Exception $ex) {
+        } catch (PDOException $ex) {
             $this->Resultado = null;
         }
     }
 
-    private function conexao() {
+    private function conexao()
+    {
         $this->Conn = parent::getConn();
         $this->Query = $this->Conn->prepare($this->Select);
         $this->Query->setFetchMode(PDO::FETCH_ASSOC);
     }
 
-    private function getInstrucao() {
+    private function getInstrucao()
+    {
         if ($this->Values) {
             foreach ($this->Values as $Link => $Valor) {
                 if ($Link == 'limit' || $Link == 'offset') {
@@ -69,5 +76,4 @@ class AdmsReadCigam extends AdmsConnCigam {
             }
         }
     }
-
 }

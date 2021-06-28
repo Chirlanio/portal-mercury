@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarTipoPagamento {
+class AdmsCadastrarTipoPagamento
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadTipo(array $Dados) {
+    public function cadTipo(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -35,7 +38,8 @@ class AdmsCadastrarTipoPagamento {
         }
     }
 
-    private function inserirTipo() {
+    private function inserirTipo()
+    {
 
         $this->Dados['created'] = date("Y-m-d H:i:s");
 
@@ -50,5 +54,4 @@ class AdmsCadastrarTipoPagamento {
             $this->Resultado = false;
         }
     }
-
 }

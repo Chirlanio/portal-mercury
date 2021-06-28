@@ -15,14 +15,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_usuario']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'usuarios/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -33,7 +34,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Digite o nome completo" value="<?php
+                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Digite o nome completo" value="
+                    <?php
                     if (isset($valorForm['nome'])) {
                         echo $valorForm['nome'];
                     }
@@ -41,7 +43,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Apelido</label>
-                    <input name="apelido" type="text" class="form-control is-invalid" placeholder="Como gostaria de ser chamado" value="<?php
+                    <input name="apelido" type="text" class="form-control is-invalid" placeholder="Como gostaria de ser chamado" value="
+                    <?php
                     if (isset($valorForm['apelido'])) {
                         echo $valorForm['apelido'];
                     }
@@ -51,7 +54,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> E-mail</label>
-                    <input name="email" type="text" class="form-control is-invalid" placeholder="Seu melhor e-mail" value="<?php
+                    <input name="email" type="text" class="form-control is-invalid" placeholder="Seu melhor e-mail" value="
+                    <?php
                     if (isset($valorForm['email'])) {
                         echo $valorForm['email'];
                     }
@@ -59,7 +63,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Usuário</label>
-                    <input name="usuario" type="text" class="form-control is-invalid" id="nome" placeholder="Digite o usuário" value="<?php
+                    <input name="usuario" type="text" class="form-control is-invalid" id="nome" placeholder="Digite o usuário" value="
+                    <?php
                     if (isset($valorForm['usuario'])) {
                         echo $valorForm['usuario'];
                     }
@@ -67,7 +72,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Senha</label>
-                    <input name="senha" type="password" class="form-control is-invalid" id="nome" placeholder="Senha com mínimo 6 caracteres" value="<?php
+                    <input name="senha" type="password" class="form-control is-invalid" id="nome" placeholder="Senha com mínimo 6 caracteres" value="
+                    <?php
                     if (isset($valorForm['senha'])) {
                         echo $valorForm['senha'];
                     }

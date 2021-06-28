@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,21 +12,24 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsListarUsuario {
+class AdmsListarUsuario
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarUsuario($PageId = null) {
-        
+    public function listarUsuario($PageId = null)
+    {
+
         $this->PageId = (int) $PageId;
-        
+
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'usuarios/listar');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
         $paginacao->paginacao("SELECT COUNT(user.id) AS num_result 
@@ -48,5 +51,4 @@ class AdmsListarUsuario {
         $this->Resultado = $listarUsuario->getResultado();
         return $this->Resultado;
     }
-
 }

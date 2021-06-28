@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  * Classe para apagar página do administrativo
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarPagina {
+class AdmsApagarPagina
+{
 
     private $DadosId;
     private $Resultado;
@@ -24,7 +25,8 @@ class AdmsApagarPagina {
      * <b>Obter Resultado:</b> Retorna TRUE caso tenha apagado com sucesso e FALSE quando não conseguiu editar
      * @return bool true ou false
      */
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
@@ -33,7 +35,8 @@ class AdmsApagarPagina {
      * Chamar o método "pesqNivAc" para verificar a permissões com número da ordem maior da qual será apagada
      * @param int $DadosId
      */
-    public function apagarPagina($DadosId = null) {
+    public function apagarPagina($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->pesqNivAc();
         $apagarPagina = new \App\adms\Models\helper\AdmsDelete();
@@ -51,7 +54,8 @@ class AdmsApagarPagina {
      * <b>Pesquisar Nível de Acesso:</b> Pesquisar no banco de dados os níveis de acesso
      * @return array $this->DadosNivAc
      */
-    private function pesqNivAc() {
+    private function pesqNivAc()
+    {
         $verNivAc = new \App\adms\Models\helper\AdmsRead();
         $verNivAc->fullRead("SELECT id id_nivac FROM adms_niveis_acessos ORDER BY id ASC");
         $this->DadosNivAc = $verNivAc->getResultado();
@@ -62,7 +66,8 @@ class AdmsApagarPagina {
      * <b>Pesquisar as Permissões:</b> Pesquisar no banco de dados as permissões dos níveis de acesso na tabela "adms_nivacs_pgs"
      * @return array $this->DadosNivAcPg
      */
-    private function pesqNivAcPg() {
+    private function pesqNivAcPg()
+    {
         if ($this->DadosNivAc) {
             foreach ($this->DadosNivAc as $nivAc) {
                 extract($nivAc);
@@ -83,7 +88,8 @@ class AdmsApagarPagina {
      * <b>Alterar Ordem NivAcPg:</b> Alterar as ordem maiores para o nível de acesso na tabela "adms_nivacs_pgs"
      * 
      */
-    private function updateOrdemNivAcPg() {
+    private function updateOrdemNivAcPg()
+    {
         if ($this->DadosNivAcPg) {
             foreach ($this->DadosNivAcPg as $nivAcPg) {
                 extract($nivAcPg);
@@ -94,5 +100,4 @@ class AdmsApagarPagina {
             }
         }
     }
-
 }

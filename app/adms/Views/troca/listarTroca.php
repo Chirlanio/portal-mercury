@@ -12,7 +12,7 @@ if (!defined('URLADM')) {
             </div>
             <?php
             if ($this->Dados['botao']['cad_troca']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-troca/cad-troca'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -20,7 +20,7 @@ if (!defined('URLADM')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
@@ -51,7 +51,8 @@ if (!defined('URLADM')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="referencia">Referência</label>
                         </div>
-                        <input name="referencia" type="text" id="referencia" class="form-control" aria-describedby="referencia" placeholder="Digite a referência" value="<?php
+                        <input name="referencia" type="text" id="referencia" class="form-control" aria-describedby="referencia" placeholder="Digite a referência" value="
+                        <?php
                         if (isset($_SESSION['referencia'])) {
                             echo $_SESSION['referencia'];
                         }
@@ -84,17 +85,18 @@ if (!defined('URLADM')) {
                     <input name="PesqTroca" type="submit" class="btn btn-outline-primary mx-sm-2" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['listTroca'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma solicitação encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -117,7 +119,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listTroca'] as $usuario) {
                         extract($usuario);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $func; ?></td>
@@ -158,7 +160,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

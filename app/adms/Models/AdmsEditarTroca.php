@@ -12,17 +12,20 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarTroca {
+class AdmsEditarTroca
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verTroca($DadosId) {
+    public function verTroca($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verTroca = new \App\adms\Models\helper\AdmsRead();
         if ($_SESSION['adms_niveis_acesso_id'] > 2) {
@@ -44,7 +47,8 @@ class AdmsEditarTroca {
         return $this->Resultado;
     }
 
-    public function altTroca(array $Dados) {
+    public function altTroca(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -57,7 +61,8 @@ class AdmsEditarTroca {
         }
     }
 
-    private function updateEditTroca() {
+    private function updateEditTroca()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltTroca = new \App\adms\Models\helper\AdmsUpdate();
         $upAltTroca->exeUpdate("tb_cad_produtos", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -73,7 +78,8 @@ class AdmsEditarTroca {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações na tabela "adms_cors" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['adms_niveis_acesso_id'] > 2) {
@@ -91,7 +97,7 @@ class AdmsEditarTroca {
 
         $listar->fullRead("SELECT id func_id, nome consul FROM tb_funcionarios ORDER BY nome ASC");
         $registro['func_id'] = $listar->getResultado();
-        
+
         $listar->fullRead("SELECT id motivo_id, nome motivo FROM adms_motivos ORDER BY nome ASC");
         $registro['motivo_id'] = $listar->getResultado();
 
@@ -99,5 +105,4 @@ class AdmsEditarTroca {
 
         return $this->Resultado;
     }
-
 }

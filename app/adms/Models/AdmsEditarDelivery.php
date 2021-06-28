@@ -12,7 +12,8 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarDelivery {
+class AdmsEditarDelivery
+{
 
     private $Resultado;
     private $Dados;
@@ -21,11 +22,13 @@ class AdmsEditarDelivery {
     private $VazioPed;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verDelivery($DadosId) {
+    public function verDelivery($DadosId)
+    {
 
         $this->DadosId = (int) $DadosId;
 
@@ -38,7 +41,8 @@ class AdmsEditarDelivery {
         return $this->Resultado;
     }
 
-    public function altDelivery(array $Dados) {
+    public function altDelivery(array $Dados)
+    {
 
         $this->Dados = $Dados;
         $this->VazioObs = $this->Dados['obs'];
@@ -56,7 +60,8 @@ class AdmsEditarDelivery {
         }
     }
 
-    private function updateEditDelivery() {
+    private function updateEditDelivery()
+    {
 
         $this->Dados['obs'] = $this->VazioObs;
         $this->Dados['recebido'] = $this->VazioRec;
@@ -75,7 +80,8 @@ class AdmsEditarDelivery {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id loja_id, nome loja FROM tb_lojas ORDER BY nome ASC");
@@ -104,5 +110,4 @@ class AdmsEditarDelivery {
 
         return $this->Resultado;
     }
-
 }

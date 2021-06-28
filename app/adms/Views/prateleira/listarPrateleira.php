@@ -12,7 +12,7 @@ if (!defined('URLADM')) {
             </div>
             <?php
             if ($this->Dados['botao']['list_ped']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-ped/cad-ped'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm d-print-none">
@@ -20,11 +20,11 @@ if (!defined('URLADM')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
-        <form class="form" method="POST" action="<?php echo URLADM . 'pesq-prateleira/listar'; ?>" enctype="multipart/form-data"> 
+        <form class="form" method="POST" action="<?php echo URLADM . 'pesq-prateleira/listar'; ?>" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
                     <div class="input-group">
@@ -51,7 +51,8 @@ if (!defined('URLADM')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="referencia">Referência</label>
                         </div>
-                        <input name="referencia" type="text" id="referencia" class="form-control" placeholder="Digite a referência" value="<?php
+                        <input name="referencia" type="text" id="referencia" class="form-control" placeholder="Digite a referência" value="
+                        <?php
                         if (isset($_SESSION['referencia'])) {
                             echo $_SESSION['referencia'];
                         }
@@ -84,17 +85,18 @@ if (!defined('URLADM')) {
                     <input name="PesqPed" type="submit" class="btn btn-outline-primary mx-sm-2" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['listPed'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma solicitação encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -120,7 +122,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listPed'] as $dash) {
                         extract($dash);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="text-center align-middle"><?php echo $referencia; ?></td>
@@ -166,7 +168,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

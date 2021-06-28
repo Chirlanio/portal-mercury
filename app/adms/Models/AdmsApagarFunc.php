@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarFunc {
+class AdmsApagarFunc
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarFunc($DadosId = null) {
+    public function apagarFunc($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
 
         $apagarFunc = new \App\adms\Models\helper\AdmsDelete();
@@ -34,5 +37,4 @@ class AdmsApagarFunc {
             $this->Resultado = false;
         }
     }
-
 }

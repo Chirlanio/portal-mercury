@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CpAdmsPesqFunc {
+class CpAdmsPesqFunc
+{
 
     private $Dados;
     private $Resultado;
@@ -20,11 +21,13 @@ class CpAdmsPesqFunc {
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listar($PageId = null, $Dados = null) {
+    public function listar($PageId = null, $Dados = null)
+    {
 
         $this->PageId = (int) $PageId;
         $this->Dados = $Dados;
@@ -34,7 +37,7 @@ class CpAdmsPesqFunc {
         $_SESSION['nome'] = $this->Dados['nome'];
         $_SESSION['loja_id'] = $this->Dados['loja_id'];
 
-        if ((!empty($this->Dados['nome'])) AND (!empty($this->Dados['loja_id']))) {
+        if ((!empty($this->Dados['nome'])) and (!empty($this->Dados['loja_id']))) {
             $this->pesqFuncNomeLoja();
         } elseif (!empty($this->Dados['nome'])) {
             $this->pesqFuncNome();
@@ -44,7 +47,8 @@ class CpAdmsPesqFunc {
         return $this->Resultado;
     }
 
-    private function pesqFuncNomeLoja() {
+    private function pesqFuncNomeLoja()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-func/listar', '?nome=' . $this->Dados['nome'] . '&loja=' . $this->Dados['loja_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -60,7 +64,8 @@ class CpAdmsPesqFunc {
         $this->Resultado = $listarFunc->getResultado();
     }
 
-    private function pesqFuncNome() {
+    private function pesqFuncNome()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-func/listar', '?nome=' . $this->Dados['nome']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -80,7 +85,8 @@ class CpAdmsPesqFunc {
         $this->Resultado = $listarFunc->getResultado();
     }
 
-    private function pesqFuncLoja() {
+    private function pesqFuncLoja()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-func/listar', '?loja=' . $this->Dados['loja_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -96,7 +102,8 @@ class CpAdmsPesqFunc {
         $this->Resultado = $listarFunc->getResultado();
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
 
@@ -107,5 +114,4 @@ class CpAdmsPesqFunc {
 
         return $this->Resultado;
     }
-
 }

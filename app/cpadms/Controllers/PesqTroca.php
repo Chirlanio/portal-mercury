@@ -12,19 +12,23 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class PesqTroca {
+class PesqTroca
+{
 
     private $Dados;
     private $DadosForm;
     private $PageId;
 
-    public function pesqTroca($PageId = null) {
+    public function pesqTroca($PageId = null)
+    {
 
-        $botao = ['list_troca' => ['menu_controller' => 'listar-troca', 'menu_metodo' => 'listar-troca'],
+        $botao = [
+            'list_troca' => ['menu_controller' => 'listar-troca', 'menu_metodo' => 'listar-troca'],
             'cad_troca' => ['menu_controller' => 'cadastrar-troca', 'menu_metodo' => 'cad-troca'],
             'vis_troca' => ['menu_controller' => 'ver-troca', 'menu_metodo' => 'ver-troca'],
             'edit_troca' => ['menu_controller' => 'editar-troca', 'menu_metodo' => 'edit-troca'],
-            'del_troca' => ['menu_controller' => 'apagar-troca', 'menu_metodo' => 'apagar-troca']];
+            'del_troca' => ['menu_controller' => 'apagar-troca', 'menu_metodo' => 'apagar-troca']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -52,5 +56,4 @@ class PesqTroca {
         $carregarView = new \Core\ConfigView("cpadms/Views/troca/pesqTroca", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

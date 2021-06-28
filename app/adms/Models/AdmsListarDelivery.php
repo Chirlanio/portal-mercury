@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsListarDelivery {
+class AdmsListarDelivery
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 50;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarDelivery($PageId = null) {
+    public function listarDelivery($PageId = null)
+    {
 
         $this->PageId = (int) $PageId;
 
@@ -50,7 +53,8 @@ class AdmsListarDelivery {
         return $this->Resultado;
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id loja_id, nome loja FROM tb_lojas ORDER BY id ASC");
@@ -105,10 +109,10 @@ class AdmsListarDelivery {
         }
         $registro['deliEnt'] = $listar->getResultado();
 
-        $this->Resultado = ['loja_id' => $registro['loja_id'], 'rota_id' => $registro['rota_id'], 'sit_id' => $registro['sit_id'],
+        $this->Resultado = [
+            'loja_id' => $registro['loja_id'], 'rota_id' => $registro['rota_id'], 'sit_id' => $registro['sit_id'],
             'deli' => $registro['deli'], 'deliSol' => $registro['deliSol'], 'deliCol' => $registro['deliCol'], 'deliAg' => $registro['deliAg'], 'deliRota' => $registro['deliRota'], 'deliEnt' => $registro['deliEnt']
         ];
         return $this->Resultado;
     }
-
 }

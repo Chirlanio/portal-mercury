@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarFunc {
+class AdmsEditarFunc
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verFunc($DadosId) {
+    public function verFunc($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verFunc = new \App\adms\Models\helper\AdmsRead();
         $verFunc->fullRead("SELECT f.id, f.nome, f.usuario, f.cpf, f.loja_id, f.cargo_id, f.status_id, s.id sit_id, s.nome sit, c.nome loja
@@ -35,7 +38,8 @@ class AdmsEditarFunc {
         return $this->Resultado;
     }
 
-    public function altFunc(array $Dados) {
+    public function altFunc(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -50,7 +54,8 @@ class AdmsEditarFunc {
         }
     }
 
-    private function updateEditFunc() {
+    private function updateEditFunc()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltFunc = new \App\adms\Models\helper\AdmsUpdate();
         $upAltFunc->exeUpdate("tb_funcionarios", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -63,7 +68,8 @@ class AdmsEditarFunc {
         }
     }
 
-    public function listarFunc() {
+    public function listarFunc()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id id_loja, nome loja FROM tb_lojas ORDER BY id ASC");
@@ -79,5 +85,4 @@ class AdmsEditarFunc {
 
         return $this->Resultado;
     }
-
 }

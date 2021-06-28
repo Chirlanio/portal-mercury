@@ -15,14 +15,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_tpg']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'tipo-pg/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -33,7 +34,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Tipo</label>
-                    <input name="tipo" type="text" class="form-control is-invalid" placeholder="Tipo da página Ex: adms, sts" value="<?php
+                    <input name="tipo" type="text" class="form-control is-invalid" placeholder="Tipo da página Ex: adms, sts" value="
+                    <?php
                     if (isset($valorForm['tipo'])) {
                         echo $valorForm['tipo'];
                     }
@@ -41,7 +43,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome do tipo da página" value="<?php
+                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome do tipo da página" value="
+                    <?php
                     if (isset($valorForm['nome'])) {
                         echo $valorForm['nome'];
                     }
@@ -50,11 +53,12 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <div class="form-group">
                 <label><span class="text-danger">*</span> Observação</label>
-                <textarea name="obs" class="form-control is-invalid" id="editor" rows="3" required><?php
-                    if (isset($valorForm['obs'])) {
-                        echo $valorForm['obs'];
-                    }
-                    ?>
+                <textarea name="obs" class="form-control is-invalid" id="editor" rows="3" required>
+                <?php
+                if (isset($valorForm['obs'])) {
+                    echo $valorForm['obs'];
+                }
+                ?>
                 </textarea>
             </div>
             <p>

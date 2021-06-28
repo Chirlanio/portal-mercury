@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarFormCadUsuario {
+class AdmsEditarFormCadUsuario
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verFormCadUsuario() {
+    public function verFormCadUsuario()
+    {
         $verFormCadUsuario = new \App\adms\Models\helper\AdmsRead();
         $verFormCadUsuario->fullRead("SELECT * FROM adms_cads_usuarios
                 WHERE id =:id LIMIT :limit", "id=1&limit=1");
@@ -29,7 +32,8 @@ class AdmsEditarFormCadUsuario {
         return $this->Resultado;
     }
 
-    public function altFormCadUsuario(array $Dados) {
+    public function altFormCadUsuario(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -42,7 +46,8 @@ class AdmsEditarFormCadUsuario {
         }
     }
 
-    private function updateFormCadUsuario() {
+    private function updateFormCadUsuario()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upFormCadUsuario = new \App\adms\Models\helper\AdmsUpdate();
         $upFormCadUsuario->exeUpdate("adms_cads_usuarios", $this->Dados, "WHERE id =:id", "id=1");
@@ -58,7 +63,8 @@ class AdmsEditarFormCadUsuario {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações na tabela "adms_niveis_acesso_id, adms_sits_usuario_id" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id id_sit, nome nome_sit FROM adms_sits_usuarios ORDER BY nome ASC");
         $registro['sit'] = $listar->getResultado();
@@ -70,5 +76,4 @@ class AdmsEditarFormCadUsuario {
 
         return $this->Resultado;
     }
-
 }

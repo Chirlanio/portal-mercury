@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CpAdmsGerarPlanilha {
+class CpAdmsGerarPlanilha
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 1048576;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listar($PageId = null) {
+    public function listar($PageId = null)
+    {
 
         $this->PageId = (int) $PageId;
 
@@ -49,5 +52,4 @@ class CpAdmsGerarPlanilha {
         $this->Resultado = $listarCargo->getResultado();
         return $this->Resultado;
     }
-
 }

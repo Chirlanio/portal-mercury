@@ -12,7 +12,7 @@ if (!defined('URLADM')) {
             </div>
             <?php
             if ($this->Dados['botao']['cad_usuario']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-usuario/cad-usuario'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -20,7 +20,7 @@ if (!defined('URLADM')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
@@ -31,7 +31,8 @@ if (!defined('URLADM')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="nome">Nome</label>
                         </div>
-                        <input name="nome" type="text" id="nome" class="form-control" aria-describedby="nome" placeholder="Digite o nome" value="<?php
+                        <input name="nome" type="text" id="nome" class="form-control" aria-describedby="nome" placeholder="Digite o nome" value="
+                        <?php
                         if (isset($_SESSION['nome'])) {
                             echo $_SESSION['nome'];
                         }
@@ -43,7 +44,8 @@ if (!defined('URLADM')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="email">E-mail</label>
                         </div>
-                        <input name="email" type="email" id="nome" class="form-control" aria-describedby="email" placeholder="Digite o e-mail do usuário" value="<?php
+                        <input name="email" type="email" id="nome" class="form-control" aria-describedby="email" placeholder="Digite o e-mail do usuário" value="
+                        <?php
                         if (isset($_SESSION['email'])) {
                             echo $_SESSION['email'];
                         }
@@ -56,17 +58,18 @@ if (!defined('URLADM')) {
                     <input name="PesqUsuario" type="submit" class="btn btn-outline-primary" my-2 value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['listUser'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum usuário encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -88,7 +91,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listUser'] as $usuario) {
                         extract($usuario);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $nome; ?></td>
@@ -130,7 +133,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

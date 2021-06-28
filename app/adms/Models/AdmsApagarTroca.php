@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarTroca {
+class AdmsApagarTroca
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarTroca($DadosId = null) {
+    public function apagarTroca($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $apagarTroca = new \App\adms\Models\helper\AdmsDelete();
         $apagarTroca->exeDelete("tb_cad_produtos", "WHERE id =:id", "id={$this->DadosId}");
@@ -33,5 +36,4 @@ class AdmsApagarTroca {
             $this->Resultado = false;
         }
     }
-
 }

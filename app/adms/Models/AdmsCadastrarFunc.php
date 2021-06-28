@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarFunc {
+class AdmsCadastrarFunc
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadFunc(array $Dados) {
+    public function cadFunc(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -34,7 +37,8 @@ class AdmsCadastrarFunc {
         }
     }
 
-    private function inserirFunc() {
+    private function inserirFunc()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadDash = new \App\adms\Models\helper\AdmsCreate;
         $cadDash->exeCreate("tb_funcionarios", $this->Dados);
@@ -47,7 +51,8 @@ class AdmsCadastrarFunc {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id id_loja, nome loja FROM tb_lojas ORDER BY id ASC");
@@ -63,5 +68,4 @@ class AdmsCadastrarFunc {
 
         return $this->Resultado;
     }
-
 }

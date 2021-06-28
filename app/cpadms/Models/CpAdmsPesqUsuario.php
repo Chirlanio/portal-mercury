@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CpAdmsPesqUsuario {
+class CpAdmsPesqUsuario
+{
 
     private $Dados;
     private $Resultado;
@@ -20,11 +21,13 @@ class CpAdmsPesqUsuario {
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function pesqUsuario($PageId = null, $Dados = null) {
+    public function pesqUsuario($PageId = null, $Dados = null)
+    {
         $this->PageId = (int) $PageId;
         $this->Dados = $Dados;
         //var_dump($this->Dados);
@@ -35,7 +38,7 @@ class CpAdmsPesqUsuario {
         $_SESSION['pesqUsuarioNome'] = $this->Dados['nome'];
         $_SESSION['pesqUsuarioEmail'] = $this->Dados['email'];
 
-        if (!empty($this->Dados['nome']) AND!empty($this->Dados['email'])) {
+        if (!empty($this->Dados['nome']) and !empty($this->Dados['email'])) {
             $this->pesqUsuarioComp();
         } elseif (!empty($this->Dados['nome'])) {
             $this->pesqUsuarioNome();
@@ -45,7 +48,8 @@ class CpAdmsPesqUsuario {
         return $this->Resultado;
     }
 
-    private function pesqUsuarioComp() {
+    private function pesqUsuarioComp()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-usuarios/listar', '?nome=' . $this->Dados['nome'] . '&mail=' . $this->Dados['email']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -68,7 +72,8 @@ class CpAdmsPesqUsuario {
         return $this->Resultado;
     }
 
-    private function pesqUsuarioNome() {
+    private function pesqUsuarioNome()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-usuarios/listar', '?nome=' . $this->Dados['nome']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -92,7 +97,8 @@ class CpAdmsPesqUsuario {
         return $this->Resultado;
     }
 
-    private function pesqUsuarioEmail() {
+    private function pesqUsuarioEmail()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-usuarios/listar', '?email=' . $this->Dados['email']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -115,5 +121,4 @@ class CpAdmsPesqUsuario {
         $this->Resultado = $listarUsuario->getResultado();
         return $this->Resultado;
     }
-
 }

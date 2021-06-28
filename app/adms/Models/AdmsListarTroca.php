@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsListarTroca {
+class AdmsListarTroca
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarTroca($PageId = null) {
+    public function listarTroca($PageId = null)
+    {
 
         $this->PageId = (int) $PageId;
 
@@ -46,7 +49,8 @@ class AdmsListarTroca {
         return $this->Resultado;
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['ordem_nivac'] >= 5) {
@@ -66,5 +70,4 @@ class AdmsListarTroca {
 
         return $this->Resultado;
     }
-
 }

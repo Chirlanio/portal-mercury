@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CpAdmsPesqPed {
+class CpAdmsPesqPed
+{
 
     private $Dados;
     private $Resultado;
@@ -20,11 +21,13 @@ class CpAdmsPesqPed {
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function pesqPed($PageId = null, $Dados = null) {
+    public function pesqPed($PageId = null, $Dados = null)
+    {
 
         $this->PageId = (int) $PageId;
         $this->Dados = $Dados;
@@ -36,13 +39,13 @@ class CpAdmsPesqPed {
         $_SESSION['pesqRef'] = $this->Dados['referencia'];
         $_SESSION['pesqSit'] = $this->Dados['status_id'];
 
-        if (!empty($this->Dados['loja_id']) AND!empty($this->Dados['referencia']) AND!empty($this->Dados['status_id'])) {
+        if (!empty($this->Dados['loja_id']) and !empty($this->Dados['referencia']) and !empty($this->Dados['status_id'])) {
             $this->pesqComp();
-        } elseif (!empty($this->Dados['loja_id']) AND!empty($this->Dados['referencia'])) {
+        } elseif (!empty($this->Dados['loja_id']) and !empty($this->Dados['referencia'])) {
             $this->pesqLojaRef();
-        } elseif (!empty($this->Dados['loja_id']) AND!empty($this->Dados['status_id'])) {
+        } elseif (!empty($this->Dados['loja_id']) and !empty($this->Dados['status_id'])) {
             $this->pesqLojaSit();
-        } elseif (!empty($this->Dados['referencia']) AND!empty($this->Dados['status_id'])) {
+        } elseif (!empty($this->Dados['referencia']) and !empty($this->Dados['status_id'])) {
             $this->pesqRefSit();
         } elseif (!empty($this->Dados['loja_id'])) {
             $this->pesqLoja();
@@ -54,7 +57,8 @@ class CpAdmsPesqPed {
         return $this->Resultado;
     }
 
-    private function pesqComp() {
+    private function pesqComp()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-prateleira/listar', '?loja=' . $this->Dados['loja_id'] . '&referencia=' . $this->Dados['referencia'] . '&situacao=' . $this->Dados['status_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -62,7 +66,8 @@ class CpAdmsPesqPed {
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarCor = new \App\adms\Models\helper\AdmsRead();
-        $listarCor->fullRead("SELECT p.*,
+        $listarCor->fullRead(
+            "SELECT p.*,
                 t.nome tam, l.nome loja, f.nome func, tr.nome sit, c.nome n_cor, c.cor
                 FROM tb_prateleira_infinita p
                 INNER JOIN tb_tam t ON t.id=p.tam_id
@@ -72,11 +77,13 @@ class CpAdmsPesqPed {
                 INNER JOIN adms_cors c ON c.id=tr.cor_id
                 WHERE p.loja_id =:loja_id AND p.referencia LIKE '%' :referencia '%' AND p.status_id =:status_id
                 ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                "loja_id={$this->Dados['loja_id']}&referencia={$this->Dados['referencia']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+            "loja_id={$this->Dados['loja_id']}&referencia={$this->Dados['referencia']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+        );
         $this->Resultado = $listarCor->getResultado();
     }
 
-    private function pesqLojaRef() {
+    private function pesqLojaRef()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-prateleira/listar', '?loja=' . $this->Dados['loja_id'] . '&referencia=' . $this->Dados['referencia']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -84,7 +91,8 @@ class CpAdmsPesqPed {
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarCor = new \App\adms\Models\helper\AdmsRead();
-        $listarCor->fullRead("SELECT p.*,
+        $listarCor->fullRead(
+            "SELECT p.*,
                 t.nome tam, l.nome loja, f.nome func, tr.nome sit, c.nome n_cor, c.cor
                 FROM tb_prateleira_infinita p
                 INNER JOIN tb_tam t ON t.id=p.tam_id
@@ -94,11 +102,13 @@ class CpAdmsPesqPed {
                 INNER JOIN adms_cors c ON c.id=tr.cor_id
                 WHERE p.loja_id =:loja_id AND p.referencia LIKE '%' :referencia '%'
                 ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                "loja_id={$this->Dados['loja_id']}&referencia={$this->Dados['referencia']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+            "loja_id={$this->Dados['loja_id']}&referencia={$this->Dados['referencia']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+        );
         $this->Resultado = $listarCor->getResultado();
     }
 
-    private function pesqLojaSit() {
+    private function pesqLojaSit()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-prateleira/listar', '?loja=' . $this->Dados['loja_id'] . '&situacao=' . $this->Dados['status_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -106,7 +116,8 @@ class CpAdmsPesqPed {
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarCor = new \App\adms\Models\helper\AdmsRead();
-        $listarCor->fullRead("SELECT p.*,
+        $listarCor->fullRead(
+            "SELECT p.*,
                 t.nome tam, l.nome loja, f.nome func, tr.nome sit, c.nome n_cor, c.cor
                 FROM tb_prateleira_infinita p
                 INNER JOIN tb_tam t ON t.id=p.tam_id
@@ -116,11 +127,13 @@ class CpAdmsPesqPed {
                 INNER JOIN adms_cors c ON c.id=tr.cor_id
                 WHERE p.loja_id =:loja_id AND p.status_id =:status_id
                 ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                "loja_id={$this->Dados['loja_id']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+            "loja_id={$this->Dados['loja_id']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+        );
         $this->Resultado = $listarCor->getResultado();
     }
 
-    private function pesqRefSit() {
+    private function pesqRefSit()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-prateleira/listar', '?referencia=' . $this->Dados['referencia'] . '&situacao=' . $this->Dados['status_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -128,7 +141,8 @@ class CpAdmsPesqPed {
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarCor = new \App\adms\Models\helper\AdmsRead();
-        $listarCor->fullRead("SELECT p.*,
+        $listarCor->fullRead(
+            "SELECT p.*,
                 t.nome tam, l.nome loja, f.nome func, tr.nome sit, c.nome n_cor, c.cor
                 FROM tb_prateleira_infinita p
                 INNER JOIN tb_tam t ON t.id=p.tam_id
@@ -138,11 +152,13 @@ class CpAdmsPesqPed {
                 INNER JOIN adms_cors c ON c.id=tr.cor_id
                 WHERE p.referencia LIKE '%' :referencia '%' AND p.status_id =:status_id
                 ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                "referencia={$this->Dados['referencia']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+            "referencia={$this->Dados['referencia']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+        );
         $this->Resultado = $listarCor->getResultado();
     }
 
-    private function pesqLoja() {
+    private function pesqLoja()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-prateleira/listar', '?loja=' . $this->Dados['loja_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -150,7 +166,8 @@ class CpAdmsPesqPed {
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarCor = new \App\adms\Models\helper\AdmsRead();
-        $listarCor->fullRead("SELECT p.*,
+        $listarCor->fullRead(
+            "SELECT p.*,
                 t.nome tam, l.nome loja, f.nome func, tr.nome sit, c.nome n_cor, c.cor
                 FROM tb_prateleira_infinita p
                 INNER JOIN tb_tam t ON t.id=p.tam_id
@@ -160,11 +177,13 @@ class CpAdmsPesqPed {
                 INNER JOIN adms_cors c ON c.id=tr.cor_id
                 WHERE p.loja_id =:loja_id
                 ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                "loja_id={$this->Dados['loja_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+            "loja_id={$this->Dados['loja_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+        );
         $this->Resultado = $listarCor->getResultado();
     }
 
-    private function pesqRef() {
+    private function pesqRef()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-prateleira/listar', '?referencia=' . $this->Dados['referencia']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -172,7 +191,8 @@ class CpAdmsPesqPed {
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarCor = new \App\adms\Models\helper\AdmsRead();
-        $listarCor->fullRead("SELECT p.*,
+        $listarCor->fullRead(
+            "SELECT p.*,
                 t.nome tam, l.nome loja, f.nome func, tr.nome sit, c.nome n_cor, c.cor
                 FROM tb_prateleira_infinita p
                 INNER JOIN tb_tam t ON t.id=p.tam_id
@@ -182,11 +202,13 @@ class CpAdmsPesqPed {
                 INNER JOIN adms_cors c ON c.id=tr.cor_id
                 WHERE p.referencia LIKE '%' :referencia '%'
                 ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                "referencia={$this->Dados['referencia']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+            "referencia={$this->Dados['referencia']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+        );
         $this->Resultado = $listarCor->getResultado();
     }
 
-    private function pesqSit() {
+    private function pesqSit()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-prateleira/listar', '?situacao=' . $this->Dados['status_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -194,7 +216,8 @@ class CpAdmsPesqPed {
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarCor = new \App\adms\Models\helper\AdmsRead();
-        $listarCor->fullRead("SELECT p.*,
+        $listarCor->fullRead(
+            "SELECT p.*,
                 t.nome tam, l.nome loja, f.nome func, tr.nome sit, c.nome n_cor, c.cor
                 FROM tb_prateleira_infinita p
                 INNER JOIN tb_tam t ON t.id=p.tam_id
@@ -204,11 +227,13 @@ class CpAdmsPesqPed {
                 INNER JOIN adms_cors c ON c.id=tr.cor_id
                 WHERE p.status_id =:status_id
                 ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                "status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+            "status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+        );
         $this->Resultado = $listarCor->getResultado();
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id loja_id, nome loja FROM tb_lojas ORDER BY id ASC");
@@ -220,5 +245,4 @@ class CpAdmsPesqPed {
         $this->Resultado = ['loja' => $registro['loja'], 'sit' => $registro['sit']];
         return $this->Resultado;
     }
-
 }

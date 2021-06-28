@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarSitUser {
+class AdmsApagarSitUser
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarSitUser($DadosId = null) {
+    public function apagarSitUser($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verfUsuarioCad();
         if ($this->Resultado) {
@@ -37,7 +40,8 @@ class AdmsApagarSitUser {
         }
     }
 
-    private function verfUsuarioCad() {
+    private function verfUsuarioCad()
+    {
         $verUsuario = new \App\adms\Models\helper\AdmsRead();
         $verUsuario->fullRead("SELECT id FROM adms_usuarios
                 WHERE adms_sits_usuario_id =:adms_sits_usuario_id LIMIT :limit", "adms_sits_usuario_id=" . $this->DadosId . "&limit=2");
@@ -48,5 +52,4 @@ class AdmsApagarSitUser {
             $this->Resultado = true;
         }
     }
-
 }

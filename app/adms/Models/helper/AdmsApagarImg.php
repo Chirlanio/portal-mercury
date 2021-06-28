@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -23,23 +23,22 @@ class AdmsApagarImg
         $this->NomeImg = (string) $NomeImg;
         $this->Diretorio = (string) $Diretorio;
         $this->excluirImagem();
-        if(!empty($this->Diretorio)){
+        if (!empty($this->Diretorio)) {
             $this->excluirDiretorio();
         }
     }
 
     private function excluirImagem()
     {
-        if(file_exists($this->NomeImg)){
+        if (file_exists($this->NomeImg)) {
             unlink($this->NomeImg);
         }
     }
-    
+
     private function excluirDiretorio()
     {
-        if(file_exists($this->Diretorio)){
+        if (file_exists($this->Diretorio)) {
             rmdir($this->Diretorio);
         }
     }
-
 }

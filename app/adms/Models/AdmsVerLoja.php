@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerLoja {
+class AdmsVerLoja
+{
 
     private $Resultado;
     private $DadosId;
@@ -21,7 +22,8 @@ class AdmsVerLoja {
      * <b>Ver Página:</b> Receber o id da página para buscar informações do registro no banco de dados
      * @param int $DadosId
      */
-    public function verLoja($DadosId) {
+    public function verLoja($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verLoja = new \App\adms\Models\helper\AdmsRead();
         $verLoja->fullRead("SELECT lj.*,
@@ -34,5 +36,4 @@ class AdmsVerLoja {
         $this->Resultado = $verLoja->getResultado();
         return $this->Resultado;
     }
-
 }

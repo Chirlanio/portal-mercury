@@ -13,9 +13,11 @@
         ?>
         <div class="form-group">
             <label>E-mail</label>
-            <input name="email" type="email" class="form-control" placeholder="Digite o e-mail cadastrado" value="<?php if (isset($valorForm['email'])) {
-            echo $valorForm['email'];
-        } ?>"> 
+            <input name="email" type="email" class="form-control" placeholder="Digite o e-mail cadastrado" value="
+            <?php if (isset($valorForm['email'])) {
+                echo $valorForm['email'];
+            } ?>
+            ">
         </div>
         <input name="RecupUserLogin" type="submit" class="btn btn-lg btn-primary btn-block" value="Recuperar">
         <p class="text-center">Lembrou? <a href="<?php echo URLADM . 'login/acesso' ?>">Clique aqui</a> para logar</p>

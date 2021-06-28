@@ -12,21 +12,24 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsListarTransferencia {
+class AdmsListarTransferencia
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarTransf($PageId = null) {
-        
+    public function listarTransf($PageId = null)
+    {
+
         $this->PageId = (int) $PageId;
-        
+
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'transferencia/listarTransf');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
         if ($_SESSION['ordem_nivac'] >= 5) {
@@ -46,7 +49,8 @@ class AdmsListarTransferencia {
         return $this->Resultado;
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['ordem_nivac'] >= 5) {
@@ -70,5 +74,4 @@ class AdmsListarTransferencia {
 
         return $this->Resultado;
     }
-
 }

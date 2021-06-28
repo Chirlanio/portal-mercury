@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarGrupoPg {
+class AdmsCadastrarGrupoPg
+{
 
     private $Resultado;
     private $Dados;
     private $UltimoGrupoPg;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadGrupoPg(array $Dados) {
+    public function cadGrupoPg(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -35,7 +38,8 @@ class AdmsCadastrarGrupoPg {
         }
     }
 
-    private function inserirGrupoPg() {
+    private function inserirGrupoPg()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $this->verUltimoGrupoPg();
         $this->Dados['ordem'] = $this->UltimoGrupoPg[0]['ordem'] + 1;
@@ -50,10 +54,10 @@ class AdmsCadastrarGrupoPg {
         }
     }
 
-    private function verUltimoGrupoPg() {
+    private function verUltimoGrupoPg()
+    {
         $verGrupoPg = new \App\adms\Models\helper\AdmsRead();
         $verGrupoPg->fullRead("SELECT ordem FROM adms_grps_pgs ORDER BY ordem DESC LIMIT :limit", "limit=1");
         $this->UltimoGrupoPg = $verGrupoPg->getResultado();
     }
-
 }

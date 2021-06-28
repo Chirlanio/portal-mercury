@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,7 @@ if (!defined('URL')) {
             </div>
             <?php
             if ($this->Dados['botao']['cad_ajuste']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-ajuste/cad-ajuste'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -22,7 +22,7 @@ if (!defined('URL')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
@@ -54,10 +54,10 @@ if (!defined('URL')) {
                             <label class="input-group-text" style="font-weight: bold" for="referencia">Referência</label>
                         </div>
                         <input name="referencia" type="text" id="referencia" class="form-control" aria-describedby="referencia" placeholder="Digite a referência" value="<?php
-                        if (isset($_SESSION['referencia'])) {
-                            echo $_SESSION['referencia'];
-                        }
-                        ?>">
+                                                                                                                                                                            if (isset($_SESSION['referencia'])) {
+                                                                                                                                                                                echo $_SESSION['referencia'];
+                                                                                                                                                                            }
+                                                                                                                                                                            ?>">
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-4 mb-4">
@@ -86,17 +86,18 @@ if (!defined('URL')) {
                     <input name="PesqAjuste" type="submit" class="btn btn-outline-primary mx-sm-2" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['listAjuste'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma solicitação encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -119,7 +120,7 @@ if (!defined('URL')) {
                     <?php
                     foreach ($this->Dados['listAjuste'] as $Ajuste) {
                         extract($Ajuste);
-                        ?>
+                    ?>
                         <tr title="<?php echo strip_tags($obs) ?>">
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $nome_loja; ?></td>
@@ -162,7 +163,7 @@ if (!defined('URL')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,15 +12,17 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerRota {
+class AdmsVerRota
+{
 
     private $Resultado;
     private $DadosId;
 
-    public function verRota($DadosId) {
-        
+    public function verRota($DadosId)
+    {
+
         $this->DadosId = (int) $DadosId;
-        
+
         $verRota = new \App\adms\Models\helper\AdmsRead();
         $verRota->fullRead("SELECT r.id r_id, r.nome rota, r.adms_cor_id, r.created, r.modified, c.nome n_cor, c.cor
                 FROM tb_rotas r
@@ -29,5 +31,4 @@ class AdmsVerRota {
         $this->Resultado = $verRota->getResultado();
         return $this->Resultado;
     }
-
 }

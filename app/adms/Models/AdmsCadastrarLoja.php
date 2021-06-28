@@ -12,22 +12,25 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarLoja {
+class AdmsCadastrarLoja
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadLoja(array $Dados) {
-        
+    public function cadLoja(array $Dados)
+    {
+
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
         $valCampoVazio->validarDados($this->Dados);
-        
+
         if ($valCampoVazio->getResultado()) {
             $this->inserirLoja();
         } else {
@@ -35,7 +38,8 @@ class AdmsCadastrarLoja {
         }
     }
 
-    private function inserirLoja() {
+    private function inserirLoja()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadLoja = new \App\adms\Models\helper\AdmsCreate;
         $cadLoja->exeCreate("tb_lojas", $this->Dados);
@@ -49,16 +53,17 @@ class AdmsCadastrarLoja {
         }
     }
 
-    public function listarCadastrar() {
-        
+    public function listarCadastrar()
+    {
+
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id sit_id, nome sit FROM tb_status_loja ORDER BY id ASC");
         $registro['status_id'] = $listar->getResultado();
-        
+
         $listar->fullRead("SELECT id rede_id, nome rede FROM tb_redes ORDER BY id ASC");
         $registro['rede_id'] = $listar->getResultado();
-        
+
         $listar->fullRead("SELECT id func_id, nome func FROM tb_funcionarios WHERE cargo_id =:cargo_id AND status_id =:status_id ORDER BY nome ASC", "cargo_id=2&status_id=1");
         $registro['func_id'] = $listar->getResultado();
 
@@ -66,5 +71,4 @@ class AdmsCadastrarLoja {
 
         return $this->Resultado;
     }
-
 }

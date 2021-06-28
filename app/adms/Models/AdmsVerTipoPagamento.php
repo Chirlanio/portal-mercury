@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerTipoPagamento {
+class AdmsVerTipoPagamento
+{
 
     private $Resultado;
     private $DadosId;
 
-    public function verTipo($DadosId) {
+    public function verTipo($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verTipo = new \App\adms\Models\helper\AdmsRead();
         $verTipo->fullRead("SELECT b.id, b.nome, b.created, b.modified
@@ -26,5 +28,4 @@ class AdmsVerTipoPagamento {
         $this->Resultado = $verTipo->getResultado();
         return $this->Resultado;
     }
-
 }

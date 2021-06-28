@@ -15,23 +15,25 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_transf']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'transferencia/listar-transf/'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                     <a href="<?php echo URLADM . 'ver-transf/ver-transf/' . $valorForm['id']; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
-            <input name="id" type="hidden" value="<?php
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input name="id" type="hidden" value="
+            <?php
             if (isset($valorForm['id'])) {
                 echo $valorForm['id'];
             }
@@ -62,9 +64,9 @@ if (isset($this->Dados['form'][0])) {
                     ?>
                 </div>
                 <div class="form-group col-md-5">
-                    <label><span class = "text-danger">*</span> Loja - Destino</label>
+                    <label><span class="text-danger">*</span> Loja - Destino</label>
                     <?php
-                    if (($_SESSION['adms_niveis_acesso_id'] == 4) OR ($_SESSION['adms_niveis_acesso_id'] == 6)) {
+                    if (($_SESSION['adms_niveis_acesso_id'] == 4) or ($_SESSION['adms_niveis_acesso_id'] == 6)) {
                         echo '<input name="loja_destino_id" type="text" class="form-control" aria-label="Disabled input" disabled placeholder="Loja de origem" value="';
                         if (isset($valorForm['loja_dest'])) {
                             echo $valorForm['loja_dest'];
@@ -88,7 +90,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span>Nota Fiscal</label>
                     <?php
-                    if (($_SESSION['adms_niveis_acesso_id'] == 4) OR ($_SESSION['adms_niveis_acesso_id'] == 6)) {
+                    if (($_SESSION['adms_niveis_acesso_id'] == 4) or ($_SESSION['adms_niveis_acesso_id'] == 6)) {
                         echo '<input name="nf" type="number" class="form-control" aria-label="Disabled input" disabled placeholder="Loja de origem" value="';
                         if (isset($valorForm['nf'])) {
                             echo $valorForm['nf'];
@@ -108,7 +110,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Volumes</label>
                     <?php
-                    if (($_SESSION['adms_niveis_acesso_id'] == 4) OR ($_SESSION['adms_niveis_acesso_id'] == 6)) {
+                    if (($_SESSION['adms_niveis_acesso_id'] == 4) or ($_SESSION['adms_niveis_acesso_id'] == 6)) {
                         echo '<input name="qtd_vol" type="number" class="form-control" aria-label="Disabled input" disabled placeholder="Loja de origem" value="';
                         if (isset($valorForm['qtd_vol'])) {
                             echo $valorForm['qtd_vol'];
@@ -126,7 +128,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Qtd Prudutos</label>
                     <?php
-                    if (($_SESSION['adms_niveis_acesso_id'] == 4) OR ($_SESSION['adms_niveis_acesso_id'] == 6)) {
+                    if (($_SESSION['adms_niveis_acesso_id'] == 4) or ($_SESSION['adms_niveis_acesso_id'] == 6)) {
                         echo '<input name="qtd_prod" type="number" class="form-control" aria-label="Disabled input" disabled placeholder="Qtd de produtos" value="';
                         if (isset($valorForm['qtd_prod'])) {
                             echo $valorForm['qtd_prod'];
@@ -144,7 +146,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Tipo</label>
                     <?php
-                    if (($_SESSION['adms_niveis_acesso_id'] == 5) OR ($_SESSION['adms_niveis_acesso_id'] == 6)) {
+                    if (($_SESSION['adms_niveis_acesso_id'] == 5) or ($_SESSION['adms_niveis_acesso_id'] == 6)) {
                         echo '<select name="tipo_transf_id" id="tipo_transf_id" class="form-control" aria-label="Disabled input" disabled>';
                         echo '<option value="">Selecione</option>';
                         foreach ($this->Dados['select']['tipo_transf_id'] as $t) {
@@ -173,7 +175,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Situação</label>
                     <?php
-                    if (($_SESSION['adms_niveis_acesso_id'] == 5) OR ($_SESSION['adms_niveis_acesso_id'] == 4)) {
+                    if (($_SESSION['adms_niveis_acesso_id'] == 5) or ($_SESSION['adms_niveis_acesso_id'] == 4)) {
                         if ($valorForm['status_id'] == 1) {
                             echo '<select name="status_id" id="status_id" class="form-control" aria-label="Disabled input" disabled>';
                             echo '<option value="">Selecione</option>';
@@ -199,7 +201,7 @@ if (isset($this->Dados['form'][0])) {
                         }
                     } else {
                         if ($valorForm['status_id'] >= 3) {
-                            if (($_SESSION['adms_niveis_acesso_id'] == 4) OR ($_SESSION['adms_niveis_acesso_id'] == 5) OR ($_SESSION['adms_niveis_acesso_id'] == 6)) {
+                            if (($_SESSION['adms_niveis_acesso_id'] == 4) or ($_SESSION['adms_niveis_acesso_id'] == 5) or ($_SESSION['adms_niveis_acesso_id'] == 6)) {
                                 echo '<select name="status_id" id="status_id" class="form-control" aria-label="Disabled input" disabled>';
                                 echo '<option value="">Selecione</option>';
                                 foreach ($this->Dados['select']['status_id'] as $s) {
@@ -241,7 +243,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-4">
                     <?php
                     //input para colocar o nome de quem recebeu a entrega
-                    if (($_SESSION['adms_niveis_acesso_id'] == 4) OR ($_SESSION['adms_niveis_acesso_id'] == 5)) {
+                    if (($_SESSION['adms_niveis_acesso_id'] == 4) or ($_SESSION['adms_niveis_acesso_id'] == 5)) {
                         echo " <label><span class='text-danger'>*</span> Recebido Por:</label>";
                         echo '<input name="recebido" type="text" class="form-control" aria-label="Disabled input" disabled placeholder="Digite o nome de quem recebeu" value="';
                         if (isset($valorForm['recebido'])) {
@@ -250,7 +252,7 @@ if (isset($this->Dados['form'][0])) {
                         echo '">';
                     } else {
                         if ($valorForm['status_id'] >= 3) {
-                            if (($_SESSION['adms_niveis_acesso_id'] == 4) OR ($_SESSION['adms_niveis_acesso_id'] == 5)) {
+                            if (($_SESSION['adms_niveis_acesso_id'] == 4) or ($_SESSION['adms_niveis_acesso_id'] == 5)) {
                                 if ($_SESSION['adms_niveis_acesso_id'] == 1) {
                                     echo " <label><span class='text-danger'>*</span> Recebido Por:</label>";
                                     echo '<input name="recebido" type="text" class="form-control" placeholder="Digite o nome de quem recebeu" value="';

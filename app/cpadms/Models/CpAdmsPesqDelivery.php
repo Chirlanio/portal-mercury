@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CpAdmsPesqDelivery {
+class CpAdmsPesqDelivery
+{
 
     private $Dados;
     private $Resultado;
@@ -20,11 +21,13 @@ class CpAdmsPesqDelivery {
     private $LimiteResultado = 50;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function pesqDelivery($PageId = null, $Dados = null) {
+    public function pesqDelivery($PageId = null, $Dados = null)
+    {
 
         $this->PageId = (int) $PageId;
         $this->Dados = $Dados;
@@ -37,27 +40,27 @@ class CpAdmsPesqDelivery {
         $_SESSION['pesqSit'] = $this->Dados['sit_id'];
         $_SESSION['pesqCli'] = $this->Dados['cliente'];
 
-        if ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['rota_id'])) AND (!empty($this->Dados['sit_id'])) AND (!empty($this->Dados['cliente']))) {
+        if ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['rota_id'])) and (!empty($this->Dados['sit_id'])) and (!empty($this->Dados['cliente']))) {
             $this->pesqComp();
-        } elseif ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['rota_id'])) AND (!empty($this->Dados['sit_id']))) {
+        } elseif ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['rota_id'])) and (!empty($this->Dados['sit_id']))) {
             $this->pesqLojaRotaSit();
-        } elseif ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['rota_id'])) AND (!empty($this->Dados['cliente']))) {
+        } elseif ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['rota_id'])) and (!empty($this->Dados['cliente']))) {
             $this->pesqLojaRotaCliente();
-        } elseif ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['sit_id'])) AND (!empty($this->Dados['cliente']))) {
+        } elseif ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['sit_id'])) and (!empty($this->Dados['cliente']))) {
             $this->pesqLojaSitCliente();
-        } elseif ((!empty($this->Dados['rota_id'])) AND (!empty($this->Dados['sit_id'])) AND (!empty($this->Dados['cliente']))) {
+        } elseif ((!empty($this->Dados['rota_id'])) and (!empty($this->Dados['sit_id'])) and (!empty($this->Dados['cliente']))) {
             $this->pesqRotaSitCliente();
-        } elseif ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['cliente']))) {
+        } elseif ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['cliente']))) {
             $this->pesqLojaCliente();
-        } elseif ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['rota_id']))) {
+        } elseif ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['rota_id']))) {
             $this->pesqLojaRota();
-        } elseif ((!empty($this->Dados['loja_id'])) AND (!empty($this->Dados['sit_id']))) {
+        } elseif ((!empty($this->Dados['loja_id'])) and (!empty($this->Dados['sit_id']))) {
             $this->pesqLojaStatus();
-        } elseif ((!empty($this->Dados['rota_id'])) AND (!empty($this->Dados['sit_id']))) {
+        } elseif ((!empty($this->Dados['rota_id'])) and (!empty($this->Dados['sit_id']))) {
             $this->pesqRotaStatus();
-        } elseif ((!empty($this->Dados['rota_id'])) AND (!empty($this->Dados['cliente']))) {
+        } elseif ((!empty($this->Dados['rota_id'])) and (!empty($this->Dados['cliente']))) {
             $this->pesqRotaCliente();
-        } elseif ((!empty($this->Dados['sit_id'])) AND (!empty($this->Dados['cliente']))) {
+        } elseif ((!empty($this->Dados['sit_id'])) and (!empty($this->Dados['cliente']))) {
             $this->pesqSitCliente();
         } elseif (!empty($this->Dados['loja_id'])) {
             $this->pesqLoja();
@@ -71,7 +74,8 @@ class CpAdmsPesqDelivery {
         return $this->Resultado;
     }
 
-    private function pesqComp() {
+    private function pesqComp()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?loja=' . $this->Dados['loja_id'] . '&rota=' . $this->Dados['rota_id'] . '&situacao=' . $this->Dados['sit_id'] . '&cliente=' . $this->Dados['cliente']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -95,14 +99,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLojaRotaSit() {
+    private function pesqLojaRotaSit()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?loja=' . $this->Dados['loja_id'] . '&rota=' . $this->Dados['rota_id'] . '&situacao=' . $this->Dados['sit_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE loja_id =:loja_id AND rota_id =:rota_id AND status_id =:status_id",
-                "loja_id={$this->Dados['loja_id']}&rota_id={$this->Dados['rota_id']}&status_id={$this->Dados['sit_id']}");
+            "loja_id={$this->Dados['loja_id']}&rota_id={$this->Dados['rota_id']}&status_id={$this->Dados['sit_id']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -120,14 +127,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLojaRotaCliente() {
+    private function pesqLojaRotaCliente()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?loja=' . $this->Dados['loja_id'] . '&rota=' . $this->Dados['rota_id'] . '&cliente=' . $this->Dados['cliente']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE loja_id =:loja_id AND rota_id =:rota_id AND cliente LIKE '%' :cliente '%'",
-                "loja_id={$this->Dados['loja_id']}&rota_id={$this->Dados['rota_id']}&cliente={$this->Dados['cliente']}");
+            "loja_id={$this->Dados['loja_id']}&rota_id={$this->Dados['rota_id']}&cliente={$this->Dados['cliente']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -145,14 +155,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLojaSitCliente() {
+    private function pesqLojaSitCliente()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?loja=' . $this->Dados['loja_id'] . '&situacao=' . $this->Dados['sit_id'] . '&cliente=' . $this->Dados['cliente']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE loja_id =:loja_id AND status_id =:status_id AND cliente LIKE '%' :cliente '%'",
-                "loja_id={$this->Dados['loja_id']}&status_id={$this->Dados['sit_id']}&cliente={$this->Dados['cliente']}");
+            "loja_id={$this->Dados['loja_id']}&status_id={$this->Dados['sit_id']}&cliente={$this->Dados['cliente']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -170,14 +183,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqRotaSitCliente() {
+    private function pesqRotaSitCliente()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?rota=' . $this->Dados['rota_id'] . '&situacao=' . $this->Dados['sit_id'] . '&cliente=' . $this->Dados['cliente']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE rota_id =:rota_id AND status_id =:status_id AND cliente LIKE '%' :cliente '%'",
-                "rota_id={$this->Dados['rota_id']}&status_id={$this->Dados['sit_id']}&cliente={$this->Dados['cliente']}");
+            "rota_id={$this->Dados['rota_id']}&status_id={$this->Dados['sit_id']}&cliente={$this->Dados['cliente']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -195,14 +211,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLojaCliente() {
+    private function pesqLojaCliente()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?loja=' . $this->Dados['loja_id'] . '&cliente=' . $this->Dados['cliente']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE loja_id =:loja_id AND cliente LIKE '%' :cliente '%'",
-                "loja_id={$this->Dados['loja_id']}&cliente={$this->Dados['cliente']}");
+            "loja_id={$this->Dados['loja_id']}&cliente={$this->Dados['cliente']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -220,14 +239,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLojaRota() {
+    private function pesqLojaRota()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?loja=' . $this->Dados['loja_id'] . '&rota=' . $this->Dados['rota_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE loja_id =:loja_id AND rota_id =:rota_id",
-                "loja_id={$this->Dados['loja_id']}&rota_id={$this->Dados['rota_id']}");
+            "loja_id={$this->Dados['loja_id']}&rota_id={$this->Dados['rota_id']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -245,14 +267,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLojaStatus() {
+    private function pesqLojaStatus()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?loja=' . $this->Dados['loja_id'] . '&situacao=' . $this->Dados['sit_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE loja_id =:loja_id AND status_id =:status_id",
-                "loja_id={$this->Dados['loja_id']}&status_id={$this->Dados['sit_id']}");
+            "loja_id={$this->Dados['loja_id']}&status_id={$this->Dados['sit_id']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -270,14 +295,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqRotaCliente() {
+    private function pesqRotaCliente()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?rota=' . $this->Dados['rota_id'] . '&cliente=' . $this->Dados['cliente']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE rota_id =:rota_id AND cliente LIKE '%' :cliente '%'",
-                "rota_id={$this->Dados['rota_id']}&cliente={$this->Dados['cliente']}");
+            "rota_id={$this->Dados['rota_id']}&cliente={$this->Dados['cliente']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -295,14 +323,17 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqSitCliente() {
+    private function pesqSitCliente()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?situacao=' . $this->Dados['sit_id'] . '&cliente=' . $this->Dados['cliente']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result
                     FROM tb_delivery
                     WHERE status_id =:status_id AND cliente LIKE '%' :cliente '%'",
-                "status_id={$this->Dados['sit_id']}&cliente={$this->Dados['cliente']}");
+            "status_id={$this->Dados['sit_id']}&cliente={$this->Dados['cliente']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarAjuste = new \App\adms\Models\helper\AdmsRead();
@@ -320,7 +351,8 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqRotaStatus() {
+    private function pesqRotaStatus()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?rota=' . $this->Dados['rota_id'] . '&situacao=' . $this->Dados['sit_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -344,7 +376,8 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqLoja() {
+    private function pesqLoja()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?loja=' . $this->Dados['loja_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -369,7 +402,8 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqRota() {
+    private function pesqRota()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?rota=' . $this->Dados['rota_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -393,7 +427,8 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqStatus() {
+    private function pesqStatus()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?situacao=' . $this->Dados['sit_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -417,7 +452,8 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    private function pesqCliente() {
+    private function pesqCliente()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-delivery/listar', '?cliente=' . $this->Dados['cliente']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -441,7 +477,8 @@ class CpAdmsPesqDelivery {
         $this->Resultado = $listarAjuste->getResultado();
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id loja_id, nome loja FROM tb_lojas ORDER BY id ASC");
@@ -496,10 +533,10 @@ class CpAdmsPesqDelivery {
         }
         $registro['deliEnt'] = $listar->getResultado();
 
-        $this->Resultado = ['loja_id' => $registro['loja_id'], 'rota_id' => $registro['rota_id'], 'sit_id' => $registro['sit_id'],
+        $this->Resultado = [
+            'loja_id' => $registro['loja_id'], 'rota_id' => $registro['rota_id'], 'sit_id' => $registro['sit_id'],
             'deli' => $registro['deli'], 'deliSol' => $registro['deliSol'], 'deliCol' => $registro['deliCol'], 'deliAg' => $registro['deliAg'], 'deliRota' => $registro['deliRota'], 'deliEnt' => $registro['deliEnt']
         ];
         return $this->Resultado;
     }
-
 }

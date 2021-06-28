@@ -15,25 +15,27 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_nivac']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'nivel-acesso/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" class="was-validated" enctype="multipart/form-data"> 
+        <form method="POST" action="" class="was-validated" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-9">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Digite o nome do nível de acesso" value="<?php
+                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Digite o nome do nível de acesso" value="
+                    <?php
                     if (isset($valorForm['nome'])) {
                         echo $valorForm['nome'];
                     }
@@ -42,7 +44,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-3">
                     <label><span class="text-danger">*</span> Cor</label>
                     <select name="adms_cor_id" id="adms_cor_id" class="form-control is-invalid" required>
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['cor'] as $t) {
                             extract($t);

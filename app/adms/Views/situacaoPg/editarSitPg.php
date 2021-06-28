@@ -16,23 +16,25 @@ if (isset($this->Dados['form'][0])) {
 
             <?php
             if ($this->Dados['botao']['vis_sit']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'ver-sit-pg/ver-sit-pg/' . $valorForm['id']; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
-            <input name="id" type="hidden" value="<?php
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input name="id" type="hidden" value="
+            <?php
             if (isset($valorForm['id'])) {
                 echo $valorForm['id'];
             }
@@ -40,7 +42,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="nome" type="text" class="form-control" placeholder="Nome da situação de página" value="<?php
+                    <input name="nome" type="text" class="form-control" placeholder="Nome da situação de página" value="
+                    <?php
                     if (isset($valorForm['nome'])) {
                         echo $valorForm['nome'];
                     }
@@ -48,7 +51,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="cor" type="text" class="form-control" placeholder="Cor da situação usando o Bootstrap 4" value="<?php
+                    <input name="cor" type="text" class="form-control" placeholder="Cor da situação usando o Bootstrap 4" value="
+                    <?php
                     if (isset($valorForm['cor'])) {
                         echo $valorForm['cor'];
                     }

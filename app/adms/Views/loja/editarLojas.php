@@ -16,23 +16,25 @@ if (isset($this->Dados['form'][0])) {
 
             <?php
             if ($this->Dados['botao']['vis_loja']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'ver-loja/ver-loja/' . $valorForm['id']; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
-            <input name="id" type="hidden" value="<?php
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input name="id" type="hidden" value="
+            <?php
             if (isset($valorForm['id'])) {
                 echo $valorForm['id'];
             }
@@ -40,7 +42,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Código da Loja</label>
-                    <input name="id" type="text" class="form-control" placeholder="Código da loja" value="<?php
+                    <input name="id" type="text" class="form-control" placeholder="Código da loja" value="
+                    <?php
                     if (isset($valorForm['id'])) {
                         echo $valorForm['id'];
                     }
@@ -48,7 +51,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-10">
                     <label><span class="text-danger">*</span> Nome da Loja</label>
-                    <input name="nome" type="text" class="form-control" placeholder="Nome da Loja a ser apresentado no menu" value="<?php
+                    <input name="nome" type="text" class="form-control" placeholder="Nome da Loja a ser apresentado no menu" value="
+                    <?php
                     if (isset($valorForm['nome'])) {
                         echo $valorForm['nome'];
                     }
@@ -58,7 +62,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label><span class="text-danger">*</span> CNPJ</label>
-                    <input name="cnpj" type="text" class="form-control" placeholder="CNPJ da loja, digite somente números." value="<?php
+                    <input name="cnpj" type="text" class="form-control" placeholder="CNPJ da loja, digite somente números." value="
+                    <?php
                     if (isset($valorForm['cnpj'])) {
                         echo $valorForm['cnpj'];
                     }
@@ -66,7 +71,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-9">
                     <label><span class="text-danger">*</span> Razão Social</label>
-                    <input name="razao_social" type="text" class="form-control" placeholder="Ex: MEIA SOLA ACESSORIOS DE MODA" value="<?php
+                    <input name="razao_social" type="text" class="form-control" placeholder="Ex: MEIA SOLA ACESSORIOS DE MODA" value="
+                    <?php
                     if (isset($valorForm['razao_social'])) {
                         echo $valorForm['razao_social'];
                     }
@@ -77,7 +83,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label><span class="text-danger">*</span> Inscrição Estadual</label>
-                    <input name="ins_estadual" type="text" class="form-control" placeholder="Digite somente números" value="<?php
+                    <input name="ins_estadual" type="text" class="form-control" placeholder="Digite somente números" value="
+                    <?php
                     if (isset($valorForm['ins_estadual'])) {
                         echo $valorForm['ins_estadual'];
                     }
@@ -85,7 +92,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-10">
                     <label><span class="text-danger">*</span> Endereço</label>
-                    <input name="endereco" type="text" class="form-control" placeholder="Avenida Dom Manuel, 621 Centro Fortaleza - CE" value="<?php
+                    <input name="endereco" type="text" class="form-control" placeholder="Avenida Dom Manuel, 621 Centro Fortaleza - CE" value="
+                    <?php
                     if (isset($valorForm['endereco'])) {
                         echo $valorForm['endereco'];
                     }

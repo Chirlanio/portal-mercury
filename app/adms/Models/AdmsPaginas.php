@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,13 +12,15 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsPaginas {
+class AdmsPaginas
+{
 
     private $Resultado;
     private $UrlController;
     private $UrlMetodo;
 
-    public function listarPaginas($UrlController = null, $UrlMetodo = null) {
+    public function listarPaginas($UrlController = null, $UrlMetodo = null)
+    {
         if (!isset($_SESSION['adms_niveis_acesso_id'])) {
             $_SESSION['adms_niveis_acesso_id'] = null;
         }
@@ -36,5 +38,4 @@ class AdmsPaginas {
         $this->Resultado = $listar->getResultado();
         return $this->Resultado;
     }
-
 }

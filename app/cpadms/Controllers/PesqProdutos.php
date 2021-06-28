@@ -12,18 +12,22 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class PesqProdutos {
+class PesqProdutos
+{
 
     private $Dados;
     private $DadosForm;
     private $PageId;
 
-    public function listar($PageId = null) {
+    public function listar($PageId = null)
+    {
 
-        $botao = ['list_produtos' => ['menu_controller' => 'produtos', 'menu_metodo' => 'listar-produtos'],
+        $botao = [
+            'list_produtos' => ['menu_controller' => 'produtos', 'menu_metodo' => 'listar-produtos'],
             'vis_produtos' => ['menu_controller' => 'ver-produto', 'menu_metodo' => 'ver-produto'],
             'edit_produtos' => ['menu_controller' => 'editar-produto', 'menu_metodo' => 'edit-produto'],
-            'del_produtos' => ['menu_controller' => 'apagar-produto', 'menu_metodo' => 'apagar-produto']];
+            'del_produtos' => ['menu_controller' => 'apagar-produto', 'menu_metodo' => 'apagar-produto']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -46,5 +50,4 @@ class PesqProdutos {
         $carregarView = new \Core\ConfigView("cpadms/Views/produtos/pesqProdutos", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

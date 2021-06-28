@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsListarItensMenu {
+class AdmsListarItensMenu
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarItensMenu($PageId = null) {
+    public function listarItensMenu($PageId = null)
+    {
         $this->PageId = (int) $PageId;
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'menu/listar');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -41,5 +44,4 @@ class AdmsListarItensMenu {
         $this->Resultado = $listarMenu->getResultado();
         return $this->Resultado;
     }
-
 }

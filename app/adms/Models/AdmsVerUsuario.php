@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -16,7 +16,7 @@ class AdmsVerUsuario
 {
     private $Resultado;
     private $DadosId;
-    
+
     public function verUsuario($DadosId)
     {
         $this->DadosId = (int) $DadosId;
@@ -31,8 +31,8 @@ class AdmsVerUsuario
                 INNER JOIN adms_sits_usuarios sit ON sit.id=user.adms_sits_usuario_id
                 INNER JOIN adms_cors cr ON cr.id=sit.adms_cor_id
                 INNER JOIN tb_lojas l ON l.id=user.loja_id
-                WHERE user.id =:id AND nivac.ordem >:ordem LIMIT :limit", "id=".$this->DadosId."&ordem=".$_SESSION['ordem_nivac']."&limit=1");
-        $this->Resultado= $verPerfil->getResultado();
+                WHERE user.id =:id AND nivac.ordem >:ordem LIMIT :limit", "id=" . $this->DadosId . "&ordem=" . $_SESSION['ordem_nivac'] . "&limit=1");
+        $this->Resultado = $verPerfil->getResultado();
         return $this->Resultado;
     }
 }

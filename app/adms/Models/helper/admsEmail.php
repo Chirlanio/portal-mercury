@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEmail {
+class AdmsEmail
+{
 
     private $Resultado;
     private $Dados;
     private $Formato;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function valEmail($Email) {
+    public function valEmail($Email)
+    {
         $this->Dados = (string) $Email;
         $this->Formato = '/[a-z0-9_\.\-]+@[a-z0-9_\.\-]*[a-z0-9_\.\-]+\.[a-z]{2,4}$/';
 
@@ -33,5 +36,4 @@ class AdmsEmail {
             $this->Resultado = false;
         }
     }
-
 }

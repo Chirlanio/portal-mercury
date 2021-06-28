@@ -25,7 +25,7 @@ if (!defined('URLADM')) {
                     <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Ações
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                         <?php
                         if ($this->Dados['botao']['sincro_permi']) {
                             echo "<a class='dropdown-item' href='" . URLADM . "sincro-pg-niv-ac/sincro-pg-niv-ac'>Sincronizar</a>";
@@ -40,14 +40,14 @@ if (!defined('URLADM')) {
         </div>
         <?php
         if (empty($this->Dados['listNivAc'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum nível de acesso encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -70,14 +70,14 @@ if (!defined('URLADM')) {
                     $qnt_linhas_exe = 1;
                     foreach ($this->Dados['listNivAc'] as $nivAc) {
                         extract($nivAc);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $nome; ?></td>
                             <td class="d-none d-sm-table-cell align-middle"><?php echo $ordem; ?></td>
                             <td class="d-none d-sm-table-cell align-middle">
                                 <span class="badge badge-<?php echo $cor_cr; ?>"><?php echo $nome_cor; ?></span>
-                                </td>
+                            </td>
                             <td class="text-center">
                                 <span class="d-none d-md-block">
                                     <?php
@@ -127,7 +127,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
 

@@ -20,14 +20,14 @@ if (!defined('URLADM')) {
         </div>
         <?php
         if (empty($this->Dados['listCor'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma cor encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -48,7 +48,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listCor'] as $cor) {
                         extract($cor);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $nome; ?></td>
@@ -89,7 +89,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

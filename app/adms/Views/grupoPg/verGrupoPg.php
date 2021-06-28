@@ -1,11 +1,11 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
 if (!empty($this->Dados['dados_grpg'][0])) {
     extract($this->Dados['dados_grpg'][0]);
-    ?>
+?>
     <div class="content p-1">
         <div class="list-group-item">
             <div class="d-flex">
@@ -30,7 +30,7 @@ if (!empty($this->Dados['dados_grpg'][0])) {
                         <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Ações
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                             <?php
                             if ($this->Dados['botao']['list_grpg']) {
                                 echo "<a class='dropdown-item' href='" . URLADM . "grupo-pg/listar'>Listar</a>";
@@ -45,7 +45,8 @@ if (!empty($this->Dados['dados_grpg'][0])) {
                         </div>
                     </div>
                 </div>
-            </div><hr>
+            </div>
+            <hr>
             <?php
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'];
@@ -70,17 +71,17 @@ if (!empty($this->Dados['dados_grpg'][0])) {
 
                 <dt class="col-sm-3">Alterado</dt>
                 <dd class="col-sm-9"><?php
-                    if (!empty($modified)) {
-                        echo date('d/m/Y H:i:s', strtotime($modified));
-                    }
-                    ?>
+                                        if (!empty($modified)) {
+                                            echo date('d/m/Y H:i:s', strtotime($modified));
+                                        }
+                                        ?>
                 </dd>
             </dl>
 
 
         </div>
     </div>
-    <?php
+<?php
 } else {
     $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Grupo de página não encontrado!</div>";
     $UrlDestino = URLADM . 'grupo-pg/listar';

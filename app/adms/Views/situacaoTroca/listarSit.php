@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,7 @@ if (!defined('URL')) {
             </div>
             <?php
             if ($this->Dados['botao']['cad_sit']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-sit-troca/cad-sit'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -20,20 +20,20 @@ if (!defined('URL')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
         <?php
         if (empty($this->Dados['listSit'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma situação encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -54,7 +54,7 @@ if (!defined('URL')) {
                     <?php
                     foreach ($this->Dados['listSit'] as $sit) {
                         extract($sit);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $nome; ?></td>
@@ -95,7 +95,7 @@ if (!defined('URL')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

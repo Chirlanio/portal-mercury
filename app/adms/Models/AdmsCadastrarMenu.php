@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarMenu {
+class AdmsCadastrarMenu
+{
 
     private $Resultado;
     private $Dados;
     private $UltimoMenu;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadMenu(array $Dados) {
+    public function cadMenu(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -35,7 +38,8 @@ class AdmsCadastrarMenu {
         }
     }
 
-    private function inserirMenu() {
+    private function inserirMenu()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $this->verUltimoMenu();
         $this->Dados['ordem'] = $this->UltimoMenu[0]['ordem'] + 1;
@@ -50,7 +54,8 @@ class AdmsCadastrarMenu {
         }
     }
 
-    private function verUltimoMenu() {
+    private function verUltimoMenu()
+    {
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT ordem FROM adms_menus ORDER BY ordem DESC LIMIT :limit", "limit=1");
         $this->UltimoMenu = $verMenu->getResultado();
@@ -59,7 +64,8 @@ class AdmsCadastrarMenu {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações na tabela "adms_sits" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id id_sit, nome nome_sit FROM adms_sits ORDER BY nome ASC");
@@ -69,5 +75,4 @@ class AdmsCadastrarMenu {
 
         return $this->Resultado;
     }
-
 }

@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,7 @@ if (!defined('URL')) {
             </div>
             <?php
             if ($this->Dados['botao']['cad_usuario']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-usuario/cad-usuario'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -20,7 +20,7 @@ if (!defined('URL')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
@@ -34,7 +34,8 @@ if (!defined('URL')) {
                 <input name="email" type="email" id="email" class="form-control mx-sm-3" placeholder="Digite o e-mail do usuário">
             </div>
             <input name="PesqUsuario" type="submit" class="btn btn-outline-primary" my-2 value="Pesquisar">
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];

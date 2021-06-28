@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarAjuste {
+class AdmsCadastrarAjuste
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadAjuste(array $Dados) {
+    public function cadAjuste(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -34,7 +37,8 @@ class AdmsCadastrarAjuste {
         }
     }
 
-    private function inserirAjuste() {
+    private function inserirAjuste()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadAjuste = new \App\adms\Models\helper\AdmsCreate;
         $cadAjuste->exeCreate("tb_ajuste", $this->Dados);
@@ -47,7 +51,8 @@ class AdmsCadastrarAjuste {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
 
@@ -75,5 +80,4 @@ class AdmsCadastrarAjuste {
 
         return $this->Resultado;
     }
-
 }

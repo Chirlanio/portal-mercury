@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerDelivery {
+class AdmsVerDelivery
+{
 
     private $Resultado;
     private $DadosId;
@@ -21,10 +22,11 @@ class AdmsVerDelivery {
      * <b>Ver Página:</b> Receber o id da página para buscar informações do registro no banco de dados
      * @param int $DadosId
      */
-    public function verDelivery($DadosId) {
-        
+    public function verDelivery($DadosId)
+    {
+
         $this->DadosId = (int) $DadosId;
-        
+
         $verPed = new \App\adms\Models\helper\AdmsRead();
         $verPed->fullRead("SELECT d.*, l.nome loja, f.nome func, b.nome bairro, fp.nome forma, dl.nome sit
                 FROM tb_delivery d
@@ -37,5 +39,4 @@ class AdmsVerDelivery {
         $this->Resultado = $verPed->getResultado();
         return $this->Resultado;
     }
-
 }

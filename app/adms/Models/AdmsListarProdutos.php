@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,21 +12,24 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chiralnio Silva - Grupo Meia Sola
  */
-class AdmsListarProdutos {
+class AdmsListarProdutos
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 50;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarProdutos($PageId = null) {
-        
+    public function listarProdutos($PageId = null)
+    {
+
         $this->PageId = (int) $PageId;
-        
+
         $paginacao = new \App\adms\Models\helper\AdmsPaginacaoCigam(URLADM . 'produtos/listar-produtos');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
         $paginacao->paginacao("SELECT COUNT(DISTINCT referencia) AS num_result FROM msl_dprodutos_");
@@ -40,5 +43,4 @@ class AdmsListarProdutos {
         $this->Resultado = $listarProdutos->getResultado();
         return $this->Resultado;
     }
-
 }

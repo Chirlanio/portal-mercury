@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarDelivery {
+class AdmsCadastrarDelivery
+{
 
     private $Resultado;
     private $Dados;
@@ -21,7 +22,8 @@ class AdmsCadastrarDelivery {
      * <b>Obter Resultado:</b> Retorna TRUE caso tenha cadastrado com sucesso e FALSE quando não conseguiu editar
      * @return BOOL true ou false
      */
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
@@ -29,7 +31,8 @@ class AdmsCadastrarDelivery {
      * <b>Cadastrar Página:</b> Receber array de Dados com as informações da página
      * @param ARRAY $Dados
      */
-    public function cadDelivery(array $Dados) {
+    public function cadDelivery(array $Dados)
+    {
         $this->Dados = $Dados;
 
         if ($this->Dados) {
@@ -42,7 +45,8 @@ class AdmsCadastrarDelivery {
     /**
      * <b>Cadastrar Página no banco de dados:</b> Inserir no banco de dados as informações página
      */
-    private function inserirDelivery() {
+    private function inserirDelivery()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadDelivery = new \App\adms\Models\helper\AdmsCreate;
         $cadDelivery->exeCreate("tb_delivery", $this->Dados);
@@ -58,7 +62,8 @@ class AdmsCadastrarDelivery {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações nas tabelas "adms_grps_pgs, adms_tps_pgs, adms_sits_pgs" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id id_loja, nome loja FROM tb_lojas ORDER BY id ASC");
         $registro['loja'] = $listar->getResultado();
@@ -85,5 +90,4 @@ class AdmsCadastrarDelivery {
 
         return $this->Resultado;
     }
-
 }

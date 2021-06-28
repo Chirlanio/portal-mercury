@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerFunc {
+class AdmsVerFunc
+{
 
     private $Resultado;
     private $DadosId;
@@ -21,7 +22,8 @@ class AdmsVerFunc {
      * <b>Ver Página:</b> Receber o id do funcionário para buscar informações do registro no banco de dados
      * @param int $DadosId
      */
-    public function verFunc($DadosId) {
+    public function verFunc($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verFunc = new \App\adms\Models\helper\AdmsRead();
         $verFunc->fullRead("SELECT f.*,
@@ -34,5 +36,4 @@ class AdmsVerFunc {
         $this->Resultado = $verFunc->getResultado();
         return $this->Resultado;
     }
-
 }

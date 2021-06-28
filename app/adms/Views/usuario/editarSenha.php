@@ -6,22 +6,23 @@
             </div>
             <?php
             if ($this->Dados['botao']['vis_usuario']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'ver-usuario/ver-usuario/' . $this->Dados['form']; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="">   
+        <form method="POST" action="">
             <input name="id" type="hidden" value="<?php echo $this->Dados['form']; ?>">
 
             <div class="form-group">

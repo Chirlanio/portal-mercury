@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -14,7 +14,7 @@ if (!defined('URL')) {
                 extract($menu);
                 if ($dropdown == 1) {
                     if ($cont_drop != $id_men) {
-                        if (($cont_drop_fech == 1) AND ( $cont_drop != 0)) {
+                        if (($cont_drop_fech == 1) and ($cont_drop != 0)) {
                             echo "</ul>";
                             echo "</li>";
                             $cont_drop_fech = 0;
@@ -43,6 +43,6 @@ if (!defined('URL')) {
                 $cont_drop_fech = 0;
             }
             ?>
-           
+
         </ul>
     </nav>

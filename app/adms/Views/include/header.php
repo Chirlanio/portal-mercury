@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -14,20 +14,20 @@ if (!defined('URL')) {
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle menu-header" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
-                    <?php if (isset($_SESSION['usuario_imagem']) AND (!empty($_SESSION['usuario_imagem']))) { ?>
+                    <?php if (isset($_SESSION['usuario_imagem']) and (!empty($_SESSION['usuario_imagem']))) { ?>
                         <img class="rounded-circle" src="<?php echo URLADM . 'assets/imagens/usuario/' . $_SESSION['usuario_id'] . '/' . $_SESSION['usuario_imagem']; ?>" width="50" height="50"> &nbsp;<span class="d-none d-sm-inline">
                         <?php } else { ?>
                             <img class="rounded-circle" src="<?php echo URLADM . 'assets/imagens/usuario/icone_usuario.png'; ?>" width="50" height="50"> &nbsp;<span class="d-none d-sm-inline">
-                                <?php
-                            }
-                            $nome = explode(" ", $_SESSION['usuario_nome']);
-                            if (!empty($nome[1])) {
-                                $prim_nome = $nome[0];
-                                $prim_nome .= " " . $nome[1];
-                            } else {
-                                $prim_nome = $nome[0];
-                            }
-                            echo $prim_nome;
+                            <?php
+                        }
+                        $nome = explode(" ", $_SESSION['usuario_nome']);
+                        if (!empty($nome[1])) {
+                            $prim_nome = $nome[0];
+                            $prim_nome .= " " . $nome[1];
+                        } else {
+                            $prim_nome = $nome[0];
+                        }
+                        echo $prim_nome;
                             ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -36,6 +36,6 @@ if (!defined('URL')) {
                     <a class="dropdown-item" href="<?php echo URLADM . 'login/logout'; ?>"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </div>
             </li>
-        </ul>                
+        </ul>
     </div>
 </nav>

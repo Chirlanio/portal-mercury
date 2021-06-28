@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarSitPg {
+class AdmsEditarSitPg
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verSitPg($DadosId) {
+    public function verSitPg($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verSitPg = new \App\adms\Models\helper\AdmsRead();
         $verSitPg->fullRead("SELECT * FROM adms_sits_pgs
@@ -31,7 +34,8 @@ class AdmsEditarSitPg {
         return $this->Resultado;
     }
 
-    public function altSitPg(array $Dados) {
+    public function altSitPg(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -44,7 +48,8 @@ class AdmsEditarSitPg {
         }
     }
 
-    private function updateEditSitPg() {
+    private function updateEditSitPg()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltSitPg = new \App\adms\Models\helper\AdmsUpdate();
         $upAltSitPg->exeUpdate("adms_sits_pgs", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -56,5 +61,4 @@ class AdmsEditarSitPg {
             $this->Resultado = false;
         }
     }
-
 }

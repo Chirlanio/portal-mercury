@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarBairro {
+class AdmsEditarBairro
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verBairro($DadosId) {
+    public function verBairro($DadosId)
+    {
 
         $this->DadosId = (int) $DadosId;
 
@@ -35,7 +38,8 @@ class AdmsEditarBairro {
         return $this->Resultado;
     }
 
-    public function altBairro(array $Dados) {
+    public function altBairro(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -48,7 +52,8 @@ class AdmsEditarBairro {
         }
     }
 
-    private function updateEditBairro() {
+    private function updateEditBairro()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltBairro = new \App\adms\Models\helper\AdmsUpdate();
         $upAltBairro->exeUpdate("tb_bairros", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -61,7 +66,8 @@ class AdmsEditarBairro {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id r_id, nome rota FROM tb_rotas ORDER BY id ASC");
@@ -71,5 +77,4 @@ class AdmsEditarBairro {
 
         return $this->Resultado;
     }
-
 }

@@ -7,7 +7,8 @@ namespace Core;
  *
  * @author Chirlanio Silva - Grupo Meia Sola
  */
-class ConfigController {
+class ConfigController
+{
 
     private $Url;
     private $UrlConjunto;
@@ -18,7 +19,8 @@ class ConfigController {
     private $Paginas;
     private static $Format;
 
-    public function __construct() {
+    public function __construct()
+    {
         if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
             $this->Url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
             $this->limparUrl();
@@ -46,7 +48,8 @@ class ConfigController {
         }
     }
 
-    private function limparUrl() {
+    private function limparUrl()
+    {
         //Elimina as tags
         $this->Url = strip_tags($this->Url);
         //Elimina espaços em branco
@@ -60,17 +63,20 @@ class ConfigController {
         $this->Url = strtr(utf8_decode($this->Url), utf8_decode(self::$Format['a']), self::$Format['b']);
     }
 
-    private function slugController($SlugController) {
+    private function slugController($SlugController)
+    {
         $UrlController = str_replace(" ", "", ucwords(implode(" ", explode("-", strtolower($SlugController)))));
         return $UrlController;
     }
 
-    private function slugMetodo($SlugMetodo) {
+    private function slugMetodo($SlugMetodo)
+    {
         $UrlController = str_replace(" ", "", ucwords(implode(" ", explode("-", strtolower($SlugMetodo)))));
         return lcfirst($UrlController);
     }
 
-    public function carregar() {
+    public function carregar()
+    {
 
         $listarPg = new \App\adms\Models\AdmsPaginas();
         $this->Paginas = $listarPg->listarPaginas($this->UrlController, $this->UrlMetodo);
@@ -92,7 +98,8 @@ class ConfigController {
         }
     }
 
-    private function carregarMetodo() {
+    private function carregarMetodo()
+    {
         $classeCarregar = new $this->Classe;
         if (method_exists($classeCarregar, $this->UrlMetodo)) {
             if ($this->UrlParametro !== null) {
@@ -106,5 +113,4 @@ class ConfigController {
             $this->carregar();
         }
     }
-
 }

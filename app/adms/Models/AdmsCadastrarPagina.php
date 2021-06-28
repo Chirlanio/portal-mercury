@@ -2,17 +2,18 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
 
 /**
- * Description of AdmsCadastrarNivAc
+ * Description of AdmsCadastrarPagina
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarPagina {
+class AdmsCadastrarPagina
+{
 
     private $Resultado;
     private $Dados;
@@ -27,7 +28,8 @@ class AdmsCadastrarPagina {
      * <b>Obter Resultado:</b> Retorna TRUE caso tenha cadastrado com sucesso e FALSE quando não conseguiu editar
      * @return BOOL true ou false
      */
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
@@ -35,7 +37,8 @@ class AdmsCadastrarPagina {
      * <b>Cadastrar Página:</b> Receber array de Dados com as informações da página
      * @param ARRAY $Dados
      */
-    public function cadPagina(array $Dados) {
+    public function cadPagina(array $Dados)
+    {
         $this->Dados = $Dados;
         $this->VazioIcone = $this->Dados['icone'];
         unset($this->Dados['icone']);
@@ -53,7 +56,8 @@ class AdmsCadastrarPagina {
     /**
      * <b>Cadastrar Página no banco de dados:</b> Inserir no banco de dados as informações página
      */
-    private function inserirPagina() {
+    private function inserirPagina()
+    {
         $this->Dados['icone'] = $this->VazioIcone;
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadNivAc = new \App\adms\Models\helper\AdmsCreate;
@@ -70,7 +74,8 @@ class AdmsCadastrarPagina {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações nas tabelas "adms_grps_pgs, adms_tps_pgs, adms_sits_pgs" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
         $listar->fullRead("SELECT id id_grpg, nome nome_grpg FROM adms_grps_pgs ORDER BY nome ASC");
 
@@ -92,7 +97,8 @@ class AdmsCadastrarPagina {
      * Liberado a permissão de acesso quando for o nível de acesso super administrador, 
      * para outros níveis de acesso não liberar a permissão de acesso a página
      */
-    private function inserirPerNivAc() {
+    private function inserirPerNivAc()
+    {
         $this->listarNivAc();
         foreach ($this->ListaNivAc as $nivAc) {
             extract($nivAc);
@@ -119,7 +125,8 @@ class AdmsCadastrarPagina {
     /**
      * <b>Listar Nível de acesso:</b> Pesquisar os níves de acesso para liberar a permissão de acessar a página que está sendo cadastrada 
      */
-    private function listarNivAc() {
+    private function listarNivAc()
+    {
         $listarNivAc = new \App\adms\Models\helper\AdmsRead();
         $listarNivAc->fullRead("SELECT id FROM adms_niveis_acessos");
         $this->ListaNivAc = $listarNivAc->getResultado();
@@ -128,7 +135,8 @@ class AdmsCadastrarPagina {
     /**
      * <b>Pesquisar última ordem:</b> PPesquisar o maior número da ordem na tabela "adms_nivacs_pgs" para o nível de acesso em execução
      */
-    private function pesqUltimaOrdem() {
+    private function pesqUltimaOrdem()
+    {
         $listarNivAcPg = new \App\adms\Models\helper\AdmsRead();
         $listarNivAcPg->fullRead("SELECT ordem, adms_niveis_acesso_id
                 FROM adms_nivacs_pgs 
@@ -138,5 +146,4 @@ class AdmsCadastrarPagina {
             $this->ListaNivAcPg[0]['ordem'] = 0;
         }
     }
-
 }

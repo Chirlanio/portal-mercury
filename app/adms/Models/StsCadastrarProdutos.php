@@ -2,7 +2,7 @@
 
 namespace Sts\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class StsCadastrarProdutos {
+class StsCadastrarProdutos
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadProduto(array $Dados) {
+    public function cadProduto(array $Dados)
+    {
 
         $this->Dados = $Dados;
         $this->validarDados();
@@ -30,7 +33,8 @@ class StsCadastrarProdutos {
         }
     }
 
-    private function validarDados() {
+    private function validarDados()
+    {
         $this->Dados = array_map('strip_tags', $this->Dados);
         $this->Dados = array_map('trim', $this->Dados);
         if (in_array('', $this->Dados)) {
@@ -41,7 +45,8 @@ class StsCadastrarProdutos {
         }
     }
 
-    private function inserir() {
+    private function inserir()
+    {
         $listarCad = new \Sts\Models\helper\StsCreate();
         $listarCad->exeCreate('tb_cad_produtos', $this->Dados);
         if ($listarCad->getResultado()) {
@@ -52,5 +57,4 @@ class StsCadastrarProdutos {
             $this->Resultado = false;
         }
     }
-
 }

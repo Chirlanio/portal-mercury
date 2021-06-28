@@ -4,7 +4,7 @@ namespace App\adms\Models\helper;
 
 use PDO;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -14,7 +14,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsRead extends AdmsConn {
+class AdmsRead extends AdmsConn
+{
 
     private $Select;
     private $Values;
@@ -22,11 +23,13 @@ class AdmsRead extends AdmsConn {
     private $Query;
     private $Conn;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function exeRead($Tabela, $Termos = null, $ParseString = null) {
+    public function exeRead($Tabela, $Termos = null, $ParseString = null)
+    {
         if (!empty($ParseString)) {
             parse_str($ParseString, $this->Values);
         }
@@ -35,7 +38,8 @@ class AdmsRead extends AdmsConn {
         $this->exeInstrucao();
     }
 
-    public function fullRead($Query, $ParseString = null) {
+    public function fullRead($Query, $ParseString = null)
+    {
         $this->Select = (string) $Query;
         if (!empty($ParseString)) {
             parse_str($ParseString, $this->Values);
@@ -43,7 +47,8 @@ class AdmsRead extends AdmsConn {
         $this->exeInstrucao();
     }
 
-    private function exeInstrucao() {
+    private function exeInstrucao()
+    {
         $this->conexao();
         try {
             $this->getIntrucao();
@@ -54,13 +59,15 @@ class AdmsRead extends AdmsConn {
         }
     }
 
-    private function conexao() {
+    private function conexao()
+    {
         $this->Conn = parent::getConn();
         $this->Query = $this->Conn->prepare($this->Select);
         $this->Query->setFetchMode(PDO::FETCH_ASSOC);
     }
 
-    private function getIntrucao() {
+    private function getIntrucao()
+    {
         if ($this->Values) {
             foreach ($this->Values as $Link => $Valor) {
                 if ($Link == 'limit' || $Link == 'offset') {
@@ -70,5 +77,4 @@ class AdmsRead extends AdmsConn {
             }
         }
     }
-
 }

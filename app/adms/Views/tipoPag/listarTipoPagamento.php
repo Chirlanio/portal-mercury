@@ -15,19 +15,19 @@ if (!defined('URLADM')) {
                 if ($this->Dados['botao']['cad_pag']) {
                     echo "<a href='" . URLADM . "cadastrar-tipo-pagamento/cad-tipo' class='btn btn-outline-success btn-sm'>Cadastrar</a> ";
                 }
-                ?>                
+                ?>
             </div>
         </div>
         <?php
         if (empty($this->Dados['listTipo'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum Tipo de Pagamento encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -47,7 +47,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listTipo'] as $c) {
                         extract($c);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $nome; ?></td>
@@ -85,7 +85,7 @@ if (!defined('URLADM')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chiralnio Silva - Grupo Meia Sola
  */
-class AdmsPaginacaoCigam {
+class AdmsPaginacaoCigam
+{
 
     private $Link;
     private $Pagina;
@@ -26,26 +27,31 @@ class AdmsPaginacaoCigam {
     private $MaxLinks = 2;
     private $Var;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    function getOffset() {
+    function getOffset()
+    {
         return $this->Offset;
     }
 
-    function __construct($Link, $Var = null) {
+    function __construct($Link, $Var = null)
+    {
         $this->Link = $Link;
         $this->Var = $Var;
     }
 
-    public function condicao($Pagina, $LimiteResultado) {
+    public function condicao($Pagina, $LimiteResultado)
+    {
         $this->Pagina = (int) $Pagina ? $Pagina : 1;
         $this->LimiteResultado = (int) $LimiteResultado;
         $this->Offset = ($this->Pagina * $this->LimiteResultado) - $this->LimiteResultado;
     }
 
-    public function paginacao($Query, $ParseString = null) {
+    public function paginacao($Query, $ParseString = null)
+    {
         $this->Query = (string) $Query;
         $this->ParseString = (string) $ParseString;
         $contar = new \App\adms\Models\helper\AdmsReadCigam();
@@ -58,7 +64,8 @@ class AdmsPaginacaoCigam {
         }
     }
 
-    private function instrucaoPaginacao() {
+    private function instrucaoPaginacao()
+    {
         $this->TotalPaginas = ceil($this->ResultBd[0]['num_result'] / $this->LimiteResultado);
         if ($this->TotalPaginas >= $this->Pagina) {
             $this->layoutPaginacao();
@@ -67,7 +74,8 @@ class AdmsPaginacaoCigam {
         }
     }
 
-    private function layoutPaginacao() {
+    private function layoutPaginacao()
+    {
         $this->Resultado = "<nav aria-label='paginacao'>";
         $this->Resultado .= "<ul class='pagination pagination-sm justify-content-center'>";
         $this->Resultado .= "<li class='page-item'>";
@@ -93,5 +101,4 @@ class AdmsPaginacaoCigam {
         $this->Resultado .= "</ul>";
         $this->Resultado .= "</nav>";
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerAjuste {
+class AdmsVerAjuste
+{
 
     private $Resultado;
     private $DadosId;
@@ -21,7 +22,8 @@ class AdmsVerAjuste {
      * <b>Ver Página:</b> Receber o id da página para buscar informações do registro no banco de dados
      * @param int $DadosId
      */
-    public function verAjuste($DadosId) {
+    public function verAjuste($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verAjuste = new \App\adms\Models\helper\AdmsRead();
         $verAjuste->fullRead("SELECT aj.*, lj.nome nome_loja, st.nome status, tam.nome tam, fs.usuario usuario, f.nome func
@@ -35,5 +37,4 @@ class AdmsVerAjuste {
         $this->Resultado = $verAjuste->getResultado();
         return $this->Resultado;
     }
-
 }

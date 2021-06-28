@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerGrupoPg {
+class AdmsVerGrupoPg
+{
 
     private $Resultado;
     private $DadosId;
 
-    public function verGrupoPg($DadosId) {
+    public function verGrupoPg($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verGrupoPg = new \App\adms\Models\helper\AdmsRead();
         $verGrupoPg->fullRead("SELECT * FROM adms_grps_pgs
@@ -25,5 +27,4 @@ class AdmsVerGrupoPg {
         $this->Resultado = $verGrupoPg->getResultado();
         return $this->Resultado;
     }
-
 }

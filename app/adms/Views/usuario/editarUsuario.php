@@ -16,23 +16,25 @@ if (isset($this->Dados['form'][0])) {
 
             <?php
             if ($this->Dados['botao']['vis_usuario']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'ver-usuario/ver-usuario/' . $valorForm['id']; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
-            <input name="id" type="hidden" value="<?php
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input name="id" type="hidden" value="
+            <?php
             if (isset($valorForm['id'])) {
                 echo $valorForm['id'];
             }
@@ -40,7 +42,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="nome" type="text" class="form-control" placeholder="Digite o nome completo" value="<?php
+                    <input name="nome" type="text" class="form-control" placeholder="Digite o nome completo" value="
+                    <?php
                     if (isset($valorForm['nome'])) {
                         echo $valorForm['nome'];
                     }
@@ -48,7 +51,8 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Apelido</label>
-                    <input name="apelido" type="text" class="form-control" placeholder="Como gostaria de ser chamado" value="<?php
+                    <input name="apelido" type="text" class="form-control" placeholder="Como gostaria de ser chamado" value="
+                    <?php
                     if (isset($valorForm['apelido'])) {
                         echo $valorForm['apelido'];
                     }
@@ -58,7 +62,8 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> E-mail</label>
-                    <input name="email" type="text" class="form-control" placeholder="Seu melhor e-mail" value="<?php
+                    <input name="email" type="text" class="form-control" placeholder="Seu melhor e-mail" value="
+                    <?php
                     if (isset($valorForm['email'])) {
                         echo $valorForm['email'];
                     }
@@ -66,12 +71,14 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Usuário</label>
-                    <input name="usuario" type="text" class="form-control" id="nome" placeholder="Digite o usuário" value="<?php
+                    <input name="usuario" type="text" class="form-control" id="nome" placeholder="Digite o usuário" value="
+                    <?php
                     if (isset($valorForm['usuario'])) {
                         echo $valorForm['usuario'];
                     }
                     ?>">
-                </div><div class="form-group col-md-4">
+                </div>
+                <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Loja</label>
                     <select name="loja_id" id="loja_id" class="form-control">
                         <option value="">Selecione</option>
@@ -125,7 +132,8 @@ if (isset($this->Dados['form'][0])) {
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input name="imagem_antiga" type="hidden" value="<?php
+                    <input name="imagem_antiga" type="hidden" value="
+                    <?php
                     if (isset($valorForm['imagem_antiga'])) {
                         echo $valorForm['imagem_antiga'];
                     } elseif (isset($valorForm['imagem'])) {
@@ -138,9 +146,9 @@ if (isset($this->Dados['form'][0])) {
                 </div>
                 <div class="form-group col-md-6">
                     <?php
-                    if (isset($valorForm['imagem']) AND ! empty($valorForm['imagem'])) {
+                    if (isset($valorForm['imagem']) and !empty($valorForm['imagem'])) {
                         $imagem_antiga = URLADM . 'assets/imagens/usuario/' . $valorForm['id'] . '/' . $valorForm['imagem'];
-                    } elseif (isset($valorForm['imagem_antiga']) AND ! empty($valorForm['imagem_antiga'])) {
+                    } elseif (isset($valorForm['imagem_antiga']) and !empty($valorForm['imagem_antiga'])) {
                         $imagem_antiga = URLADM . 'assets/imagens/usuario/' . $valorForm['id'] . '/' . $valorForm['imagem_antiga'];
                     } else {
                         $imagem_antiga = URLADM . 'assets/imagens/usuario/preview_img.png';

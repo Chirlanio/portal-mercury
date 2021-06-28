@@ -15,7 +15,7 @@ if (isset($this->Dados['select'])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_transf']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-transf/cad-transf'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -23,7 +23,7 @@ if (isset($this->Dados['select'])) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
@@ -95,17 +95,18 @@ if (isset($this->Dados['select'])) {
                     <input name="PesqTransf" type="submit" class="btn btn-outline-primary mx-sm-2" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['list_transf'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum Transferência encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -131,7 +132,7 @@ if (isset($this->Dados['select'])) {
                     <?php
                     foreach ($this->Dados['list_transf'] as $transf) {
                         extract($transf);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle"><?php echo $loja_ori; ?></td>
@@ -175,56 +176,57 @@ if (isset($this->Dados['select'])) {
                                 </div>
                             </td>
                         </tr>
-                    <span class="enderececad" data-enderecocad="<?php echo URLADM . 'editar-transf-modal/edit-transf/'; ?>"></span>
-                    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editarModalLabel">Editar Transferência</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <span id="msgEdit"></span>
-                                    <form id="edit_transf" method="POST" enctype="multipart/form-data">
-                                        <input name="id" type="hidden" id="id"/>
-                                        <div class="form-group">
-                                            <label for="status" class="col-form-label"><span class="text-danger">*</span> Situação</label>
-                                            <select name="status" id="status" class="form-control">
-                                                <option value="">Selecione...</option>
-                                                <?php
-                                                foreach ($this->Dados['select']['status_id'] as $s) {
-                                                    extract($s);
-                                                    if ($valorForm['status_id'] == $sit_id) {
-                                                        echo "<option value='$sit_id' selected>$sit</option>";
-                                                    } else {
-                                                        echo "<option value='$sit_id'>$sit</option>";
+                        <span class="enderececad" data-enderecocad="<?php echo URLADM . 'editar-transf-modal/edit-transf/'; ?>"></span>
+                        <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editarModalLabel">Editar Transferência</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <span id="msgEdit"></span>
+                                        <form id="edit_transf" method="POST" enctype="multipart/form-data">
+                                            <input name="id" type="hidden" id="id" />
+                                            <div class="form-group">
+                                                <label for="status" class="col-form-label"><span class="text-danger">*</span> Situação</label>
+                                                <select name="status" id="status" class="form-control">
+                                                    <option value="">Selecione...</option>
+                                                    <?php
+                                                    foreach ($this->Dados['select']['status_id'] as $s) {
+                                                        extract($s);
+                                                        if ($valorForm['status_id'] == $sit_id) {
+                                                            echo "<option value='$sit_id' selected>$sit</option>";
+                                                        } else {
+                                                            echo "<option value='$sit_id'>$sit</option>";
+                                                        }
                                                     }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recebido" class="col-form-label"><span class="text-danger">*</span> Recebido Por:</label>
+                                                <input name="recebido" type="text" class="form-control recebido" id="recebido" value="
+                                                <?php
+                                                if (isset($valorForm['recebido'])) {
+                                                    echo $valorForm['recebido'];
                                                 }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="recebido" class="col-form-label"><span class="text-danger">*</span> Recebido Por:</label>
-                                            <input name="recebido" type="text" class="form-control recebido" id="recebido" value="<?php
-                                            if (isset($valorForm['recebido'])) {
-                                                echo $valorForm['recebido'];
-                                            }
-                                            ?>">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                            <input name="EditTransf" id="EditTransf" type="submit" class="btn btn-warning" value="Salvar" />
-                                        </div>
-                                    </form>
+                                                ?>">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                <input name="EditTransf" id="EditTransf" type="submit" class="btn btn-warning" value="Salvar" />
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php
-                }
-                ?>
+                    }
+                    ?>
                 </tbody>
             </table>
 

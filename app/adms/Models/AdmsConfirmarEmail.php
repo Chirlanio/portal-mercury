@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsConfirmarEmail {
+class AdmsConfirmarEmail
+{
 
     private $DadosChave;
     private $DadosUsuario;
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function confirmarEmail($Chave) {
+    public function confirmarEmail($Chave)
+    {
         $this->DadosChave = (string) $Chave;
         $validaChave = new \App\adms\Models\helper\AdmsRead();
         $validaChave->fullRead("SELECT id FROM adms_usuarios WHERE conf_email =:conf_email LIMIT :limit", "conf_email={$this->DadosChave}&limit=1");
@@ -36,7 +39,8 @@ class AdmsConfirmarEmail {
         }
     }
 
-    private function updateConfEmail() {
+    private function updateConfEmail()
+    {
         $this->Dados['conf_email'] = NULL;
         $this->Dados['adms_sits_usuario_id'] = 1;
         $this->Dados['modified'] = date("Y-m-d H:i:s");
@@ -49,5 +53,4 @@ class AdmsConfirmarEmail {
             $this->Resultado = false;
         }
     }
-
 }

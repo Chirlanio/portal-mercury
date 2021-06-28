@@ -6,45 +6,45 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitbad915300a7b69d9988f6d28d4ef44ad
 {
-    public static $prefixLengthsPsr4 = array (
-        'S' => 
-        array (
+    public static $prefixLengthsPsr4 = array(
+        'S' =>
+        array(
             'Sts\\' => 4,
         ),
-        'P' => 
-        array (
+        'P' =>
+        array(
             'PHPMailer\\PHPMailer\\' => 20,
         ),
-        'C' => 
-        array (
+        'C' =>
+        array(
             'Core\\' => 5,
         ),
-        'A' => 
-        array (
+        'A' =>
+        array(
             'App\\' => 4,
         ),
     );
 
-    public static $prefixDirsPsr4 = array (
-        'Sts\\' => 
-        array (
+    public static $prefixDirsPsr4 = array(
+        'Sts\\' =>
+        array(
             0 => __DIR__ . '/../..' . '/app/sts',
         ),
-        'PHPMailer\\PHPMailer\\' => 
-        array (
+        'PHPMailer\\PHPMailer\\' =>
+        array(
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
-        'Core\\' => 
-        array (
+        'Core\\' =>
+        array(
             0 => __DIR__ . '/../..' . '/core',
         ),
-        'App\\' => 
-        array (
+        'App\\' =>
+        array(
             0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
-    public static $classMap = array (
+    public static $classMap = array(
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
@@ -54,7 +54,6 @@ class ComposerStaticInitbad915300a7b69d9988f6d28d4ef44ad
             $loader->prefixLengthsPsr4 = ComposerStaticInitbad915300a7b69d9988f6d28d4ef44ad::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitbad915300a7b69d9988f6d28d4ef44ad::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitbad915300a7b69d9988f6d28d4ef44ad::$classMap;
-
         }, null, ClassLoader::class);
     }
 }

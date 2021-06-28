@@ -7,17 +7,20 @@ namespace App\cpadms\core;
  *
  * @author Chirlanio Silva - Grupo Meia Sola
  */
-class ConfigView {
+class ConfigView
+{
 
     private $Nome;
     private $Dados;
 
-    public function __construct($Nome, array $Dados = null) {
+    public function __construct($Nome, array $Dados = null)
+    {
         $this->Nome = (string) $Nome;
         $this->Dados = $Dados;
     }
 
-    public function renderizar() {
+    public function renderizar()
+    {
         include 'app/adms/Views/include/cabecalho_adm.php';
         include 'app/adms/Views/include/header.php';
         include 'app/adms/Views/include/sidebar.php';
@@ -29,12 +32,12 @@ class ConfigView {
         include 'app/cpadms/Views/include/rodape_cpadm.php';
     }
 
-    public function renderizarListar() {
+    public function renderizarListar()
+    {
         if (file_exists('app/' . $this->Nome . '.php')) {
             include 'app/' . $this->Nome . '.php';
         } else {
             echo "Erro ao carregar a Página: {$this->Nome}";
         }
     }
-
 }

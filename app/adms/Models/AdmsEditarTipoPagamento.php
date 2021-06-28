@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarTipoPagamento {
+class AdmsEditarTipoPagamento
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verTipo($DadosId) {
+    public function verTipo($DadosId)
+    {
 
         $this->DadosId = (int) $DadosId;
 
@@ -34,7 +37,8 @@ class AdmsEditarTipoPagamento {
         return $this->Resultado;
     }
 
-    public function altTipo(array $Dados) {
+    public function altTipo(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -47,7 +51,8 @@ class AdmsEditarTipoPagamento {
         }
     }
 
-    private function updateEditTipoPagamento() {
+    private function updateEditTipoPagamento()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltTipo = new \App\adms\Models\helper\AdmsUpdate();
         $upAltTipo->exeUpdate("tb_forma_pag", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -59,5 +64,4 @@ class AdmsEditarTipoPagamento {
             $this->Resultado = false;
         }
     }
-
 }

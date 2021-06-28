@@ -1,11 +1,11 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
 if (!empty($this->Dados['dados_ped'][0])) {
     extract($this->Dados['dados_ped'][0]);
-    ?>
+?>
     <div class="content p-1">
         <div class="list-group-item">
             <div class="d-flex">
@@ -30,7 +30,7 @@ if (!empty($this->Dados['dados_ped'][0])) {
                         <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Ações
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                             <?php
                             if ($this->Dados['botao']['list_ped']) {
                                 echo "<a class='dropdown-item' href='" . URLADM . "delivery/listar'>Listar</a>";
@@ -45,7 +45,8 @@ if (!empty($this->Dados['dados_ped'][0])) {
                         </div>
                     </div>
                 </div>
-            </div><hr class="d-print-none">
+            </div>
+            <hr class="d-print-none">
             <?php
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'] . "<div class='alert alert-" . ($status_id == 5 ? 'success' : 'warning') . "'>Situação do Pedido: <span>$sit</span></div>";
@@ -88,12 +89,12 @@ if (!empty($this->Dados['dados_ped'][0])) {
                         <td colspan="2" class="text-center<?php echo ($presente == 1 ? ' d-print-none' : ''); ?>"><?php echo 'R$ ' . $valor_venda; ?></td>
                         <th colspan="1" scope="row">Troca: </th>
                         <td colspan="9"><?php
-                            if ($troca == 1) {
-                                echo "Sim";
-                            } else {
-                                echo "Não";
-                            }
-                            ?></td>
+                                        if ($troca == 1) {
+                                            echo "Sim";
+                                        } else {
+                                            echo "Não";
+                                        }
+                                        ?></td>
                     </tr>
                     <tr>
                         <th scope="row">Tipo de Pagamento:</th>
@@ -104,12 +105,12 @@ if (!empty($this->Dados['dados_ped'][0])) {
                     <tr>
                         <th scope="row">Maquineta:</th>
                         <td colspan="12"><?php
-                            if ($maq == 1) {
-                                echo "Sim";
-                            } else {
-                                echo "Não";
-                            }
-                            ?></td>
+                                            if ($maq == 1) {
+                                                echo "Sim";
+                                            } else {
+                                                echo "Não";
+                                            }
+                                            ?></td>
                     </tr>
                     <tr>
                         <th scope="row">Observações:</th>
@@ -122,7 +123,7 @@ if (!empty($this->Dados['dados_ped'][0])) {
             </table>
         </div>
     </div>
-    <?php
+<?php
 } else {
     $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Entrega não encontrada!</div>";
     $UrlDestino = URLADM . 'delivery/listar';

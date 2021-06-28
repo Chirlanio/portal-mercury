@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEsqueceuSenha {
+class AdmsEsqueceuSenha
+{
 
     private $Resultado;
     private $DadosUsuario;
@@ -20,11 +21,13 @@ class AdmsEsqueceuSenha {
     private $DadosEmail;
     private $DadosUpdate;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function esqueceuSenha(array $Dados) {
+    public function esqueceuSenha(array $Dados)
+    {
         $this->Dados = $Dados;
         $this->validarDados();
         if ($this->Resultado) {
@@ -40,7 +43,8 @@ class AdmsEsqueceuSenha {
         }
     }
 
-    private function validarDados() {
+    private function validarDados()
+    {
         $this->Dados = array_map('strip_tags', $this->Dados);
         $this->Dados = array_map('trim', $this->Dados);
         if (in_array('', $this->Dados)) {
@@ -57,7 +61,8 @@ class AdmsEsqueceuSenha {
         }
     }
 
-    private function valChaveRecSenha() {
+    private function valChaveRecSenha()
+    {
         if (!empty($this->DadosUsuario[0]['recuperar_senha'])) {
             $this->dadosEmail();
         } else {
@@ -76,7 +81,8 @@ class AdmsEsqueceuSenha {
         }
     }
 
-    private function dadosEmail() {
+    private function dadosEmail()
+    {
         $nome = explode(" ", $this->DadosUsuario[0]['nome']);
         $prim_nome = $nome[0];
         $this->DadosEmail['dest_nome'] = $prim_nome;
@@ -104,5 +110,4 @@ class AdmsEsqueceuSenha {
             $this->Resultado = false;
         }
     }
-
 }

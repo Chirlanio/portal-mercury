@@ -13,21 +13,24 @@
         ?>
         <div class="form-group">
             <label>Nome</label>
-            <input name="nome" type="text" class="form-control" placeholder="Digite o nome completo" value="<?php if (isset($valorForm['nome'])) {
-            echo $valorForm['nome'];
-        } ?>"> 
+            <input name="nome" type="text" class="form-control" placeholder="Digite o nome completo" value="
+            <?php if (isset($valorForm['nome'])) {
+                echo $valorForm['nome'];
+            } ?>">
         </div>
         <div class="form-group">
             <label>E-mail</label>
-            <input name="email" type="text" class="form-control" placeholder="Digite o seu melhor e-mail" value="<?php if (isset($valorForm['email'])) {
-            echo $valorForm['email'];
-        } ?>"> 
+            <input name="email" type="text" class="form-control" placeholder="Digite o seu melhor e-mail" value="
+            <?php if (isset($valorForm['email'])) {
+                echo $valorForm['email'];
+            } ?>">
         </div>
         <div class="form-group">
             <label>Usuário</label>
-            <input name="usuario" type="text" class="form-control" placeholder="Digite o usuário" value="<?php if (isset($valorForm['usuario'])) {
-            echo $valorForm['usuario'];
-        } ?>"> 
+            <input name="usuario" type="text" class="form-control" placeholder="Digite o usuário" value="
+            <?php if (isset($valorForm['usuario'])) {
+                echo $valorForm['usuario'];
+            } ?>">
         </div>
         <div class="form-group">
             <label>Senha</label>

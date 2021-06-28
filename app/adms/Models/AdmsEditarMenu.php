@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarMenu {
+class AdmsEditarMenu
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verMenu($DadosId) {
+    public function verMenu($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT * FROM adms_menus
@@ -31,7 +34,8 @@ class AdmsEditarMenu {
         return $this->Resultado;
     }
 
-    public function altMenu(array $Dados) {
+    public function altMenu(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -44,7 +48,8 @@ class AdmsEditarMenu {
         }
     }
 
-    private function updateEditMenu() {
+    private function updateEditMenu()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltNivAc = new \App\adms\Models\helper\AdmsUpdate();
         $upAltNivAc->exeUpdate("adms_menus", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -60,7 +65,8 @@ class AdmsEditarMenu {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações na tabela "adms_sits" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id id_sit, nome nome_sit FROM adms_sits ORDER BY nome ASC");
@@ -70,5 +76,4 @@ class AdmsEditarMenu {
 
         return $this->Resultado;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarUsuario {
+class AdmsCadastrarUsuario
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
     private $Foto;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verUsuario($DadosId) {
+    public function verUsuario($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verPerfil = new \App\adms\Models\helper\AdmsRead();
         $verPerfil->fullRead("SELECT * FROM adms_usuarios WHERE id =:id LIMIT :limit", "id=" . $this->DadosId . "&limit=1");
@@ -31,7 +34,8 @@ class AdmsCadastrarUsuario {
         return $this->Resultado;
     }
 
-    public function cadUsuario(array $Dados) {
+    public function cadUsuario(array $Dados)
+    {
         $this->Dados = $Dados;
         //var_dump($this->Dados);
         $this->Foto = $this->Dados['imagem_nova'];
@@ -47,7 +51,8 @@ class AdmsCadastrarUsuario {
         }
     }
 
-    private function valCampos() {
+    private function valCampos()
+    {
         $valEmail = new \App\adms\Models\helper\AdmsEmail();
         $valEmail->valEmail($this->Dados['email']);
 
@@ -60,14 +65,15 @@ class AdmsCadastrarUsuario {
         $valSenha = new \App\adms\Models\helper\AdmsValSenha();
         $valSenha->valSenha($this->Dados['senha']);
 
-        if (($valSenha->getResultado()) AND ( $valUsuario->getResultado()) AND ( $valEmailUnico->getResultado()) AND ( $valEmail->getResultado())) {
+        if (($valSenha->getResultado()) and ($valUsuario->getResultado()) and ($valEmailUnico->getResultado()) and ($valEmail->getResultado())) {
             $this->inserirUsuario();
         } else {
             $this->Resultado = false;
         }
     }
 
-    private function inserirUsuario() {
+    private function inserirUsuario()
+    {
         $this->Dados['senha'] = password_hash($this->Dados['senha'], PASSWORD_DEFAULT);
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $slugImg = new \App\adms\Models\helper\AdmsSlug();
@@ -89,7 +95,8 @@ class AdmsCadastrarUsuario {
         }
     }
 
-    private function valFoto() {
+    private function valFoto()
+    {
         $uploadImg = new \App\adms\Models\helper\AdmsUploadImgRed();
         $uploadImg->uploadImagem($this->Foto, 'assets/imagens/usuario/' . $this->Dados['id'] . '/', $this->Dados['imagem'], 150, 150);
         if ($uploadImg->getResultado()) {
@@ -101,9 +108,10 @@ class AdmsCadastrarUsuario {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
-        
+
         $listar->fullRead("SELECT id id_nivac, nome nome_nivac FROM adms_niveis_acessos WHERE ordem >=:ordem ORDER BY nome ASC", "ordem=" . $_SESSION['ordem_nivac']);
         $registro['nivac'] = $listar->getResultado();
 
@@ -117,5 +125,4 @@ class AdmsCadastrarUsuario {
 
         return $this->Resultado;
     }
-
 }

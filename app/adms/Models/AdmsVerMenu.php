@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerMenu {
+class AdmsVerMenu
+{
 
     private $Resultado;
     private $DadosId;
 
-    public function verMenu($DadosId) {
+    public function verMenu($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT men.*,
@@ -30,5 +32,4 @@ class AdmsVerMenu {
         $this->Resultado = $verMenu->getResultado();
         return $this->Resultado;
     }
-
 }

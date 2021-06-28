@@ -1,11 +1,11 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
 if (!empty($this->Dados['dados_pagina'][0])) {
     extract($this->Dados['dados_pagina'][0]);
-    ?>
+?>
     <div class="content p-1">
         <div class="list-group-item">
             <div class="d-flex">
@@ -30,7 +30,7 @@ if (!empty($this->Dados['dados_pagina'][0])) {
                         <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Ações
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                             <?php
                             if ($this->Dados['botao']['list_pagina']) {
                                 echo "<a class='dropdown-item' href='" . URLADM . "pagina/listar'>Listar</a>";
@@ -45,7 +45,8 @@ if (!empty($this->Dados['dados_pagina'][0])) {
                         </div>
                     </div>
                 </div>
-            </div><hr>
+            </div>
+            <hr>
             <?php
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'];
@@ -58,30 +59,30 @@ if (!empty($this->Dados['dados_pagina'][0])) {
                 <dd class="col-sm-9"><?php echo $id; ?></dd>
 
                 <dt class="col-sm-3">Nome da Página</dt>
-                <dd class="col-sm-9"><?php echo $nome_pagina; ?></dd>                
+                <dd class="col-sm-9"><?php echo $nome_pagina; ?></dd>
 
                 <dt class="col-sm-3">Classe</dt>
-                <dd class="col-sm-9"><?php echo $controller; ?></dd>              
+                <dd class="col-sm-9"><?php echo $controller; ?></dd>
 
                 <dt class="col-sm-3">Método</dt>
-                <dd class="col-sm-9"><?php echo $metodo; ?></dd>              
+                <dd class="col-sm-9"><?php echo $metodo; ?></dd>
 
                 <dt class="col-sm-3">Classe no Menu</dt>
-                <dd class="col-sm-9"><?php echo $menu_controller; ?></dd>              
+                <dd class="col-sm-9"><?php echo $menu_controller; ?></dd>
 
                 <dt class="col-sm-3">Metodo no Menu</dt>
-                <dd class="col-sm-9"><?php echo $menu_metodo; ?></dd>              
+                <dd class="col-sm-9"><?php echo $menu_metodo; ?></dd>
 
                 <dt class="col-sm-3">Observação</dt>
-                <dd class="col-sm-9"><?php echo $obs; ?></dd>              
+                <dd class="col-sm-9"><?php echo $obs; ?></dd>
 
                 <dt class="col-sm-3">Ícone</dt>
                 <dd class="col-sm-9">
                     <?php echo "<i class='" . $icone . "'></i> - " . $icone; ?>
-                </dd>              
+                </dd>
 
                 <dt class="col-sm-3">Grupo da Página</dt>
-                <dd class="col-sm-9"><?php echo $nome_grpg; ?></dd>              
+                <dd class="col-sm-9"><?php echo $nome_grpg; ?></dd>
 
                 <dt class="col-sm-3">Tipo da Página</dt>
                 <dd class="col-sm-9"><?php echo $tipo_tpgs . " - " . $nome_tpgs; ?></dd>
@@ -95,7 +96,8 @@ if (!empty($this->Dados['dados_pagina'][0])) {
                 <dd class="col-sm-9"><?php echo date('d/m/Y H:i:s', strtotime($created)); ?></dd>
 
                 <dt class="col-sm-3">Alterado</dt>
-                <dd class="col-sm-9"><?php
+                <dd class="col-sm-9">
+                    <?php
                     if (!empty($modified)) {
                         echo date('d/m/Y H:i:s', strtotime($modified));
                     }
@@ -103,10 +105,9 @@ if (!empty($this->Dados['dados_pagina'][0])) {
                 </dd>
             </dl>
 
-
         </div>
     </div>
-    <?php
+<?php
 } else {
     $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Página não encontrada!</div>";
     $UrlDestino = URLADM . 'pagina/listar';

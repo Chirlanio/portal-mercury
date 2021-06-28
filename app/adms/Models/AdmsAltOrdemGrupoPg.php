@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsAltOrdemGrupoPg {
+class AdmsAltOrdemGrupoPg
+{
 
     private $DadosId;
     private $Resultado;
@@ -20,11 +21,13 @@ class AdmsAltOrdemGrupoPg {
     private $DadosGrupoPg;
     private $DadosGrupoPgInferior;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function altOrdemGrupoPg($DadosId = null) {
+    public function altOrdemGrupoPg($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verGrupoPg($this->DadosId);
         if ($this->DadosGrupoPg) {
@@ -38,21 +41,24 @@ class AdmsAltOrdemGrupoPg {
         }
     }
 
-    private function verGrupoPg() {
+    private function verGrupoPg()
+    {
         $verGrupoPg = new \App\adms\Models\helper\AdmsRead();
         $verGrupoPg->fullRead("SELECT * FROM adms_grps_pgs
                 WHERE id =:id LIMIT :limit", "id=" . $this->DadosId . "&limit=1");
         $this->DadosGrupoPg = $verGrupoPg->getResultado();
     }
 
-    private function verfGrupoPgInferior() {
+    private function verfGrupoPgInferior()
+    {
         $ordem_super = $this->DadosGrupoPg[0]['ordem'] - 1;
         $verGrupoPg = new \App\adms\Models\helper\AdmsRead();
         $verGrupoPg->fullRead("SELECT id, ordem FROM adms_grps_pgs WHERE ordem =:ordem", "ordem={$ordem_super}");
         $this->DadosGrupoPgInferior = $verGrupoPg->getResultado();
     }
 
-    private function exeAltOrdemGrupoPg() {
+    private function exeAltOrdemGrupoPg()
+    {
         $this->Dados['ordem'] = $this->DadosGrupoPg[0]['ordem'];
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upMvBaixo = new \App\adms\Models\helper\AdmsUpdate();
@@ -70,5 +76,4 @@ class AdmsAltOrdemGrupoPg {
             $this->Resultado = false;
         }
     }
-
 }

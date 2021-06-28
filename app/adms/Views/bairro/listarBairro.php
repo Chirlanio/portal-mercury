@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -15,20 +15,20 @@ if (!defined('URL')) {
                 if ($this->Dados['botao']['cad_bairro']) {
                     echo "<a href='" . URLADM . "cadastrar-bairro/cad-bairro' class='btn btn-outline-success btn-sm'>Cadastrar</a> ";
                 }
-                ?>                
+                ?>
             </div>
 
         </div>
         <?php
         if (empty($this->Dados['listBairro'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum Bairro encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -49,7 +49,7 @@ if (!defined('URL')) {
                     <?php
                     foreach ($this->Dados['listBairro'] as $c) {
                         extract($c);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id_bai; ?></th>
                             <td class="align-middle"><?php echo $bairro; ?></td>
@@ -88,7 +88,7 @@ if (!defined('URL')) {
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>

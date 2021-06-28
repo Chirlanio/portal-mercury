@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,15 +12,18 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsMenu {
+class AdmsMenu
+{
 
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function itemMenu() {
+    public function itemMenu()
+    {
         $listItemMenu = new \App\adms\Models\helper\AdmsRead();
         $listItemMenu->fullRead("SELECT nivpg.dropdown,
                 men.id id_men, men.nome nome_men, men.icone icone_men,
@@ -35,5 +38,4 @@ class AdmsMenu {
         $this->Resultado = $listItemMenu->getResultado();
         return $this->Resultado;
     }
-
 }

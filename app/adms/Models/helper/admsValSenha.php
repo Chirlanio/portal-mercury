@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsValSenha {
+class AdmsValSenha
+{
 
     private $Senha;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function valSenha($Senha) {
+    public function valSenha($Senha)
+    {
         $this->Senha = (string) $Senha;
         if (stristr($this->Senha, "'")) {
             $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Caracter ( ' ) utilizado na senha inválido!</div>";
@@ -36,7 +39,8 @@ class AdmsValSenha {
         }
     }
 
-    private function valExtensSenha() {
+    private function valExtensSenha()
+    {
         if ((strlen($this->Senha)) < 6) {
             $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: A senha deve ter no mínimo 6 caracteres!</div>";
             $this->Resultado = false;
@@ -44,5 +48,4 @@ class AdmsValSenha {
             $this->Resultado = true;
         }
     }
-
 }

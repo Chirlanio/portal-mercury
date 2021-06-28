@@ -16,27 +16,28 @@ if (isset($this->Dados['form'][0])) {
 
             <?php
             if ($this->Dados['botao']['vis_func']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'ver-func/ver-func/' . $valorForm['id']; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
+        <form method="POST" action="" enctype="multipart/form-data">
             <input name="id" type="hidden" value="<?php
-            if (isset($valorForm['id'])) {
-                echo $valorForm['id'];
-            }
-            ?>">
+                                                    if (isset($valorForm['id'])) {
+                                                        echo $valorForm['id'];
+                                                    }
+                                                    ?>">
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label><span class="text-danger">*</span> Nome Completo</label>
@@ -83,10 +84,10 @@ if (isset($this->Dados['form'][0])) {
                             <i class="fas fa-question-circle"></i>
                         </span> CPF</label>
                     <input name="cpf" class="form-control" value="<?php
-                    if (isset($valorForm['cpf'])) {
-                        echo $valorForm['cpf'];
-                    }
-                    ?>">
+                                                                    if (isset($valorForm['cpf'])) {
+                                                                        echo $valorForm['cpf'];
+                                                                    }
+                                                                    ?>">
                 </div>
                 <div class="form-group col-md-3">
                     <label><span class="text-danger">*</span> Loja</label>

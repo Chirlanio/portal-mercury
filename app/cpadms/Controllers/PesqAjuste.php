@@ -12,19 +12,23 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class PesqAjuste {
+class PesqAjuste
+{
 
     private $Dados;
     private $DadosForm;
     private $PageId;
 
-    public function listar($PageId = null) {
+    public function listar($PageId = null)
+    {
 
-        $botao = ['list_ajuste' => ['menu_controller' => 'ajuste', 'menu_metodo' => 'listar-ajuste'],
+        $botao = [
+            'list_ajuste' => ['menu_controller' => 'ajuste', 'menu_metodo' => 'listar-ajuste'],
             'cad_ajuste' => ['menu_controller' => 'cadastrar-ajuste', 'menu_metodo' => 'cad-ajuste'],
             'vis_ajuste' => ['menu_controller' => 'ver-ajuste', 'menu_metodo' => 'ver-ajuste'],
             'edit_ajuste' => ['menu_controller' => 'editar-ajuste', 'menu_metodo' => 'edit-ajuste'],
-            'del_ajuste' => ['menu_controller' => 'apagar-ajuste', 'menu_metodo' => 'apagar-ajuste']];
+            'del_ajuste' => ['menu_controller' => 'apagar-ajuste', 'menu_metodo' => 'apagar-ajuste']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -52,5 +56,4 @@ class PesqAjuste {
         $carregarView = new \Core\ConfigView("cpadms/Views/ajuste/pesqAjuste", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

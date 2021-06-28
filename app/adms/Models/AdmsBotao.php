@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsBotao {
+class AdmsBotao
+{
 
     private $Resultado;
     private $Botao;
     private $BotaoValido = [];
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function valBotao(array $Botao) {
+    public function valBotao(array $Botao)
+    {
         $this->Botao = $Botao;
         foreach ($this->Botao as $key => $botao_unico) {
             extract($botao_unico);
@@ -44,5 +47,4 @@ class AdmsBotao {
         }
         return $this->BotaoValido;
     }
-
 }

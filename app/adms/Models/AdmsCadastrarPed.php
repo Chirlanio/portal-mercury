@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarPed {
+class AdmsCadastrarPed
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadPed(array $Dados) {
-        
+    public function cadPed(array $Dados)
+    {
+
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -35,7 +38,8 @@ class AdmsCadastrarPed {
         }
     }
 
-    private function inserirPed() {
+    private function inserirPed()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadPed = new \App\adms\Models\helper\AdmsCreate;
         $cadPed->exeCreate("tb_prateleira_infinita", $this->Dados);
@@ -48,7 +52,8 @@ class AdmsCadastrarPed {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['adms_niveis_acesso_id'] != 5) {
@@ -79,5 +84,4 @@ class AdmsCadastrarPed {
 
         return $this->Resultado;
     }
-
 }

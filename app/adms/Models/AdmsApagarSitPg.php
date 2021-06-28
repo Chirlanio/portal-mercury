@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarSitPg {
+class AdmsApagarSitPg
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarSitPg($DadosId = null) {
+    public function apagarSitPg($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verfPgCad();
         if ($this->Resultado) {
@@ -37,7 +40,8 @@ class AdmsApagarSitPg {
         }
     }
 
-    private function verfPgCad() {
+    private function verfPgCad()
+    {
         $verPg = new \App\adms\Models\helper\AdmsRead();
         $verPg->fullRead("SELECT id FROM adms_paginas
                 WHERE adms_sits_pg_id =:adms_sits_pg_id LIMIT :limit", "adms_sits_pg_id=" . $this->DadosId . "&limit=2");
@@ -48,5 +52,4 @@ class AdmsApagarSitPg {
             $this->Resultado = true;
         }
     }
-
 }

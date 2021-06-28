@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarPerfil {
+class AdmsEditarPerfil
+{
 
     private $Resultado;
     private $Dados;
     private $Foto;
     private $ImgAntiga;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function altPerfil(array $Dados) {
+    public function altPerfil(array $Dados)
+    {
         $this->Dados = $Dados;
         //var_dump($this->Dados);
         $this->Foto = $this->Dados['imagem_nova'];
@@ -40,7 +43,8 @@ class AdmsEditarPerfil {
         }
     }
 
-    private function valCampos() {
+    private function valCampos()
+    {
         $valEmail = new \App\adms\Models\helper\AdmsEmail();
         $valEmail->valEmail($this->Dados['email']);
 
@@ -51,14 +55,15 @@ class AdmsEditarPerfil {
         $valUsuario = new \App\adms\Models\helper\AdmsValUsuario();
         $valUsuario->valUsuario($this->Dados['usuario'], $EditarUnico, $_SESSION['usuario_id']);
 
-        if (( $valUsuario->getResultado()) AND ( $valEmailUnico->getResultado()) AND ( $valEmail->getResultado())) {
+        if (($valUsuario->getResultado()) and ($valEmailUnico->getResultado()) and ($valEmail->getResultado())) {
             $this->valFoto();
         } else {
             $this->Resultado = false;
         }
     }
 
-    private function valFoto() {
+    private function valFoto()
+    {
         if (empty($this->Foto['name'])) {
             $this->updateEditPerfil();
         } else {
@@ -77,7 +82,8 @@ class AdmsEditarPerfil {
         }
     }
 
-    private function updateEditPerfil() {
+    private function updateEditPerfil()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltSenha = new \App\adms\Models\helper\AdmsUpdate();
         $upAltSenha->exeUpdate("adms_usuarios", $this->Dados, "WHERE id =:id", "id=" . $_SESSION['usuario_id']);
@@ -92,5 +98,4 @@ class AdmsEditarPerfil {
             $this->Resultado = false;
         }
     }
-
 }

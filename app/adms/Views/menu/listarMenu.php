@@ -12,7 +12,7 @@ if (!defined('URLADM')) {
             </div>
             <?php
             if ($this->Dados['botao']['cad_menu']) {
-                ?>
+            ?>
                 <a href="<?php echo URLADM . 'cadastrar-menu/cad-menu'; ?>">
                     <div class="p-2">
                         <button class="btn btn-outline-success btn-sm">
@@ -20,20 +20,20 @@ if (!defined('URLADM')) {
                         </button>
                     </div>
                 </a>
-                <?php
+            <?php
             }
             ?>
         </div>
         <?php
         if (empty($this->Dados['listItensMenu'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum item de menu encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -55,7 +55,7 @@ if (!defined('URLADM')) {
                     <?php
                     foreach ($this->Dados['listItensMenu'] as $itenMenu) {
                         extract($itenMenu);
-                        ?>
+                    ?>
                         <tr>
                             <th class="text-center align-middle"><?php echo $id; ?></th>
                             <td class="align-middle">
@@ -99,12 +99,11 @@ if (!defined('URLADM')) {
                                         }
                                         ?>
 
-
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
 

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerNivAc {
+class AdmsVerNivAc
+{
 
     private $Resultado;
     private $DadosId;
 
-    public function verNivAc($DadosId) {
+    public function verNivAc($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verNivAc = new \App\adms\Models\helper\AdmsRead();
         $verNivAc->fullRead("SELECT * FROM adms_niveis_acessos user
@@ -25,5 +27,4 @@ class AdmsVerNivAc {
         $this->Resultado = $verNivAc->getResultado();
         return $this->Resultado;
     }
-
 }

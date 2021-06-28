@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsListarPermi {
+class AdmsListarPermi
+{
 
     private $Resultado;
     private $PageId;
@@ -20,11 +21,13 @@ class AdmsListarPermi {
     private $ResultadoPg;
     private $NivId;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarPermi($PageId = null, $NivId = null) {
+    public function listarPermi($PageId = null, $NivId = null)
+    {
         $this->PageId = (int) $PageId;
         $this->NivId = (int) $NivId;
 
@@ -53,7 +56,8 @@ class AdmsListarPermi {
         return $this->Resultado;
     }
 
-    public function verNivAc($DadosId) {
+    public function verNivAc($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verNivAc = new \App\adms\Models\helper\AdmsRead();
         $verNivAc->fullRead("SELECT id, nome FROM adms_niveis_acessos 
@@ -61,5 +65,4 @@ class AdmsListarPermi {
         $this->Resultado = $verNivAc->getResultado();
         return $this->Resultado;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,22 +12,25 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarTipoPagamento {
+class AdmsApagarTipoPagamento
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarTipo($DadosId = null) {
-        
+    public function apagarTipo($DadosId = null)
+    {
+
         $this->DadosId = (int) $DadosId;
-        
+
         $apagarBairro = new \App\adms\Models\helper\AdmsDelete();
         $apagarBairro->exeDelete("tb_forma_pag", "WHERE id =:id", "id={$this->DadosId}");
-        
+
         if ($apagarBairro->getResultado()) {
             $_SESSION['msg'] = "<div class='alert alert-success'>Tipo de pagamento apagado com sucesso!</div>";
             $this->Resultado = true;
@@ -36,5 +39,4 @@ class AdmsApagarTipoPagamento {
             $this->Resultado = false;
         }
     }
-
 }

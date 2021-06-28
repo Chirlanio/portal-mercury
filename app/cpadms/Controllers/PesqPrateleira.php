@@ -12,19 +12,23 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class PesqPrateleira {
+class PesqPrateleira
+{
 
     private $Dados;
     private $DadosForm;
     private $PageId;
 
-    public function listar($PageId = null) {
+    public function listar($PageId = null)
+    {
 
-        $botao = ['list_ped' => ['menu_controller' => 'prateleira-infinita', 'menu_metodo' => 'listar'],
+        $botao = [
+            'list_ped' => ['menu_controller' => 'prateleira-infinita', 'menu_metodo' => 'listar'],
             'cad_ped' => ['menu_controller' => 'cadastrar-ped', 'menu_metodo' => 'cad-ped'],
             'vis_ped' => ['menu_controller' => 'ver-ped', 'menu_metodo' => 'ver-dashboard'],
             'edit_ped' => ['menu_controller' => 'editar-ped', 'menu_metodo' => 'edit-ped'],
-            'del_ped' => ['menu_controller' => 'apagar-ped', 'menu_metodo' => 'apagar-ped']];
+            'del_ped' => ['menu_controller' => 'apagar-ped', 'menu_metodo' => 'apagar-ped']
+        ];
         $listarBotao = new \App\adms\Models\AdmsBotao();
         $this->Dados['botao'] = $listarBotao->valBotao($botao);
 
@@ -51,5 +55,4 @@ class PesqPrateleira {
         $carregarView = new \Core\ConfigView("cpadms/Views/prateleira/pesqPrateleira", $this->Dados);
         $carregarView->renderizar();
     }
-
 }

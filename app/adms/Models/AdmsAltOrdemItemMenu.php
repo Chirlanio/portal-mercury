@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsAltOrdemItemMenu {
+class AdmsAltOrdemItemMenu
+{
 
     private $DadosId;
     private $Resultado;
@@ -20,11 +21,13 @@ class AdmsAltOrdemItemMenu {
     private $DadosMenu;
     private $DadosMenuInferior;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function altOrdemMenu($DadosId = null) {
+    public function altOrdemMenu($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verMenu($this->DadosId);
         if ($this->DadosMenu) {
@@ -38,21 +41,24 @@ class AdmsAltOrdemItemMenu {
         }
     }
 
-    private function verMenu() {
+    private function verMenu()
+    {
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT * FROM adms_menus
                 WHERE id =:id LIMIT :limit", "id=" . $this->DadosId . "&limit=1");
         $this->DadosMenu = $verMenu->getResultado();
     }
 
-    private function verfMenuInferior() {
+    private function verfMenuInferior()
+    {
         $ordem_super = $this->DadosMenu[0]['ordem'] - 1;
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT id, ordem FROM adms_menus WHERE ordem =:ordem", "ordem={$ordem_super}");
         $this->DadosMenuInferior = $verMenu->getResultado();
     }
 
-    private function exeAltOrdemMenu() {
+    private function exeAltOrdemMenu()
+    {
         $this->Dados['ordem'] = $this->DadosMenu[0]['ordem'];
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upMvBaixo = new \App\adms\Models\helper\AdmsUpdate();
@@ -70,5 +76,4 @@ class AdmsAltOrdemItemMenu {
             $this->Resultado = false;
         }
     }
-
 }

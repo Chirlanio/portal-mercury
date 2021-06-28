@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsAjuste {
+class AdmsAjuste
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadAjuste(array $Dados) {
+    public function cadAjuste(array $Dados)
+    {
 
         $this->Dados = $Dados;
         //var_dump($this->Dados);
@@ -35,7 +38,8 @@ class AdmsAjuste {
         }
     }
 
-    private function inserir() {
+    private function inserir()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $listarAjuste = new \App\adms\Models\helper\AdmsCreate;
         $listarAjuste->exeCreate("tb_ajuste", $this->Dados);
@@ -48,7 +52,8 @@ class AdmsAjuste {
         }
     }
 
-    public function validarDados(array $Dados) {
+    public function validarDados(array $Dados)
+    {
         $this->Dados = $Dados;
         $this->Dados = array_map('strip_tags', $this->Dados);
         $this->Dados = array_map('trim', $this->Dados);
@@ -59,5 +64,4 @@ class AdmsAjuste {
             $this->Resultado = true;
         }
     }
-
 }

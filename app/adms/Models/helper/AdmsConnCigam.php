@@ -4,7 +4,7 @@ namespace App\adms\Models\helper;
 
 use PDO;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -14,7 +14,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsConnCigam {
+class AdmsConnCigam
+{
 
     public static $Host = HOSTCIGAM;
     public static $User = USERCIGAM;
@@ -22,20 +23,21 @@ class AdmsConnCigam {
     public static $Dbname = DBNAMECIGAM;
     private static $Connect = null;
 
-    private static function conectar() {
+    private static function conectar()
+    {
         try {
             if (self::$Connect == null) {
                 self::$Connect = new PDO('pgsql:host=' . self::$Host . ';dbname=' . self::$Dbname, self::$User, self::$Pass);
             }
-        } catch (Exception $ex) {
+        } catch (PDOException $ex) {
             echo 'mensagem: ' . $ex->getMessage();
             die;
         }
         return self::$Connect;
     }
 
-    public function getConn() {
+    public function getConn()
+    {
         return self::conectar();
     }
-
 }

@@ -12,16 +12,19 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsLogin {
+class AdmsLogin
+{
 
     private $Dados;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function acesso(array $Dados) {
+    public function acesso(array $Dados)
+    {
         $this->Dados = $Dados;
         $this->validarDados();
         if ($this->Resultado) {
@@ -45,7 +48,8 @@ class AdmsLogin {
         }
     }
 
-    private function validarDados() {
+    private function validarDados()
+    {
         $this->Dados = array_map('strip_tags', $this->Dados);
         $this->Dados = array_map('trim', $this->Dados);
         if (in_array('', $this->Dados)) {
@@ -56,7 +60,8 @@ class AdmsLogin {
         }
     }
 
-    private function validarSenha() {
+    private function validarSenha()
+    {
         if (password_verify($this->Dados['senha'], $this->Resultado[0]['senha'])) {
             $_SESSION['usuario_id'] = $this->Resultado[0]['id'];
             $_SESSION['usuario_nome'] = $this->Resultado[0]['nome'];
@@ -74,5 +79,4 @@ class AdmsLogin {
             $this->Resultado = false;
         }
     }
-
 }

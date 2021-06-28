@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarRota {
+class AdmsCadastrarRota
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadRota(array $Dados) {
+    public function cadRota(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -35,7 +38,8 @@ class AdmsCadastrarRota {
         }
     }
 
-    private function inserirRota() {
+    private function inserirRota()
+    {
 
         $this->Dados['created'] = date("Y-m-d H:i:s");
 
@@ -51,7 +55,8 @@ class AdmsCadastrarRota {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
 
         $listar = new \App\adms\Models\helper\AdmsRead();
 
@@ -62,5 +67,4 @@ class AdmsCadastrarRota {
 
         return $this->Resultado;
     }
-
 }

@@ -15,14 +15,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_func']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'funcionarios/listar-func'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -34,35 +35,35 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-12">
                     <label><span class="text-danger">*</span> Nome</label>
                     <input name="nome" type="text" class="form-control is-invalid" placeholder="Digite o nome completo" value="<?php
-                    if (isset($valorForm['nome'])) {
-                        echo $valorForm['nome'];
-                    }
-                    ?>" required>
+                                                                                                                                if (isset($valorForm['nome'])) {
+                                                                                                                                    echo $valorForm['nome'];
+                                                                                                                                }
+                                                                                                                                ?>" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label><span class="text-danger">*</span> Usuário</label>
                     <input name="usuario" type="text" class="form-control is-invalid" placeholder="Digite o usuário" value="<?php
-                    if (isset($valorForm['usuario'])) {
-                        echo $valorForm['usuario'];
-                    }
-                    ?>" required>
+                                                                                                                            if (isset($valorForm['usuario'])) {
+                                                                                                                                echo $valorForm['usuario'];
+                                                                                                                            }
+                                                                                                                            ?>" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label>CPF</label>
                     <input name="cpf" type="text" class="form-control is-invalid" placeholder="Digite o CPF, somente números" value="<?php
-                    if (isset($valorForm['cpf'])) {
-                        echo $valorForm['cpf'];
-                    }
-                    ?>" required>
+                                                                                                                                        if (isset($valorForm['cpf'])) {
+                                                                                                                                            echo $valorForm['cpf'];
+                                                                                                                                        }
+                                                                                                                                        ?>" required>
                 </div>
                 <div class="form-group col-md-3">
-                    <label><span class = "text-danger">*</span>Loja</label>
+                    <label><span class="text-danger">*</span>Loja</label>
                     <select name="loja_id" id="loja_id" class="form-control is-invalid" required>
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['loja_id'] as $l) {
                             extract($l);
@@ -78,7 +79,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-3">
                     <label><span class="text-danger">*</span> Função</label>
                     <select name="cargo_id" id="area_id" class="form-control is-invalid" required="">
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['cargo_id'] as $c) {
                             extract($c);
@@ -94,7 +95,7 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-3">
                     <label><span class="text-danger">*</span> Status</label>
                     <select name="status_id" id="loja_id" class="form-control is-invalid" required="">
-                        <option value = "">Selecione</option>
+                        <option value="">Selecione</option>
                         <?php
                         foreach ($this->Dados['select']['sit_id'] as $sit) {
                             extract($sit);

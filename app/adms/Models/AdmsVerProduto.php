@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerProduto {
+class AdmsVerProduto
+{
 
     private $Resultado;
     private $DadosId;
@@ -22,7 +23,8 @@ class AdmsVerProduto {
      * <b>Ver Página:</b> Receber o id da página para buscar informações do registro no banco de dados
      * @param int $DadosId
      */
-    public function verProduto($DadosId) {
+    public function verProduto($DadosId)
+    {
 
         $this->DadosId = $DadosId;
 
@@ -33,5 +35,4 @@ class AdmsVerProduto {
         $this->Resultado = $verProduto->getResultado();
         return $this->Resultado;
     }
-
 }

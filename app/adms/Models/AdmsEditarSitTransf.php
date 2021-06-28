@@ -2,27 +2,30 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
 
 /**
- * Description of AdmsEditarSit
+ * Description of AdmsEditarSitTransf
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarSitTransf {
+class AdmsEditarSitTransf
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verSit($DadosId) {
+    public function verSit($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verSit = new \App\adms\Models\helper\AdmsRead();
         $verSit->fullRead("SELECT * FROM tb_status_transf
@@ -31,7 +34,8 @@ class AdmsEditarSitTransf {
         return $this->Resultado;
     }
 
-    public function altSit(array $Dados) {
+    public function altSit(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -44,7 +48,8 @@ class AdmsEditarSitTransf {
         }
     }
 
-    private function updateEditSit() {
+    private function updateEditSit()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltSit = new \App\adms\Models\helper\AdmsUpdate();
         $upAltSit->exeUpdate("tb_status_transf", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -60,7 +65,8 @@ class AdmsEditarSitTransf {
     /**
      * <b>Listar registros para chave estrangeira:</b> Buscar informações na tabela "adms_cors" para utilizar como chave estrangeira
      */
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id id_cor, nome nome_cor FROM adms_cors ORDER BY nome ASC");
@@ -70,5 +76,4 @@ class AdmsEditarSitTransf {
 
         return $this->Resultado;
     }
-
 }

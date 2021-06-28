@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarNivAc {
+class AdmsCadastrarNivAc
+{
 
     private $Resultado;
     private $Dados;
     private $UltimoNivAc;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadNivAc(array $Dados) {
+    public function cadNivAc(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -35,7 +38,8 @@ class AdmsCadastrarNivAc {
         }
     }
 
-    private function inserirNivAc() {
+    private function inserirNivAc()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $this->verUltimoNivAc();
         $this->Dados['ordem'] = $this->UltimoNivAc[0]['ordem'] + 1;
@@ -50,13 +54,15 @@ class AdmsCadastrarNivAc {
         }
     }
 
-    private function verUltimoNivAc() {
+    private function verUltimoNivAc()
+    {
         $verNivAc = new \App\adms\Models\helper\AdmsRead();
         $verNivAc->fullRead("SELECT ordem FROM adms_niveis_acessos ORDER BY ordem DESC LIMIT :limit", "limit=1");
         $this->UltimoNivAc = $verNivAc->getResultado();
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         $listar->fullRead("SELECT id cor_id, nome cor FROM adms_cors ORDER BY id ASC");
@@ -66,5 +72,4 @@ class AdmsCadastrarNivAc {
 
         return $this->Resultado;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarPed {
+class AdmsEditarPed
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verPed($DadosId) {
+    public function verPed($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verPed = new \App\adms\Models\helper\AdmsRead();
         $verPed->fullRead("SELECT p.*,
@@ -37,7 +40,8 @@ class AdmsEditarPed {
         return $this->Resultado;
     }
 
-    public function altPed(array $Dados) {
+    public function altPed(array $Dados)
+    {
 
         $this->Dados = $Dados;
 
@@ -52,7 +56,8 @@ class AdmsEditarPed {
         }
     }
 
-    private function updateEditPed() {
+    private function updateEditPed()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltDash = new \App\adms\Models\helper\AdmsUpdate();
         $upAltDash->exeUpdate("tb_prateleira_infinita", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -65,7 +70,8 @@ class AdmsEditarPed {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['adms_niveis_acesso_id'] != 5) {
@@ -92,5 +98,4 @@ class AdmsEditarPed {
 
         return $this->Resultado;
     }
-
 }

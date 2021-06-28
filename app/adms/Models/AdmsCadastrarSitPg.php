@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarSitPg {
+class AdmsCadastrarSitPg
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadSitPg(array $Dados) {
+    public function cadSitPg(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -34,7 +37,8 @@ class AdmsCadastrarSitPg {
         }
     }
 
-    private function inserirSitPg() {
+    private function inserirSitPg()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadSitPg = new \App\adms\Models\helper\AdmsCreate;
         $cadSitPg->exeCreate("adms_sits_pgs", $this->Dados);
@@ -46,5 +50,4 @@ class AdmsCadastrarSitPg {
             $this->Resultado = false;
         }
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarCargo {
+class AdmsEditarCargo
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verCargo($DadosId) {
+    public function verCargo($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verCargo = new \App\adms\Models\helper\AdmsRead();
         $verCargo->fullRead("SELECT * FROM tb_cargos
@@ -31,7 +34,8 @@ class AdmsEditarCargo {
         return $this->Resultado;
     }
 
-    public function altCargo(array $Dados) {
+    public function altCargo(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -44,7 +48,8 @@ class AdmsEditarCargo {
         }
     }
 
-    private function updateEditCargo() {
+    private function updateEditCargo()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltCargo = new \App\adms\Models\helper\AdmsUpdate();
         $upAltCargo->exeUpdate("tb_cargos", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -56,5 +61,4 @@ class AdmsEditarCargo {
             $this->Resultado = false;
         }
     }
-
 }

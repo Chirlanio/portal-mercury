@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsAlterarSenha {
+class AdmsAlterarSenha
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function altSenha(array $Dados) {
+    public function altSenha(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valSenha = new \App\adms\Models\helper\AdmsValSenha();
@@ -34,7 +37,8 @@ class AdmsAlterarSenha {
         }
     }
 
-    private function updateAltSenha() {
+    private function updateAltSenha()
+    {
         $this->Dados['senha'] = password_hash($this->Dados['senha'], PASSWORD_DEFAULT);
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltSenha = new \App\adms\Models\helper\AdmsUpdate();
@@ -47,5 +51,4 @@ class AdmsAlterarSenha {
             $this->Resultado = false;
         }
     }
-
 }

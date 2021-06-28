@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarTransf {
+class AdmsCadastrarTransf
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadTransf(array $Dados) {
+    public function cadTransf(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -34,7 +37,8 @@ class AdmsCadastrarTransf {
         }
     }
 
-    private function inserirTransf() {
+    private function inserirTransf()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadDash = new \App\adms\Models\helper\AdmsCreate;
         $cadDash->exeCreate("tb_transferencias", $this->Dados);
@@ -47,7 +51,8 @@ class AdmsCadastrarTransf {
         }
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['ordem_nivac'] >= 3) {
@@ -74,5 +79,4 @@ class AdmsCadastrarTransf {
 
         return $this->Resultado;
     }
-
 }

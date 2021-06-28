@@ -14,11 +14,11 @@
                     <?php
                     foreach ($this->Dados['menu'] as $menu) {
                         extract($menu);
-                        ?>
+                    ?>
                         <li class="nav-item active">
                             <a class="nav-link" href="<?php echo URL . $link; ?>"><?php echo $nome_pagina; ?></a>
                         </li>
-                        <?php
+                    <?php
                     }
                     ?>
                 </ul>

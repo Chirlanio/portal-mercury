@@ -14,78 +14,79 @@ if (isset($this->Dados['form'][0])) {
                 <h2 class="display-4 titulo">Editar Configuração de E-mail</h2>
             </div>
 
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="" enctype="multipart/form-data"> 
-            
+        <form method="POST" action="" enctype="multipart/form-data">
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
                     <input name="nome" type="text" class="form-control" placeholder="Nome do remetente" value="<?php
-                    if (isset($valorForm['nome'])) {
-                        echo $valorForm['nome'];
-                    }
-                    ?>">
+                                                                                                                if (isset($valorForm['nome'])) {
+                                                                                                                    echo $valorForm['nome'];
+                                                                                                                }
+                                                                                                                ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> E-mail</label>
                     <input name="email" type="email" class="form-control" placeholder="E-mail do remetente" value="<?php
-                    if (isset($valorForm['email'])) {
-                        echo $valorForm['email'];
-                    }
-                    ?>">
+                                                                                                                    if (isset($valorForm['email'])) {
+                                                                                                                        echo $valorForm['email'];
+                                                                                                                    }
+                                                                                                                    ?>">
                 </div>
             </div>
-            
-            
+
+
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Host</label>
                     <input name="host" type="text" class="form-control" placeholder="Servidor de envio de e-mail" value="<?php
-                    if (isset($valorForm['host'])) {
-                        echo $valorForm['host'];
-                    }
-                    ?>">
+                                                                                                                            if (isset($valorForm['host'])) {
+                                                                                                                                echo $valorForm['host'];
+                                                                                                                            }
+                                                                                                                            ?>">
                 </div>
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Usuário do E-mail</label>
                     <input name="usuario" type="text" class="form-control" placeholder="Usuário do e-mail de remetente" value="<?php
-                    if (isset($valorForm['usuario'])) {
-                        echo $valorForm['usuario'];
-                    }
-                    ?>">
+                                                                                                                                if (isset($valorForm['usuario'])) {
+                                                                                                                                    echo $valorForm['usuario'];
+                                                                                                                                }
+                                                                                                                                ?>">
                 </div>
                 <div class="form-group col-md-4">
                     <label><span class="text-danger">*</span> Senha do E-mail</label>
                     <input name="senha" type="password" class="form-control" placeholder="Senha do e-mail de remetente" value="<?php
-                    if (isset($valorForm['senha'])) {
-                        echo $valorForm['senha'];
-                    }
-                    ?>">
+                                                                                                                                if (isset($valorForm['senha'])) {
+                                                                                                                                    echo $valorForm['senha'];
+                                                                                                                                }
+                                                                                                                                ?>">
                 </div>
             </div>
-            
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Encriptação</label>
                     <input name="smtpsecure" type="text" class="form-control" placeholder="Tipo de encriptação SSL/TLS" value="<?php
-                    if (isset($valorForm['smtpsecure'])) {
-                        echo $valorForm['smtpsecure'];
-                    }
-                    ?>">
+                                                                                                                                if (isset($valorForm['smtpsecure'])) {
+                                                                                                                                    echo $valorForm['smtpsecure'];
+                                                                                                                                }
+                                                                                                                                ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Porta</label>
                     <input name="porta" type="text" class="form-control" placeholder="Porta de envio de E-mail" value="<?php
-                    if (isset($valorForm['porta'])) {
-                        echo $valorForm['porta'];
-                    }
-                    ?>">
+                                                                                                                        if (isset($valorForm['porta'])) {
+                                                                                                                            echo $valorForm['porta'];
+                                                                                                                        }
+                                                                                                                        ?>">
                 </div>
             </div>
 

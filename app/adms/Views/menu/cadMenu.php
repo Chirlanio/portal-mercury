@@ -15,14 +15,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_menu']) {
-                ?>
+            ?>
                 <div class="p-2">
-                <a href="<?php echo URLADM . 'menu/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
-            </div>
-                <?php
+                    <a href="<?php echo URLADM . 'menu/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
+                </div>
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -33,19 +34,21 @@ if (isset($this->Dados['form'][0])) {
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label><span class="text-danger">*</span> Nome</label>
-                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome do item de menu" value="<?php
+                    <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome do item de menu" value="
+                    <?php
                     if (isset($valorForm['nome'])) {
                         echo $valorForm['nome'];
                     }
                     ?>" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label><span class="text-danger">*</span> 
+                    <label><span class="text-danger">*</span>
                         <span tabindex="0" data-toggle="tooltip" data-placement="top" data-html="true" title="Página de icone: <a href='https://fontawesome.com/icons?d=gallery' target='_blank'>fontawesome</a>. Somente inserir o nome, Ex: fas fa-volume-up">
                             <i class="fas fa-question-circle"></i>
                         </span> Ícone
                     </label>
-                    <input name="icone" type="text" class="form-control is-invalid" placeholder="Ícone a ser apresentado no menu" value="<?php
+                    <input name="icone" type="text" class="form-control is-invalid" placeholder="Ícone a ser apresentado no menu" value="
+                    <?php
                     if (isset($valorForm['icone'])) {
                         echo $valorForm['icone'];
                     }

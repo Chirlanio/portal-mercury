@@ -15,14 +15,15 @@ if (isset($this->Dados['form'][0])) {
             </div>
             <?php
             if ($this->Dados['botao']['list_grpg']) {
-                ?>
+            ?>
                 <div class="p-2">
                     <a href="<?php echo URLADM . 'grupo-pg/listar'; ?>" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
-                <?php
+            <?php
             }
             ?>
-        </div><hr>
+        </div>
+        <hr>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -34,10 +35,10 @@ if (isset($this->Dados['form'][0])) {
                 <div class="form-group col-md-12">
                     <label><span class="text-danger">*</span> Nome</label>
                     <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome do grupo da página" value="<?php
-                    if (isset($valorForm['nome'])) {
-                        echo $valorForm['nome'];
-                    }
-                    ?>" required>
+                                                                                                                                if (isset($valorForm['nome'])) {
+                                                                                                                                    echo $valorForm['nome'];
+                                                                                                                                }
+                                                                                                                                ?>" required>
                 </div>
             </div>
             <p>

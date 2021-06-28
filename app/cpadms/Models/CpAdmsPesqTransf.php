@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CpAdmsPesqTransf {
+class CpAdmsPesqTransf
+{
 
     private $Dados;
     private $Resultado;
@@ -20,11 +21,13 @@ class CpAdmsPesqTransf {
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function pesqTransf($PageId = null, $Dados = null) {
+    public function pesqTransf($PageId = null, $Dados = null)
+    {
 
         $this->PageId = (int) $PageId;
         $this->Dados = $Dados;
@@ -34,13 +37,13 @@ class CpAdmsPesqTransf {
         $_SESSION['pesqDestino'] = $this->Dados['loja_destino_id'];
         $_SESSION['pesqStatus'] = $this->Dados['status_id'];
 
-        if ((!empty($this->Dados['loja_origem_id'])) AND (!empty($this->Dados['loja_destino_id'])) AND (!empty($this->Dados['status_id']))) {
+        if ((!empty($this->Dados['loja_origem_id'])) and (!empty($this->Dados['loja_destino_id'])) and (!empty($this->Dados['status_id']))) {
             $this->pesqComp();
-        } elseif ((!empty($this->Dados['loja_origem_id'])) AND (!empty($this->Dados['status_id']))) {
+        } elseif ((!empty($this->Dados['loja_origem_id'])) and (!empty($this->Dados['status_id']))) {
             $this->pesqLojaOriSit();
-        } elseif ((!empty($this->Dados['loja_destino_id'])) AND (!empty($this->Dados['status_id']))) {
+        } elseif ((!empty($this->Dados['loja_destino_id'])) and (!empty($this->Dados['status_id']))) {
             $this->pesqLojaDesSit();
-        } elseif ((!empty($this->Dados['loja_origem_id'])) AND (!empty($this->Dados['loja_destino_id']))) {
+        } elseif ((!empty($this->Dados['loja_origem_id'])) and (!empty($this->Dados['loja_destino_id']))) {
             $this->pesqLojaOriDes();
         } elseif (!empty($this->Dados['loja_origem_id'])) {
             $this->pesqLojaOrigem();
@@ -52,7 +55,8 @@ class CpAdmsPesqTransf {
         return $this->Resultado;
     }
 
-    private function pesqComp() {
+    private function pesqComp()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-transf/listar', '?origem=' . $this->Dados['loja_origem_id'] . '&destino=' . $this->Dados['loja_destino_id'] . '&situacao=' . $this->Dados['status_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -82,7 +86,8 @@ class CpAdmsPesqTransf {
         $this->Resultado = $listarTransf->getResultado();
     }
 
-    private function pesqLojaOriSit() {
+    private function pesqLojaOriSit()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-transf/listar', '?origem=' . $this->Dados['loja_origem_id'] . '&situacao=' . $this->Dados['status_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -115,18 +120,22 @@ class CpAdmsPesqTransf {
         $this->Resultado = $listarTransf->getResultado();
     }
 
-    private function pesqLojaDesSit() {
+    private function pesqLojaDesSit()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-transf/listar', '?origem=' . $this->Dados['loja_origem_id'] . '&destino=' . $this->Dados['loja_destino_id'] . '&situacao=' . $this->Dados['status_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
-        $paginacao->paginacao("SELECT COUNT(id) AS num_result FROM tb_transferencias t
+        $paginacao->paginacao(
+            "SELECT COUNT(id) AS num_result FROM tb_transferencias t
                 WHERE t.loja_destino_id =:loja_destino_id AND t.status_id =:status_id",
-                "loja_destino_id={$this->Dados['loja_destino_id']}&status_id={$this->Dados['status_id']}");
+            "loja_destino_id={$this->Dados['loja_destino_id']}&status_id={$this->Dados['status_id']}"
+        );
         $this->ResultadoPg = $paginacao->getResultado();
 
         $listarTransf = new \App\adms\Models\helper\AdmsRead();
         if ($_SESSION['ordem_nivac'] <= 5) {
-            $listarTransf->fullRead("SELECT t.*, l.nome loja_ori, lj.nome nome_des, tt.nome tipo, s.nome sit, s.adms_cor_id, c.cor cor_cr
+            $listarTransf->fullRead(
+                "SELECT t.*, l.nome loja_ori, lj.nome nome_des, tt.nome tipo, s.nome sit, s.adms_cor_id, c.cor cor_cr
                     FROM tb_transferencias t
                     INNER JOIN tb_lojas l ON l.id=t.loja_origem_id
                     INNER JOIN tb_lojas lj ON lj.id=t.loja_destino_id
@@ -136,9 +145,11 @@ class CpAdmsPesqTransf {
                     WHERE t.loja_destino_id =:loja_destino_id
                     AND t.status_id =:status_id
                     ORDER BY id DESC LIMIT :limit OFFSET :offset",
-                    "loja_destino_id={$this->Dados['loja_destino_id']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+                "loja_destino_id={$this->Dados['loja_destino_id']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+            );
         } else {
-            $listarTransf->fullRead("SELECT t.*, l.nome loja_ori, lj.nome nome_des, tt.nome tipo, s.nome sit, s.adms_cor_id, c.cor cor_cr
+            $listarTransf->fullRead(
+                "SELECT t.*, l.nome loja_ori, lj.nome nome_des, tt.nome tipo, s.nome sit, s.adms_cor_id, c.cor cor_cr
                     FROM tb_transferencias t
                     INNER JOIN tb_lojas l ON l.id=t.loja_origem_id
                     INNER JOIN tb_lojas lj ON lj.id=t.loja_destino_id
@@ -149,12 +160,14 @@ class CpAdmsPesqTransf {
                     AND t.loja_destino_id =:loja_destino_id
                     AND t.status_id =:status_id
                     ORDER BY id DESC LIMIT :limit OFFSET :offset",
-                    "loja_origem_id=" . $_SESSION['usuario_loja'] . "&loja_destino_id={$this->Dados['loja_destino_id']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+                "loja_origem_id=" . $_SESSION['usuario_loja'] . "&loja_destino_id={$this->Dados['loja_destino_id']}&status_id={$this->Dados['status_id']}&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+            );
         }
         $this->Resultado = $listarTransf->getResultado();
     }
 
-    private function pesqLojaOriDes() {
+    private function pesqLojaOriDes()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-transf/listar', '?origem=' . $this->Dados['loja_origem_id'] . '&destino=' . $this->Dados['loja_destino_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -187,7 +200,8 @@ class CpAdmsPesqTransf {
         $this->Resultado = $listarTransf->getResultado();
     }
 
-    private function pesqLojaOrigem() {
+    private function pesqLojaOrigem()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-transf/listar', '?origem=' . $this->Dados['loja_origem_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -220,7 +234,8 @@ class CpAdmsPesqTransf {
         $this->Resultado = $listarTransf->getResultado();
     }
 
-    private function pesqLojaDestino() {
+    private function pesqLojaDestino()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-transf/listar', '?destino=' . $this->Dados['loja_destino_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -253,7 +268,8 @@ class CpAdmsPesqTransf {
         $this->Resultado = $listarTransf->getResultado();
     }
 
-    private function pesqStatus() {
+    private function pesqStatus()
+    {
 
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'pesq-transf/listar', '?situacao=' . $this->Dados['status_id']);
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -286,7 +302,8 @@ class CpAdmsPesqTransf {
         $this->Resultado = $listarTransf->getResultado();
     }
 
-    public function listarCadastrar() {
+    public function listarCadastrar()
+    {
         $listar = new \App\adms\Models\helper\AdmsRead();
 
         if ($_SESSION['ordem_nivac'] >= 4) {
@@ -309,5 +326,4 @@ class CpAdmsPesqTransf {
 
         return $this->Resultado;
     }
-
 }

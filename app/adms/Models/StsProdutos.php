@@ -2,7 +2,7 @@
 
 namespace Sts\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class StsProdutos {
+class StsProdutos
+{
 
     private $Resultado;
     private $PageId;
     private $ResultadoPg;
     private $LimiteResultado = 50;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarProdutos($PageId = null) {
+    public function listarProdutos($PageId = null)
+    {
 
         $this->PageId = (int) $PageId;
         $paginacao = new \Sts\Models\helper\StsPaginacao(URL . 'produtos');
@@ -41,5 +44,4 @@ class StsProdutos {
         $this->Resultado = $listarProd->getResultado();
         return $this->Resultado;
     }
-
 }

@@ -17,10 +17,11 @@ if (!defined('URLADM')) {
 <script src="<?php echo URLADM . 'assets/js/personalizado.js'; ?>"></script>
 <script>
     ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
 </script>
 </body>
+
 </html>

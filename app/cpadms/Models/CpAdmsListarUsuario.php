@@ -2,7 +2,7 @@
 
 namespace App\cpadms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class CpAdmsListarUsuario {
+class CpAdmsListarUsuario
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 1;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarUsuario($PageId = null) {
+    public function listarUsuario($PageId = null)
+    {
         $this->PageId = (int) $PageId;
         $paginacao = new \App\cpadms\Models\helper\CpAdmsPaginacao(URLADM . 'carregar-usuarios-js/listar');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -47,5 +50,4 @@ class CpAdmsListarUsuario {
         var_dump($this->Resultado);
         return $this->Resultado;
     }
-
 }

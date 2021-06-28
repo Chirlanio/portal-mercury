@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,7 +12,8 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerTransf {
+class AdmsVerTransf
+{
 
     private $Resultado;
     private $DadosId;
@@ -21,7 +22,8 @@ class AdmsVerTransf {
      * <b>Ver Página:</b> Receber o id do dashboard para buscar informações do registro no banco de dados
      * @param int $DadosId
      */
-    public function verTransf($DadosId) {
+    public function verTransf($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verTransf = new \App\adms\Models\helper\AdmsRead();
         $verTransf->fullRead("SELECT t.*,
@@ -36,5 +38,4 @@ class AdmsVerTransf {
         $this->Resultado = $verTransf->getResultado();
         return $this->Resultado;
     }
-
 }

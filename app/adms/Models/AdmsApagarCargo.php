@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarCargo {
+class AdmsApagarCargo
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarCargo($DadosId = null) {
+    public function apagarCargo($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $apagarCargo = new \App\adms\Models\helper\AdmsDelete();
         $apagarCargo->exeDelete("tb_cargos", "WHERE id =:id", "id={$this->DadosId}");
@@ -33,5 +36,4 @@ class AdmsApagarCargo {
             $this->Resultado = false;
         }
     }
-
 }

@@ -18,7 +18,8 @@ if (!defined('URLADM')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="referencia">Referência</label>
                         </div>
-                        <input name="referencia" type="text" id="referencia" class="form-control" aria-describedby="referencia" placeholder="Digite a referência" value="<?php
+                        <input name="referencia" type="text" id="referencia" class="form-control" aria-describedby="referencia" placeholder="Digite a referência" value="
+                        <?php
                         if (isset($_SESSION['referencia'])) {
                             echo $_SESSION['referencia'];
                         }
@@ -30,7 +31,8 @@ if (!defined('URLADM')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="refauxiliar">Código de Barras</label>
                         </div>
-                        <input name="refauxiliar" type="text" id="referencia" class="form-control" aria-describedby="refauxiliar" placeholder="Digite o código de barras" value="<?php
+                        <input name="refauxiliar" type="text" id="referencia" class="form-control" aria-describedby="refauxiliar" placeholder="Digite o código de barras" value="
+                        <?php
                         if (isset($_SESSION['refauxiliar'])) {
                             echo $_SESSION['refauxiliar'];
                         }
@@ -43,17 +45,18 @@ if (!defined('URLADM')) {
                     <input name="PesqProd" type="submit" class="btn btn-outline-primary mx-sm-2" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['listProdutos'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhum produto encontrado!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -77,7 +80,7 @@ if (!defined('URLADM')) {
                     if (!empty($this->Dados['listProdutos'])) {
                         foreach ($this->Dados['listProdutos'] as $Prod) {
                             extract($Prod);
-                            ?>
+                    ?>
                             <tr>
                                 <td><img src="http://www.meiasola.com/powerbi/<?php echo $referencia; ?>.jpg" class="rounded" width="120px" height="120px" alt="<?php echo $referencia; ?>"></td>
                                 <th scope="row" class="align-middle"><?php echo $referencia; ?></th>
@@ -106,7 +109,7 @@ if (!defined('URLADM')) {
                                     </div>
                                 </td>
                             </tr>
-                            <?php
+                    <?php
                         }
                     }
                     ?>

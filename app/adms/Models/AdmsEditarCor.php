@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarCor {
+class AdmsEditarCor
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verCor($DadosId) {
+    public function verCor($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verCor = new \App\adms\Models\helper\AdmsRead();
         $verCor->fullRead("SELECT * FROM adms_cors
@@ -31,7 +34,8 @@ class AdmsEditarCor {
         return $this->Resultado;
     }
 
-    public function altCor(array $Dados) {
+    public function altCor(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -44,7 +48,8 @@ class AdmsEditarCor {
         }
     }
 
-    private function updateEditCor() {
+    private function updateEditCor()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltCor = new \App\adms\Models\helper\AdmsUpdate();
         $upAltCor->exeUpdate("adms_cors", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -56,5 +61,4 @@ class AdmsEditarCor {
             $this->Resultado = false;
         }
     }
-
 }

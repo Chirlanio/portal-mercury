@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -13,7 +13,8 @@ if (!defined('URL')) {
             <div class="img-fluid">
                 <img src="<?php echo URLADM . 'assets/imagens/logo/logo_preta.png'; ?>" alt="Grupo Meia Sola" width="200" height="90">
             </div>
-        </div><hr>
+        </div>
+        <hr>
         <table class="table table-borderless">
             <thead>
                 <tr>
@@ -21,8 +22,12 @@ if (!defined('URL')) {
                 </tr>
             </thead>
             <tbody>
-                <tr> <td colspan="12"></td></tr>
-                <tr> <td colspan="12" class="bg-primary text-white text-center border">E-MAILS DA EQUIPE</td></tr>
+                <tr>
+                    <td colspan="12"></td>
+                </tr>
+                <tr>
+                    <td colspan="12" class="bg-primary text-white text-center border">E-MAILS DA EQUIPE</td>
+                </tr>
                 <tr>
                     <th scope="row" class="text-center border">Gerência</th>
                     <td colspan="10" class="text-center border">Enviar e-mail para izabel.aragao@meiasola.com.br</td>

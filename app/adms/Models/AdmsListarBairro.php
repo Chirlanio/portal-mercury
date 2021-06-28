@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,21 +12,24 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsListarBairro {
+class AdmsListarBairro
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarBairro($PageId = null) {
-        
+    public function listarBairro($PageId = null)
+    {
+
         $this->PageId = (int) $PageId;
-        
+
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'bairro/listar');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
         $paginacao->paginacao("SELECT COUNT(id) AS num_result FROM tb_bairros");
@@ -40,5 +43,4 @@ class AdmsListarBairro {
         $this->Resultado = $listarCargo->getResultado();
         return $this->Resultado;
     }
-
 }

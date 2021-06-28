@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarGrupoPg {
+class AdmsApagarGrupoPg
+{
 
     private $DadosId;
     private $Resultado;
     private $Dados;
     private $DadosGrupoPgInferior;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarGrupoPg($DadosId = null) {
+    public function apagarGrupoPg($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verfPgCad();
         if ($this->Resultado) {
@@ -41,7 +44,8 @@ class AdmsApagarGrupoPg {
         }
     }
 
-    private function verfPgCad() {
+    private function verfPgCad()
+    {
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT id FROM adms_paginas
                 WHERE adms_grps_pg_id =:adms_grps_pg_id LIMIT :limit", "adms_grps_pg_id=" . $this->DadosId . "&limit=2");
@@ -53,13 +57,15 @@ class AdmsApagarGrupoPg {
         }
     }
 
-    private function verfGrupoPgInferior() {
+    private function verfGrupoPgInferior()
+    {
         $verGrupoPg = new \App\adms\Models\helper\AdmsRead();
         $verGrupoPg->fullRead("SELECT id, ordem AS ordem_result FROM adms_grps_pgs WHERE ordem > (SELECT ordem FROM adms_grps_pgs WHERE id =:id) ORDER BY ordem ASC", "id={$this->DadosId}");
         $this->DadosGrupoPgInferior = $verGrupoPg->getResultado();
     }
 
-    private function atualizarOrdem() {
+    private function atualizarOrdem()
+    {
         if ($this->DadosGrupoPgInferior) {
             foreach ($this->DadosGrupoPgInferior as $atualOrdem) {
                 extract($atualOrdem);
@@ -70,5 +76,4 @@ class AdmsApagarGrupoPg {
             }
         }
     }
-
 }

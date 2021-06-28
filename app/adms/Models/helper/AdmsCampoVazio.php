@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chiralnio Silva - Grupo Meia Sola
  */
-class AdmsCampoVazio {
+class AdmsCampoVazio
+{
 
     private $Dados;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function validarDados(array $Dados) {
+    public function validarDados(array $Dados)
+    {
         $this->Dados = $Dados;
         $this->Dados = array_map('strip_tags', $this->Dados);
         $this->Dados = array_map('trim', $this->Dados);
@@ -32,5 +35,4 @@ class AdmsCampoVazio {
             $this->Resultado = true;
         }
     }
-
 }

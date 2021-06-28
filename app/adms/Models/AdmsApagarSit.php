@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarSit {
+class AdmsApagarSit
+{
 
     private $DadosId;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarSit($DadosId = null) {
+    public function apagarSit($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $apagarSit = new \App\adms\Models\helper\AdmsDelete();
         $apagarSit->exeDelete("adms_sits", "WHERE id =:id", "id={$this->DadosId}");
@@ -33,5 +36,4 @@ class AdmsApagarSit {
             $this->Resultado = false;
         }
     }
-
 }

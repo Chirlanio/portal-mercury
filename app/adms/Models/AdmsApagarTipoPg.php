@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsApagarTipoPg {
+class AdmsApagarTipoPg
+{
 
     private $DadosId;
     private $Resultado;
     private $Dados;
     private $DadosTipoPgInferior;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function apagarTipoPg($DadosId = null) {
+    public function apagarTipoPg($DadosId = null)
+    {
         $this->DadosId = (int) $DadosId;
         $this->verfPgCad();
         if ($this->Resultado) {
@@ -41,7 +44,8 @@ class AdmsApagarTipoPg {
         }
     }
 
-    private function verfPgCad() {
+    private function verfPgCad()
+    {
         $verMenu = new \App\adms\Models\helper\AdmsRead();
         $verMenu->fullRead("SELECT id FROM adms_paginas
                 WHERE adms_tps_pg_id =:adms_tps_pg_id LIMIT :limit", "adms_tps_pg_id=" . $this->DadosId . "&limit=2");
@@ -53,13 +57,15 @@ class AdmsApagarTipoPg {
         }
     }
 
-    private function verfTipoPgInferior() {
+    private function verfTipoPgInferior()
+    {
         $verTipoPg = new \App\adms\Models\helper\AdmsRead();
         $verTipoPg->fullRead("SELECT id, ordem AS ordem_result FROM adms_tps_pgs WHERE ordem > (SELECT ordem FROM adms_tps_pgs WHERE id =:id) ORDER BY ordem ASC", "id={$this->DadosId}");
         $this->DadosTipoPgInferior = $verTipoPg->getResultado();
     }
 
-    private function atualizarOrdem() {
+    private function atualizarOrdem()
+    {
         if ($this->DadosTipoPgInferior) {
             foreach ($this->DadosTipoPgInferior as $atualOrdem) {
                 extract($atualOrdem);
@@ -70,5 +76,4 @@ class AdmsApagarTipoPg {
             }
         }
     }
-
 }

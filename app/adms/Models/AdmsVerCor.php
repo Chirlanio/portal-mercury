@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,12 +12,14 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsVerCor {
+class AdmsVerCor
+{
 
     private $Resultado;
     private $DadosId;
 
-    public function verCor($DadosId) {
+    public function verCor($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verCor = new \App\adms\Models\helper\AdmsRead();
         $verCor->fullRead("SELECT * FROM adms_cors 
@@ -25,5 +27,4 @@ class AdmsVerCor {
         $this->Resultado = $verCor->getResultado();
         return $this->Resultado;
     }
-
 }

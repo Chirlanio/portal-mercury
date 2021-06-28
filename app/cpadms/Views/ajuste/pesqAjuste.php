@@ -1,5 +1,5 @@
 <?php
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -25,7 +25,7 @@ if (!defined('URL')) {
                     <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Ações
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar"> 
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                         <?php
                         if ($this->Dados['botao']['list_ajuste']) {
                             echo "<a class='dropdown-item' href='" . URLADM . "ajuste/listarAjuste'>Listar</a>";
@@ -65,7 +65,8 @@ if (!defined('URL')) {
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="font-weight: bold" for="referencia">Referência</label>
                         </div>
-                        <input name="referencia" type="text" id="referencia" class="form-control" aria-describedby="referencia" placeholder="Digite a referência" value="<?php
+                        <input name="referencia" type="text" id="referencia" class="form-control" aria-describedby="referencia" placeholder="Digite a referência" value="
+                        <?php
                         if (isset($_SESSION['referencia'])) {
                             echo $_SESSION['referencia'];
                         }
@@ -98,17 +99,18 @@ if (!defined('URL')) {
                     <input name="PesqAjuste" type="submit" class="btn btn-outline-primary mx-sm-2" value="Pesquisar">
                 </div>
             </div>
-        </form><hr>
+        </form>
+        <hr>
         <?php
         if (empty($this->Dados['listAjuste'])) {
-            ?>
+        ?>
             <div class="alert alert-danger" role="alert">
                 Nenhuma solicitação encontrada!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php
+        <?php
         }
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -132,7 +134,7 @@ if (!defined('URL')) {
                     if (!empty($this->Dados['listAjuste'])) {
                         foreach ($this->Dados['listAjuste'] as $Ajuste) {
                             extract($Ajuste);
-                            ?>
+                    ?>
                             <tr>
                                 <th class="align-middle text-center"><?php echo $id; ?></th>
                                 <td class="align-middle"><?php echo $nome_loja; ?></td>
@@ -173,7 +175,7 @@ if (!defined('URL')) {
                                     </div>
                                 </td>
                             </tr>
-                            <?php
+                    <?php
                         }
                     }
                     ?>

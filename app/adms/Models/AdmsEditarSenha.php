@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarSenha {
+class AdmsEditarSenha
+{
 
     private $DadosId;
     private $Dados;
     private $Resultado;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function valUsuario($DadosId) {
+    public function valUsuario($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $validaUsuario = new \App\adms\Models\helper\AdmsRead();
         $validaUsuario->fullRead("SELECT user.id FROM adms_usuarios user
@@ -37,7 +40,8 @@ class AdmsEditarSenha {
         }
     }
 
-    public function editSenha(array $Dados) {
+    public function editSenha(array $Dados)
+    {
         $this->Dados = $Dados;
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio();
         $valCampoVazio->validarDados($this->Dados);
@@ -54,7 +58,8 @@ class AdmsEditarSenha {
         }
     }
 
-    private function updateEditSenha() {
+    private function updateEditSenha()
+    {
         $this->valUsuario($this->Dados['id']);
         if ($this->Resultado) {
             $this->Dados['senha'] = password_hash($this->Dados['senha'], PASSWORD_DEFAULT);
@@ -73,5 +78,4 @@ class AdmsEditarSenha {
             $this->Resultado = false;
         }
     }
-
 }

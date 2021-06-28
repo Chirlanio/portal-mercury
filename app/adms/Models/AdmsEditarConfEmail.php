@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarConfEmail {
+class AdmsEditarConfEmail
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verConfEmail() {
+    public function verConfEmail()
+    {
         $verConfEmail = new \App\adms\Models\helper\AdmsRead();
         $verConfEmail->fullRead("SELECT * FROM adms_confs_emails
                 WHERE id =:id LIMIT :limit", "id=1&limit=1");
@@ -29,7 +32,8 @@ class AdmsEditarConfEmail {
         return $this->Resultado;
     }
 
-    public function altConfEmail(array $Dados) {
+    public function altConfEmail(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -42,7 +46,8 @@ class AdmsEditarConfEmail {
         }
     }
 
-    private function updateConfEmail() {
+    private function updateConfEmail()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upConfEmail = new \App\adms\Models\helper\AdmsUpdate();
         $upConfEmail->exeUpdate("adms_confs_emails", $this->Dados, "WHERE id =:id", "id=1");
@@ -54,5 +59,4 @@ class AdmsEditarConfEmail {
             $this->Resultado = false;
         }
     }
-
 }

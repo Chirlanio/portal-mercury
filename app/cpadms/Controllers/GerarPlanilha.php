@@ -12,12 +12,14 @@ if (!defined('URLADM')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class GerarPlanilha {
+class GerarPlanilha
+{
 
     private $Dados;
     private $PageId;
 
-    public function gerar($PageId = null) {
+    public function gerar($PageId = null)
+    {
 
         $botao = ['gerar' => ['menu_controller' => 'gerar-planilha', 'menu_metodo' => 'gerar']];
         $listarBotao = new \App\adms\Models\AdmsBotao();
@@ -29,5 +31,4 @@ class GerarPlanilha {
         $carregarView = new \App\cpadms\core\ConfigView("cpadms/Views/planilha/gerarPlanilha", $this->Dados);
         $carregarView->renderizarListar();
     }
-
 }

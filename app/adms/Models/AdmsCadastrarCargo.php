@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,16 +12,19 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsCadastrarCargo {
+class AdmsCadastrarCargo
+{
 
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadCargo(array $Dados) {
+    public function cadCargo(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -34,7 +37,8 @@ class AdmsCadastrarCargo {
         }
     }
 
-    private function inserirCargo() {
+    private function inserirCargo()
+    {
         $this->Dados['created'] = date("Y-m-d H:i:s");
         $cadCargo = new \App\adms\Models\helper\AdmsCreate;
         $cadCargo->exeCreate("tb_cargos", $this->Dados);
@@ -46,5 +50,4 @@ class AdmsCadastrarCargo {
             $this->Resultado = false;
         }
     }
-
 }

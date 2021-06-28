@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsAtualSenha {
+class AdmsAtualSenha
+{
 
     private $Chave;
     private $DadosUsuario;
     private $Resultado;
     private $Dados;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function valChave($Chave) {
+    public function valChave($Chave)
+    {
         $this->Chave = (string) $Chave;
         $validaChave = new \App\adms\Models\helper\AdmsRead();
         $validaChave->fullRead("SELECT id FROM adms_usuarios WHERE recuperar_senha =:recuperar_senha", "recuperar_senha={$this->Chave}");
@@ -36,7 +39,8 @@ class AdmsAtualSenha {
         }
     }
 
-    public function atualSenha(array $Dados) {
+    public function atualSenha(array $Dados)
+    {
         $this->Dados = $Dados;
         $this->validarDados();
         if ($this->Resultado) {
@@ -50,7 +54,8 @@ class AdmsAtualSenha {
         }
     }
 
-    private function validarDados() {
+    private function validarDados()
+    {
         $this->Dados = array_map('strip_tags', $this->Dados);
         $this->Dados = array_map('trim', $this->Dados);
         if (in_array('', $this->Dados)) {
@@ -61,7 +66,8 @@ class AdmsAtualSenha {
         }
     }
 
-    private function updateAtualSenha() {
+    private function updateAtualSenha()
+    {
         $this->valChave($this->Dados['recuperar_senha']);
         if ($this->Resultado) {
             $this->Dados['recuperar_senha'] = NULL;
@@ -81,5 +87,4 @@ class AdmsAtualSenha {
             $this->Resultado = false;
         }
     }
-
 }

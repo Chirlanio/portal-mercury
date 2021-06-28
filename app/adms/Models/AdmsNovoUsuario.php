@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsNovoUsuario {
+class AdmsNovoUsuario
+{
 
     private $Dados;
     private $Resultado;
     private $InfoCadUser;
     private $DadosEmail;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function cadUser(array $Dados) {
+    public function cadUser(array $Dados)
+    {
         $this->Dados = $Dados;
         $this->validarDados();
         if ($this->Resultado) {
@@ -39,7 +42,7 @@ class AdmsNovoUsuario {
             $valSenha = new \App\adms\Models\helper\AdmsValSenha();
             $valSenha->valSenha($this->Dados['senha']);
 
-            if (($valSenha->getResultado()) AND ( $valUsuario->getResultado()) AND ( $valEmailUnico->getResultado()) AND ( $valEmail->getResultado())) {
+            if (($valSenha->getResultado()) and ($valUsuario->getResultado()) and ($valEmailUnico->getResultado()) and ($valEmail->getResultado())) {
                 $this->inserir();
             } else {
                 $this->Resultado = false;
@@ -47,7 +50,8 @@ class AdmsNovoUsuario {
         }
     }
 
-    private function validarDados() {
+    private function validarDados()
+    {
         $this->Dados = array_map('strip_tags', $this->Dados);
         $this->Dados = array_map('trim', $this->Dados);
         if (in_array('', $this->Dados)) {
@@ -58,7 +62,8 @@ class AdmsNovoUsuario {
         }
     }
 
-    private function inserir() {
+    private function inserir()
+    {
         $this->infoCadUser();
         $this->Dados['senha'] = password_hash($this->Dados['senha'], PASSWORD_DEFAULT);
 
@@ -81,13 +86,15 @@ class AdmsNovoUsuario {
         }
     }
 
-    private function infoCadUser() {
+    private function infoCadUser()
+    {
         $infoCadUser = new \App\adms\Models\helper\AdmsRead();
         $infoCadUser->fullRead("SELECT env_email_conf, adms_niveis_acesso_id, adms_sits_usuario_id FROM adms_cads_usuarios WHERE id =:id LIMIT :limit", "id=1&limit=1");
         $this->InfoCadUser = $infoCadUser->getResultado();
     }
 
-    private function dadosEmail() {
+    private function dadosEmail()
+    {
         $nome = explode(" ", $this->Dados['nome']);
         $prim_nome = $nome[0];
         $this->DadosEmail['dest_nome'] = $prim_nome;
@@ -113,5 +120,4 @@ class AdmsNovoUsuario {
             $this->Resultado = false;
         }
     }
-
 }

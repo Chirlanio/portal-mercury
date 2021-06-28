@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,17 +12,20 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsEditarGrupoPg {
+class AdmsEditarGrupoPg
+{
 
     private $Resultado;
     private $Dados;
     private $DadosId;
 
-    function getResultado() {
+    function getResultado()
+    {
         return $this->Resultado;
     }
 
-    public function verGrupoPg($DadosId) {
+    public function verGrupoPg($DadosId)
+    {
         $this->DadosId = (int) $DadosId;
         $verGrupoPg = new \App\adms\Models\helper\AdmsRead();
         $verGrupoPg->fullRead("SELECT * FROM adms_grps_pgs
@@ -31,7 +34,8 @@ class AdmsEditarGrupoPg {
         return $this->Resultado;
     }
 
-    public function altGrupoPg(array $Dados) {
+    public function altGrupoPg(array $Dados)
+    {
         $this->Dados = $Dados;
 
         $valCampoVazio = new \App\adms\Models\helper\AdmsCampoVazio;
@@ -44,7 +48,8 @@ class AdmsEditarGrupoPg {
         }
     }
 
-    private function updateEditGrupoPg() {
+    private function updateEditGrupoPg()
+    {
         $this->Dados['modified'] = date("Y-m-d H:i:s");
         $upAltGrupoPg = new \App\adms\Models\helper\AdmsUpdate();
         $upAltGrupoPg->exeUpdate("adms_grps_pgs", $this->Dados, "WHERE id =:id", "id=" . $this->Dados['id']);
@@ -56,5 +61,4 @@ class AdmsEditarGrupoPg {
             $this->Resultado = false;
         }
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\adms\Models;
 
-if (!defined('URL')) {
+if (!defined('URLADM')) {
     header("Location: /");
     exit();
 }
@@ -12,18 +12,21 @@ if (!defined('URL')) {
  *
  * @copyright (c) year, Chirlanio Silva - Grupo Meia Sola
  */
-class AdmsListarDashboard {
+class AdmsListarDashboard
+{
 
     private $Resultado;
     private $PageId;
     private $LimiteResultado = 20;
     private $ResultadoPg;
 
-    function getResultadoPg() {
+    function getResultadoPg()
+    {
         return $this->ResultadoPg;
     }
 
-    public function listarDashboard($PageId = null) {
+    public function listarDashboard($PageId = null)
+    {
         $this->PageId = (int) $PageId;
         $paginacao = new \App\adms\Models\helper\AdmsPaginacao(URLADM . 'dashboard/listar');
         $paginacao->condicao($this->PageId, $this->LimiteResultado);
@@ -36,19 +39,22 @@ class AdmsListarDashboard {
 
         $listarCor = new \App\adms\Models\helper\AdmsRead();
         if ($_SESSION['ordem_nivac'] <= 5) {
-            $listarCor->fullRead("SELECT *
+            $listarCor->fullRead(
+                "SELECT *
                     FROM tb_dashboards
                     ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                    "&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+                "&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+            );
         } else {
-            $listarCor->fullRead("SELECT *
+            $listarCor->fullRead(
+                "SELECT *
                     FROM tb_dashboards
                     WHERE loja_id =:loja_id
                     ORDER BY id ASC LIMIT :limit OFFSET :offset",
-                    "loja_id=" . $_SESSION['usuario_loja'] . "&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}");
+                "loja_id=" . $_SESSION['usuario_loja'] . "&limit={$this->LimiteResultado}&offset={$paginacao->getOffset()}"
+            );
         }
         $this->Resultado = $listarCor->getResultado();
         return $this->Resultado;
     }
-
 }
